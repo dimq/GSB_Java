@@ -154,7 +154,9 @@ public class ConsulterFiche extends JPanel
 
 		buttonOkNp.addActionListener(new ActionListener(){
 
-			@Override
+			private Object[] eventCache;
+
+            @Override
 			public void actionPerformed(ActionEvent arg0) {
 				//Create and populate the panel.
 				ConsultModifVisiteur p1 = new ConsultModifVisiteur(utils.get(comboBoxNomPrenom.getSelectedIndex()),edit,regions);
