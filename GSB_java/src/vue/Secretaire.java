@@ -3,10 +3,13 @@ package vue;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+
+import com.persistance.AccesData;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -145,6 +148,13 @@ public class Secretaire extends JFrame
         	mntmCrationDunVisiteur = new JMenuItem("Cr\u00E9ation d'un Visiteur");
         	mntmCrationDunVisiteur.addActionListener(new ActionListener() {
         	    public void actionPerformed(ActionEvent e) {
+        	      //Create and populate the panel.
+                    CreationVisiteur p1 = new CreationVisiteur(AccesData.getListRegion());
+
+                    
+
+                    JOptionPane.showConfirmDialog(null, p1, "Création visiteur",
+                            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         	    }
         	});
         }
