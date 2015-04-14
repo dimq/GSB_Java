@@ -96,9 +96,26 @@ public class Utilisateur
         this.mdp = "gsb1234";
         this.region = region;
         this.ville = ville;
+    }
+    /**
+     * Constructeur utilisateur surcharge avec les numeros de telephones
+     */
+    public Utilisateur(String idUtilisateur,String nomUtilisateur,String prenomUtilisateur,String portable,String fixe,String adresse,String cp,String ville,String idType,Region region) {
         
-        
-        // TODO Auto-generated constructor stub
+        this.idUtilisateur=idUtilisateur;
+        this.nomUtilisateur=nomUtilisateur;
+        this.prenomUtilisateur=prenomUtilisateur;
+        this.listeFicheFrais=new ArrayList<FicheFrais>();
+        this.adressseRue = adresse;
+        this.cp = cp;
+        this.idType = idType;
+        this.login = creerLogin();
+        this.mailPro = creerMail();
+        this.mdp = "gsb1234";
+        this.region = region;
+        this.ville = ville;
+        this.numFixe = fixe;
+        this.numPort = portable;
     }
     
     /**
@@ -380,6 +397,7 @@ public class Utilisateur
         mail = mail.toLowerCase();
         return mail;
     }
+    
 
 	/**
 	 * @return the mailPro

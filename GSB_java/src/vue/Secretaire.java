@@ -151,14 +151,9 @@ public class Secretaire extends JFrame
         	      //Create and populate the panel.
                     CreationVisiteur p1 = new CreationVisiteur(AccesData.getListRegion());
 
-//                    JFrame frame = new JFrame();
-//                    frame.setContentPane(new CreationVisiteur(AccesData.getListRegion()));
-//                    frame.setBounds(50, 50, 500, 500);
-//                    frame.setAlwaysOnTop(true);
-//                    frame.setVisible(true);
                     
-                    JOptionPane.showOptionDialog(null, p1, "Creation visiteur",
-                            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[]{}, null);
+                    int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Creation visiteur",
+							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
                     
         	    }
         	});

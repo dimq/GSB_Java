@@ -150,8 +150,16 @@ public class ConsulterFiche extends JPanel
 							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 					if (selectedOption == 0)
 					{
+						Utilisateur util = new Utilisateur();
 						System.out.println(p1.getNom());
 						System.out.println(p1.getPrenom());
+						System.out.println(p1.getPortable());
+						System.out.println(p1.getFixe());
+						System.out.println(p1.getAdresse());
+						System.out.println(p1.getCp());
+						System.out.println(p1.getVille());
+						System.out.println(p1.getRegion().getLibelleRegion());
+						System.out.println(creerId());
 					}
 					
 				}
@@ -169,8 +177,19 @@ public class ConsulterFiche extends JPanel
 
 				
 
-				JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
+				int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+				if (selectedOption == 0)
+				{
+					System.out.println(p1.getNom());
+					System.out.println(p1.getPrenom());
+					System.out.println(p1.getPortable());
+					System.out.println(p1.getFixe());
+					System.out.println(p1.getAdresse());
+					System.out.println(p1.getCp());
+					System.out.println(p1.getVille());
+					System.out.println(p1.getRegion().getLibelleRegion());
+				}
 				
 			}
 			
@@ -185,8 +204,19 @@ public class ConsulterFiche extends JPanel
 
 				
 
-				JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
+				int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+				if (selectedOption == 0)
+				{
+					System.out.println(p1.getNom());
+					System.out.println(p1.getPrenom());
+					System.out.println(p1.getPortable());
+					System.out.println(p1.getFixe());
+					System.out.println(p1.getAdresse());
+					System.out.println(p1.getCp());
+					System.out.println(p1.getVille());
+					System.out.println(p1.getRegion().getLibelleRegion());
+				}
 				
 			}
 			
@@ -205,5 +235,27 @@ public class ConsulterFiche extends JPanel
 			comboBoxNomPrenom.addItem(u.getNomUtilisateur()+" "+u.getPrenomUtilisateur());
 			comboBoxIdentifiant.addItem(u.getIdUtilisateur());
 		}
+	}
+	public String creerId()
+	{
+		boolean test = true;
+		String id = "a131";
+		String alphabet="abcdefghijklmnopqrstuvwxyz";
+		int i =0;
+		/*while (i <= utils.size() || test == true)
+		{
+			
+			if (id.equals(utils.get(i).getIdUtilisateur()) || id.equals(""))
+			{
+				int character=(int)(Math.random()*26);
+				id +=alphabet.substring(character, character+1);
+				id +=1 + (int)(Math.random() * ((200 - 1) + 1));
+			}
+			else
+			{
+				test=false;
+			}
+		}*/
+		return id;
 	}
 }

@@ -30,12 +30,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class ConsultModifVisiteur extends JPanel {
 	private static DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
 	private boolean testPortable;
 	private String nom;
 	private String prenom;
+	private String portable;
+	private String fixe;
+	private String adresse;
+	private String cp;
+	private String ville;
+	private Region region;
 	/**
 	 * Create the panel.
 	 * @return 
@@ -126,9 +134,15 @@ public class ConsultModifVisiteur extends JPanel {
 		textFieldPortable.setText(util.getNumPort());
 		portableVisiteur.setLabelFor(textFieldPortable);
 		this.add(textFieldPortable);
-		
 		this.add(label3);
 		textFieldPortable.setEditable(edit);
+		portable = textFieldPortable.getText();
+		textFieldPortable.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				portable = textFieldPortable.getText();
+			}
+		});
 
 		JLabel telephoneVisiteur = new JLabel();
 		telephoneVisiteur.setText("Telephone ");
@@ -140,6 +154,13 @@ public class ConsultModifVisiteur extends JPanel {
 		JLabel label4 = new JLabel();
 		this.add(label4);
 		textFieldFixe.setEditable(edit);
+		fixe = textFieldFixe.getText();
+		textFieldFixe.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				fixe = textFieldFixe.getText();
+			}
+		});
 
 		JLabel mailVisiteur = new JLabel();
 		mailVisiteur.setText("Mail ");
@@ -162,6 +183,13 @@ public class ConsultModifVisiteur extends JPanel {
 		JLabel label6 = new JLabel();
 		this.add(label6);
 		textFieldAdresse.setEditable(edit);
+		adresse = textFieldAdresse.getText();
+		textFieldAdresse.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				adresse = textFieldAdresse.getText();
+			}
+		});
 
 		JLabel cpVisiteur = new JLabel();
 		cpVisiteur.setText("Code Postal ");
@@ -173,6 +201,13 @@ public class ConsultModifVisiteur extends JPanel {
 		JLabel label7 = new JLabel();
 		this.add(label7);
 		textFieldCp.setEditable(edit);
+		cp = textFieldCp.getText();
+		textFieldCp.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				cp = textFieldCp.getText();
+			}
+		});
 
 		JLabel villeVisiteur = new JLabel();
 		villeVisiteur.setText("Ville ");
@@ -184,6 +219,13 @@ public class ConsultModifVisiteur extends JPanel {
 		JLabel label8 = new JLabel();
 		this.add(label8);
 		textFieldVille.setEditable(edit);
+		ville = textFieldVille.getText();
+		textFieldVille.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				ville = textFieldVille.getText();
+			}
+		});
 
 		JLabel dateVisiteur = new JLabel();
 		dateVisiteur.setText("Date d'embauche ");
@@ -224,26 +266,17 @@ public class ConsultModifVisiteur extends JPanel {
 		this.add(comboFieldRegion);
 		JLabel label10 = new JLabel();
 		this.add(label10);
-		
-		JButton btnValider = new JButton("Valider");
-		btnValider.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if (edit == false)
-				{
-					
-				}
+		region = regions.get(comboFieldRegion.getSelectedIndex());
+		comboFieldRegion.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				region = regions.get(comboFieldRegion.getSelectedIndex());
 			}
 		});
-		add(btnValider);
 		
-		JButton btnEffacer = new JButton("Effacer");
-		add(btnEffacer);
-		JLabel label_1 = new JLabel();
-		add(label_1);
 
 		//Lay out the panel.
 		SpringUtilities.makeCompactGrid(this,
-				12, 3, //rows, cols
+				11, 3, //rows, cols
 				6, 6,        //initX, initY
 				6, 6);       //xPad, yPad
 		
@@ -257,4 +290,29 @@ public class ConsultModifVisiteur extends JPanel {
 	{
 		return prenom;
 	}
+	public String getPortable()
+	{
+		return portable;
+	}
+	public String getFixe()
+	{
+		return fixe;
+	}
+	public String getAdresse()
+	{
+		return adresse;
+	}
+	public String getCp()
+	{
+		return cp;
+	}
+	public String getVille()
+	{
+		return ville;
+	}
+	public Region getRegion()
+	{
+		return region;
+	}
+	
 }
