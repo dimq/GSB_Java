@@ -146,8 +146,14 @@ public class ConsulterFiche extends JPanel
 
 					
 
-					JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
+					int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
 							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+					if (selectedOption == 0)
+					{
+						System.out.println(p1.getNom());
+						System.out.println(p1.getPrenom());
+					}
+					
 				}
 			}
 		});

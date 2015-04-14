@@ -91,7 +91,7 @@ public class Secretaire extends JFrame
     }
     private JMenuItem getMntmDconnection() {
         if (mntmDconnection == null) {
-        	mntmDconnection = new JMenuItem("Déconnexion");
+        	mntmDconnection = new JMenuItem("Deconnexion");
         	mntmDconnection.addActionListener(new ActionListener() {
         	    public void actionPerformed(ActionEvent e) {
         	        frame.dispose();
@@ -137,7 +137,7 @@ public class Secretaire extends JFrame
     }
     private JMenu getMnCrationsuppression() {
         if (mnCrationsuppression == null) {
-        	mnCrationsuppression = new JMenu("Cr\u00E9ation/Suppression");
+        	mnCrationsuppression = new JMenu("Creation/Suppression");
         	mnCrationsuppression.add(getMntmCrationDunVisiteur());
         	mnCrationsuppression.add(getMntmSupprimerUnVisiteur());
         }
@@ -145,7 +145,7 @@ public class Secretaire extends JFrame
     }
     private JMenuItem getMntmCrationDunVisiteur() {
         if (mntmCrationDunVisiteur == null) {
-        	mntmCrationDunVisiteur = new JMenuItem("Cr\u00E9ation d'un Visiteur");
+        	mntmCrationDunVisiteur = new JMenuItem("Creation d'un Visiteur");
         	mntmCrationDunVisiteur.addActionListener(new ActionListener() {
         	    public void actionPerformed(ActionEvent e) {
         	      //Create and populate the panel.
@@ -157,7 +157,7 @@ public class Secretaire extends JFrame
 //                    frame.setAlwaysOnTop(true);
 //                    frame.setVisible(true);
                     
-                    JOptionPane.showOptionDialog(null, p1, "Création visiteur",
+                    JOptionPane.showOptionDialog(null, p1, "Creation visiteur",
                             JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[]{}, null);
                     
         	    }

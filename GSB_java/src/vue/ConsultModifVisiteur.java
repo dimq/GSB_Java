@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
@@ -20,16 +21,30 @@ import com.metier.Utilisateur;
 
 import layout.SpringUtilities;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
+
 public class ConsultModifVisiteur extends JPanel {
 	private static DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
-	
+	private boolean testPortable;
+	private String nom;
+	private String prenom;
 	/**
 	 * Create the panel.
+	 * @return 
 	 */
 	public ConsultModifVisiteur(Utilisateur util,boolean edit,List<Region> regions) {
 		
 		
-		this.setLayout(new SpringLayout());
+		SpringLayout springLayout = new SpringLayout();
+		this.setLayout(springLayout);
 
 		JLabel idVisiteur = new JLabel();
 		idVisiteur.setText("Identifiant ");
@@ -53,6 +68,14 @@ public class ConsultModifVisiteur extends JPanel {
 		JLabel label1 = new JLabel();
 		this.add(label1);
 		textFieldNom.setEditable(edit);
+		nom = textFieldNom.getText();
+		textFieldNom.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				nom = textFieldNom.getText();
+			}
+		});
+				
 
 		JLabel prenomVisiteur = new JLabel();
 		prenomVisiteur.setText("Prenom ");
@@ -64,15 +87,46 @@ public class ConsultModifVisiteur extends JPanel {
 		JLabel label2 = new JLabel();
 		this.add(label2);
 		textFieldPrenom.setEditable(edit);
+		prenom = textFieldPrenom.getText();
+		textFieldPrenom.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				prenom = textFieldPrenom.getText();
+			}
+		});
 
 		JLabel portableVisiteur = new JLabel();
 		portableVisiteur.setText("Portable ");
 		this.add(portableVisiteur);
 		JTextField textFieldPortable = new JTextField(10);
+		JLabel label3 = new JLabel();
+		if (textFieldPortable.getText().length() == 10)
+		{
+			label3.setText("Bon numero");
+			testPortable= true;
+		}
+		else
+		{
+			label3.setText("Mauvais numero");
+			testPortable = false;
+		}
+		textFieldPortable.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				if (textFieldPortable.getText().length() == 10)
+				{
+					label3.setText("Bon numero");
+					testPortable = true;
+				}
+				else
+					label3.setText("Mauvais numero");
+					testPortable = false;
+				}
+		});
 		textFieldPortable.setText(util.getNumPort());
 		portableVisiteur.setLabelFor(textFieldPortable);
 		this.add(textFieldPortable);
-		JLabel label3 = new JLabel();
+		
 		this.add(label3);
 		textFieldPortable.setEditable(edit);
 
@@ -142,7 +196,7 @@ public class ConsultModifVisiteur extends JPanel {
 		JCalendarButton calendar = new JCalendarButton();
 		calendar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
 			public void propertyChange(java.beans.PropertyChangeEvent evt) {
-			    System.out.println(evt.getNewValue());
+			    //System.out.println(evt.getNewValue());
 				if (evt.getNewValue() instanceof Date){
 					Date date = (Date) evt.getNewValue();
 					System.out.println("Date : " + date.toString());
@@ -170,12 +224,37 @@ public class ConsultModifVisiteur extends JPanel {
 		this.add(comboFieldRegion);
 		JLabel label10 = new JLabel();
 		this.add(label10);
+		
+		JButton btnValider = new JButton("Valider");
+		btnValider.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (edit == false)
+				{
+					
+				}
+			}
+		});
+		add(btnValider);
+		
+		JButton btnEffacer = new JButton("Effacer");
+		add(btnEffacer);
+		JLabel label_1 = new JLabel();
+		add(label_1);
 
 		//Lay out the panel.
 		SpringUtilities.makeCompactGrid(this,
-				11, 3, //rows, cols
+				12, 3, //rows, cols
 				6, 6,        //initX, initY
 				6, 6);       //xPad, yPad
+		
+		
 	}
-
+	public String getNom()
+	{
+		return nom;
+	}
+	public String getPrenom()
+	{
+		return prenom;
+	}
 }
