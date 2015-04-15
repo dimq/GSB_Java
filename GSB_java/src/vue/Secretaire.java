@@ -9,10 +9,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+import com.metier.Utilisateur;
 import com.persistance.AccesData;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class Secretaire extends JFrame
 {
@@ -30,6 +32,7 @@ public class Secretaire extends JFrame
     private JMenu mnCrationsuppression;
     private JMenuItem mntmCrationDunVisiteur;
     private JMenuItem mntmSupprimerUnVisiteur;
+    private List<Utilisateur> utils;
     /**
      * Launch the application.
      */
@@ -60,6 +63,7 @@ public class Secretaire extends JFrame
         setTitle("Partie Secretaire GSB Ressources Humaines");
         setJMenuBar(getMenuBar_1());
         frame= this;
+        utils = AccesData.getListUtilisateur();
     }
     private JMenuBar getMenuBar_1() {
         if (menuBar == null) {
@@ -154,6 +158,11 @@ public class Secretaire extends JFrame
                     
                     int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Creation visiteur",
 							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                    if (selectedOption == 0)
+                    {
+                        Utilisateur util = new Utilisateur(creerId(),p1.getNom(),p1.getPrenom(),p1.getPortable(),p1.getFixe(),p1.getAdresse(),p1.getCp(),p1.getVille(),"v",p1.getRegion());
+                        AccesData.createUtilisateur(util);
+                    }
                     
         	    }
         	});
@@ -169,5 +178,33 @@ public class Secretaire extends JFrame
         	});
         }
         return mntmSupprimerUnVisiteur;
+    }
+    /**
+     * Méthode de génération aléatoire de l'identifiant utilisateur
+     * @return id Utilisateur de type String
+     */
+    public String creerId()
+    {
+        boolean test = true;
+        String id = "";
+        String alphabet="abcdefghijklmnopqrstuvwxyz";
+        int i =0;
+        while (i < utils.size() || test == true)
+        {
+            
+            if (id.equals(utils.get(i).getIdUtilisateur()) || id.equals(""))
+            {
+                id="";
+                int character1=(int)(Math.random()*26);
+                id +=alphabet.substring(character1, character1+1);
+                id +=1 + (int)(Math.random() * ((200 - 1) + 1));
+            }
+            else
+            {
+                test=false;
+            }
+            i++;
+        }
+        return id;
     }
 }

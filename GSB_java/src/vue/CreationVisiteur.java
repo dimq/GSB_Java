@@ -1,5 +1,9 @@
 package vue;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.util.List;
@@ -20,104 +24,192 @@ import com.metier.Region;
 public class CreationVisiteur extends JPanel
 {
     private static DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
+    private String nom;
+    private String prenom;
+    private String portable;
+    private String fixe;
+    private String adresse;
+    private String cp;
+    private String ville;
+    private Region region;
+    
+    private JLabel nomVisiteur;
+    private JTextField textFieldNom;
+    private JLabel label1;
+    private JLabel prenomVisiteur;
+    private JTextField textFieldPrenom;
+    private JLabel label2;
+    private JLabel portableVisiteur;
+    private JTextField textFieldPortable;
+    private JLabel label3;
+    private JLabel telephoneVisiteur;
+    private JTextField textFieldFixe;
+    private JLabel mailVisiteur;
+    private JTextField textFieldMail;
+    private JLabel label5;
+    private JLabel adresseVisiteur;
+    private JTextField textFieldAdresse;
+    private JLabel label4;
+    private JLabel label6;
+    private JLabel cpVisiteur;
+    private JTextField textFieldCp;
+    private JLabel label7;
+    private JLabel villeVisiteur;
+    private JTextField textFieldVille;
+    private JLabel label8;
+    private JLabel dateVisiteur;
+    private JTextField textFieldDate;
+    private JCalendarButton calendar;
+    private JLabel regionVisiteur;
+    private JComboBox comboFieldRegion;
+    private JLabel label10;
     /**
      * Create the panel.
      */
-public CreationVisiteur(List<Region> regions) {
+    public CreationVisiteur(final List<Region> regions) {
         
         
         this.setLayout(new SpringLayout());
 
 
 
-        JLabel nomVisiteur = new JLabel();
+        nomVisiteur = new JLabel();
         nomVisiteur.setText("Nom ");
         this.add(nomVisiteur);
-        JTextField textFieldNom = new JTextField(10);
+        textFieldNom = new JTextField(10);
         nomVisiteur.setLabelFor(textFieldNom);
         this.add(textFieldNom);
-        JLabel label1 = new JLabel();
+        label1 = new JLabel();
         this.add(label1);
         textFieldNom.setEditable(true);
+        nom = textFieldNom.getText();
+        textFieldNom.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent arg0) {
+                nom = textFieldNom.getText();
+            }
+        });
 
-        JLabel prenomVisiteur = new JLabel();
+        prenomVisiteur = new JLabel();
         prenomVisiteur.setText("Prenom ");
         this.add(prenomVisiteur);
-        JTextField textFieldPrenom = new JTextField(10);
+        textFieldPrenom = new JTextField(10);
         prenomVisiteur.setLabelFor(textFieldPrenom);
         this.add(textFieldPrenom);
-        JLabel label2 = new JLabel();
+        label2 = new JLabel();
         this.add(label2);
         textFieldPrenom.setEditable(true);
+        prenom = textFieldPrenom.getText();
+        textFieldPrenom.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent arg0) {
+                prenom = textFieldPrenom.getText();
+            }
+        });
 
-        JLabel portableVisiteur = new JLabel();
+        portableVisiteur = new JLabel();
         portableVisiteur.setText("Portable ");
         this.add(portableVisiteur);
-        JTextField textFieldPortable = new JTextField(10);
+        textFieldPortable = new JTextField(10);
         portableVisiteur.setLabelFor(textFieldPortable);
         this.add(textFieldPortable);
-        JLabel label3 = new JLabel();
+        label3 = new JLabel();
         this.add(label3);
         textFieldPortable.setEditable(true);
+        portable = textFieldPortable.getText();
+        textFieldPortable.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent arg0) {
+                portable = textFieldPortable.getText();
+            }
+        });
 
-        JLabel telephoneVisiteur = new JLabel();
+        telephoneVisiteur = new JLabel();
         telephoneVisiteur.setText("Telephone ");
         this.add(telephoneVisiteur);
-        JTextField textFieldFixe = new JTextField(10);
+        textFieldFixe = new JTextField(10);
         telephoneVisiteur.setLabelFor(textFieldFixe);
         this.add(textFieldFixe);
-        JLabel label4 = new JLabel();
+        label4 = new JLabel();
         this.add(label4);
         textFieldFixe.setEditable(true);
+        fixe = textFieldFixe.getText();
+        textFieldFixe.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent arg0) {
+                fixe = textFieldFixe.getText();
+            }
+        });
 
-        JLabel mailVisiteur = new JLabel();
+        mailVisiteur = new JLabel();
         mailVisiteur.setText("Mail ");
         this.add(mailVisiteur);
-        JTextField textFieldMail = new JTextField(10);
+        textFieldMail = new JTextField(10);
         mailVisiteur.setLabelFor(textFieldMail);
         this.add(textFieldMail);
-        JLabel label5 = new JLabel();
+        label5 = new JLabel();
         this.add(label5);
         textFieldMail.setEditable(false);
 
-        JLabel adresseVisiteur = new JLabel();
+        adresseVisiteur = new JLabel();
         adresseVisiteur.setText("Adresse ");
         this.add(adresseVisiteur);
-        JTextField textFieldAdresse = new JTextField(10);
+        textFieldAdresse = new JTextField(10);
         adresseVisiteur.setLabelFor(textFieldAdresse);
         this.add(textFieldAdresse);
-        JLabel label6 = new JLabel();
+        label6 = new JLabel();
         this.add(label6);
         textFieldAdresse.setEditable(true);
+        adresse = textFieldAdresse.getText();
+        textFieldAdresse.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent arg0) {
+                adresse = textFieldAdresse.getText();
+            }
+        });
 
-        JLabel cpVisiteur = new JLabel();
+        cpVisiteur = new JLabel();
         cpVisiteur.setText("Code Postal ");
         this.add(cpVisiteur);
-        JTextField textFieldCp = new JTextField(10);
+        textFieldCp = new JTextField(10);
         cpVisiteur.setLabelFor(textFieldCp);
         this.add(textFieldCp);
-        JLabel label7 = new JLabel();
+        label7 = new JLabel();
         this.add(label7);
         textFieldCp.setEditable(true);
+        cp = textFieldCp.getText();
+        textFieldCp.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent arg0) {
+                cp = textFieldCp.getText();
+            }
+        });
 
-        JLabel villeVisiteur = new JLabel();
+        villeVisiteur = new JLabel();
         villeVisiteur.setText("Ville ");
         this.add(villeVisiteur);
-        JTextField textFieldVille = new JTextField(10);
+        textFieldVille = new JTextField(10);
         villeVisiteur.setLabelFor(textFieldVille);
         this.add(textFieldVille);
-        JLabel label8 = new JLabel();
+        label8 = new JLabel();
         this.add(label8);
         textFieldVille.setEditable(true);
+        ville = textFieldVille.getText();
+        textFieldVille.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent arg0) {
+                ville = textFieldVille.getText();
+            }
+        });
 
-        JLabel dateVisiteur = new JLabel();
+        dateVisiteur = new JLabel();
         dateVisiteur.setText("Date d'embauche ");
         this.add(dateVisiteur);
-        final JTextField textFieldDate = new JTextField(10);
+        textFieldDate = new JTextField(10);
         textFieldDate.setEditable(false);
         dateVisiteur.setLabelFor(textFieldDate);
         this.add(textFieldDate);
-        JCalendarButton calendar = new JCalendarButton();
+        calendar = new JCalendarButton();
         calendar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 System.out.println(evt.getNewValue());
@@ -132,11 +224,11 @@ public CreationVisiteur(List<Region> regions) {
         });
         this.add(calendar);
 
-        JLabel regionVisiteur = new JLabel();
+        regionVisiteur = new JLabel();
         regionVisiteur.setText("Region ");
         this.add(regionVisiteur);
 
-        JComboBox comboFieldRegion = new JComboBox();
+        comboFieldRegion = new JComboBox();
         for (Region r:regions)
         {
             comboFieldRegion.addItem(r.getLibelleRegion());
@@ -145,8 +237,14 @@ public CreationVisiteur(List<Region> regions) {
         AutoCompleteDecorator.decorate(comboFieldRegion);
         regionVisiteur.setLabelFor(comboFieldRegion);
         this.add(comboFieldRegion);
-        JLabel label10 = new JLabel();
+        label10 = new JLabel();
         this.add(label10);
+        region = regions.get(comboFieldRegion.getSelectedIndex());
+        comboFieldRegion.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent arg0) {
+                region = regions.get(comboFieldRegion.getSelectedIndex());
+            }
+        });
 
         //Lay out the panel.
         SpringUtilities.makeCompactGrid(this,
@@ -154,5 +252,36 @@ public CreationVisiteur(List<Region> regions) {
                 6, 6,        //initX, initY
                 6, 6);       //xPad, yPad
     }
-
+    public String getNom()
+    {
+        return nom;
+    }
+    public String getPrenom()
+    {
+        return prenom;
+    }
+    public String getPortable()
+    {
+        return portable;
+    }
+    public String getFixe()
+    {
+        return fixe;
+    }
+    public String getAdresse()
+    {
+        return adresse;
+    }
+    public String getCp()
+    {
+        return cp;
+    }
+    public String getVille()
+    {
+        return ville;
+    }
+    public Region getRegion()
+    {
+        return region;
+    }
 }

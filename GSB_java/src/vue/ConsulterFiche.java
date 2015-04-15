@@ -139,28 +139,32 @@ public class ConsulterFiche extends JPanel
 				JTable table =(JTable) me.getSource();
 				Point p = me.getPoint();
 				int row = table.rowAtPoint(p);
-				if (me.getClickCount() == 2) {
+				if (me.getClickCount() == 2) 
+				{
+				    Utilisateur visiteur = utilisateurByRegion.get(row);
+	                //Create and populate the panel.
+	                ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit,regions);
 
-					//Create and populate the panel.
-					ConsultModifVisiteur p1 = new ConsultModifVisiteur(utilisateurByRegion.get(row),edit,regions);
+	                
 
-					
-
-					int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
-							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-					if (selectedOption == 0)
-					{
-						Utilisateur util = new Utilisateur();
-						System.out.println(p1.getNom());
-						System.out.println(p1.getPrenom());
-						System.out.println(p1.getPortable());
-						System.out.println(p1.getFixe());
-						System.out.println(p1.getAdresse());
-						System.out.println(p1.getCp());
-						System.out.println(p1.getVille());
-						System.out.println(p1.getRegion().getLibelleRegion());
-						System.out.println(creerId());
-					}
+	                int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
+	                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+	                if (selectedOption == 0)
+	                {
+	                    visiteur.setNomUtilisateur(p1.getNom());
+	                    visiteur.setPrenomUtilisateur(p1.getPrenom());
+	                    visiteur.setNumPort(p1.getPortable());
+	                    visiteur.setNumFixe(p1.getFixe());
+	                    visiteur.setAdressseRue(p1.getAdresse());
+	                    visiteur.setCp(p1.getCp());
+	                    visiteur.setVille(p1.getVille());
+	                    visiteur.setRegion(p1.getRegion());
+	                    AccesData.updateUtilisateur(visiteur);
+	                    table.revalidate();
+	                    comboBoxRegion.revalidate();
+	                    comboBoxNomPrenom.revalidate();
+	                    comboBoxIdentifiant.revalidate();
+	                }
 					
 				}
 			}
@@ -172,8 +176,9 @@ public class ConsulterFiche extends JPanel
 
             @Override
 			public void actionPerformed(ActionEvent arg0) {
+                Utilisateur visiteur = utils.get(comboBoxNomPrenom.getSelectedIndex());
 				//Create and populate the panel.
-				ConsultModifVisiteur p1 = new ConsultModifVisiteur(utils.get(comboBoxNomPrenom.getSelectedIndex()),edit,regions);
+				ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit,regions);
 
 				
 
@@ -181,14 +186,19 @@ public class ConsulterFiche extends JPanel
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 				if (selectedOption == 0)
 				{
-					System.out.println(p1.getNom());
-					System.out.println(p1.getPrenom());
-					System.out.println(p1.getPortable());
-					System.out.println(p1.getFixe());
-					System.out.println(p1.getAdresse());
-					System.out.println(p1.getCp());
-					System.out.println(p1.getVille());
-					System.out.println(p1.getRegion().getLibelleRegion());
+				    visiteur.setNomUtilisateur(p1.getNom());
+				    visiteur.setPrenomUtilisateur(p1.getPrenom());
+				    visiteur.setNumPort(p1.getPortable());
+				    visiteur.setNumFixe(p1.getFixe());
+				    visiteur.setAdressseRue(p1.getAdresse());
+				    visiteur.setCp(p1.getCp());
+				    visiteur.setVille(p1.getVille());
+				    visiteur.setRegion(p1.getRegion());
+                    AccesData.updateUtilisateur(visiteur);
+                    table.revalidate();
+                    comboBoxRegion.revalidate();
+                    comboBoxNomPrenom.revalidate();
+                    comboBoxIdentifiant.revalidate();
 				}
 				
 			}
@@ -199,24 +209,30 @@ public class ConsulterFiche extends JPanel
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Create and populate the panel.
-				ConsultModifVisiteur p1 = new ConsultModifVisiteur(utils.get(comboBoxIdentifiant.getSelectedIndex()),edit,regions);
+			    Utilisateur visiteur = utils.get(comboBoxIdentifiant.getSelectedIndex());
+                //Create and populate the panel.
+                ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit,regions);
 
 				
 
-				int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
-						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-				if (selectedOption == 0)
-				{
-					System.out.println(p1.getNom());
-					System.out.println(p1.getPrenom());
-					System.out.println(p1.getPortable());
-					System.out.println(p1.getFixe());
-					System.out.println(p1.getAdresse());
-					System.out.println(p1.getCp());
-					System.out.println(p1.getVille());
-					System.out.println(p1.getRegion().getLibelleRegion());
-				}
+                int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if (selectedOption == 0)
+                {
+                    visiteur.setNomUtilisateur(p1.getNom());
+                    visiteur.setPrenomUtilisateur(p1.getPrenom());
+                    visiteur.setNumPort(p1.getPortable());
+                    visiteur.setNumFixe(p1.getFixe());
+                    visiteur.setAdressseRue(p1.getAdresse());
+                    visiteur.setCp(p1.getCp());
+                    visiteur.setVille(p1.getVille());
+                    visiteur.setRegion(p1.getRegion());
+                    AccesData.updateUtilisateur(visiteur);
+                    table.revalidate();
+                    comboBoxRegion.revalidate();
+                    comboBoxNomPrenom.revalidate();
+                    comboBoxIdentifiant.revalidate();
+                }
 				
 			}
 			
@@ -235,27 +251,5 @@ public class ConsulterFiche extends JPanel
 			comboBoxNomPrenom.addItem(u.getNomUtilisateur()+" "+u.getPrenomUtilisateur());
 			comboBoxIdentifiant.addItem(u.getIdUtilisateur());
 		}
-	}
-	public String creerId()
-	{
-		boolean test = true;
-		String id = "a131";
-		String alphabet="abcdefghijklmnopqrstuvwxyz";
-		int i =0;
-		/*while (i <= utils.size() || test == true)
-		{
-			
-			if (id.equals(utils.get(i).getIdUtilisateur()) || id.equals(""))
-			{
-				int character=(int)(Math.random()*26);
-				id +=alphabet.substring(character, character+1);
-				id +=1 + (int)(Math.random() * ((200 - 1) + 1));
-			}
-			else
-			{
-				test=false;
-			}
-		}*/
-		return id;
 	}
 }

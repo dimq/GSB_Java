@@ -36,6 +36,7 @@ import java.awt.event.ItemEvent;
 public class ConsultModifVisiteur extends JPanel {
 	private static DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
 	private boolean testPortable;
+	private String id;
 	private String nom;
 	private String prenom;
 	private String portable;
@@ -44,36 +45,70 @@ public class ConsultModifVisiteur extends JPanel {
 	private String cp;
 	private String ville;
 	private Region region;
+	
+	private JLabel idVisiteur;
+	private JTextField textFieldId;
+	private JLabel label;
+	private JLabel nomVisiteur;
+	private JTextField textFieldNom;
+	private JLabel label1;
+	private JLabel prenomVisiteur;
+	private JTextField textFieldPrenom;
+	private JLabel label2;
+	private JLabel portableVisiteur;
+	private JTextField textFieldPortable;
+	private JLabel label3;
+	private JLabel telephoneVisiteur;
+	private JTextField textFieldFixe;
+	private JLabel mailVisiteur;
+	private JTextField textFieldMail;
+	private JLabel label5;
+	private JLabel adresseVisiteur;
+	private JTextField textFieldAdresse;
+	private JLabel label4;
+	private JLabel label6;
+	private JLabel cpVisiteur;
+	private JTextField textFieldCp;
+	private JLabel label7;
+	private JLabel villeVisiteur;
+	private JTextField textFieldVille;
+	private JLabel label8;
+	private JLabel dateVisiteur;
+	private JTextField textFieldDate;
+	private JCalendarButton calendar;
+	private JLabel regionVisiteur;
+	private JComboBox comboFieldRegion;
+	private JLabel label10;
 	/**
 	 * Create the panel.
 	 * @return 
 	 */
-	public ConsultModifVisiteur(Utilisateur util,boolean edit,List<Region> regions) {
+	public ConsultModifVisiteur(Utilisateur util,boolean edit,final List<Region> regions) {
 		
 		
-		SpringLayout springLayout = new SpringLayout();
-		this.setLayout(springLayout);
+	    this.setLayout(new SpringLayout());
 
-		JLabel idVisiteur = new JLabel();
+		idVisiteur = new JLabel();
 		idVisiteur.setText("Identifiant ");
 		this.add(idVisiteur);
-		JTextField textFieldId = new JTextField(10);
+		textFieldId = new JTextField(10);
 		textFieldId.setText(util.getIdUtilisateur());
 		idVisiteur.setLabelFor(textFieldId);
 		this.add(textFieldId);
-		JLabel label = new JLabel();
+		label = new JLabel();
 		this.add(label);
 		textFieldId.setEditable(false);
+		id = textFieldId.getText();
 
 
-		JLabel nomVisiteur = new JLabel();
+		nomVisiteur = new JLabel();
 		nomVisiteur.setText("Nom ");
 		this.add(nomVisiteur);
-		JTextField textFieldNom = new JTextField(10);
+		textFieldNom = new JTextField(10);
 		textFieldNom.setText(util.getNomUtilisateur());
 		nomVisiteur.setLabelFor(textFieldNom);
 		this.add(textFieldNom);
-		JLabel label1 = new JLabel();
+		label1 = new JLabel();
 		this.add(label1);
 		textFieldNom.setEditable(edit);
 		nom = textFieldNom.getText();
@@ -85,14 +120,14 @@ public class ConsultModifVisiteur extends JPanel {
 		});
 				
 
-		JLabel prenomVisiteur = new JLabel();
+		prenomVisiteur = new JLabel();
 		prenomVisiteur.setText("Prenom ");
 		this.add(prenomVisiteur);
-		JTextField textFieldPrenom = new JTextField(10);
+		textFieldPrenom = new JTextField(10);
 		textFieldPrenom.setText(util.getPrenomUtilisateur());
 		prenomVisiteur.setLabelFor(textFieldPrenom);
 		this.add(textFieldPrenom);
-		JLabel label2 = new JLabel();
+		label2 = new JLabel();
 		this.add(label2);
 		textFieldPrenom.setEditable(edit);
 		prenom = textFieldPrenom.getText();
@@ -103,11 +138,11 @@ public class ConsultModifVisiteur extends JPanel {
 			}
 		});
 
-		JLabel portableVisiteur = new JLabel();
+		portableVisiteur = new JLabel();
 		portableVisiteur.setText("Portable ");
 		this.add(portableVisiteur);
-		JTextField textFieldPortable = new JTextField(10);
-		JLabel label3 = new JLabel();
+		textFieldPortable = new JTextField(10);
+		label3 = new JLabel();
 		if (textFieldPortable.getText().length() == 10)
 		{
 			label3.setText("Bon numero");
@@ -144,14 +179,14 @@ public class ConsultModifVisiteur extends JPanel {
 			}
 		});
 
-		JLabel telephoneVisiteur = new JLabel();
+		telephoneVisiteur = new JLabel();
 		telephoneVisiteur.setText("Telephone ");
 		this.add(telephoneVisiteur);
-		JTextField textFieldFixe = new JTextField(10);
+		textFieldFixe = new JTextField(10);
 		textFieldFixe.setText(util.getNumFixe());
 		telephoneVisiteur.setLabelFor(textFieldFixe);
 		this.add(textFieldFixe);
-		JLabel label4 = new JLabel();
+		label4 = new JLabel();
 		this.add(label4);
 		textFieldFixe.setEditable(edit);
 		fixe = textFieldFixe.getText();
@@ -162,25 +197,25 @@ public class ConsultModifVisiteur extends JPanel {
 			}
 		});
 
-		JLabel mailVisiteur = new JLabel();
+		mailVisiteur = new JLabel();
 		mailVisiteur.setText("Mail ");
 		this.add(mailVisiteur);
-		JTextField textFieldMail = new JTextField(10);
+		textFieldMail = new JTextField(10);
 		textFieldMail.setText(util.getMailPro());
 		mailVisiteur.setLabelFor(textFieldMail);
 		this.add(textFieldMail);
-		JLabel label5 = new JLabel();
+		label5 = new JLabel();
 		this.add(label5);
 		textFieldMail.setEditable(false);
 
-		JLabel adresseVisiteur = new JLabel();
+		adresseVisiteur = new JLabel();
 		adresseVisiteur.setText("Adresse ");
 		this.add(adresseVisiteur);
-		JTextField textFieldAdresse = new JTextField(10);
+		textFieldAdresse = new JTextField(10);
 		textFieldAdresse.setText(util.getAdressseRue());
 		adresseVisiteur.setLabelFor(textFieldAdresse);
 		this.add(textFieldAdresse);
-		JLabel label6 = new JLabel();
+		label6 = new JLabel();
 		this.add(label6);
 		textFieldAdresse.setEditable(edit);
 		adresse = textFieldAdresse.getText();
@@ -191,14 +226,14 @@ public class ConsultModifVisiteur extends JPanel {
 			}
 		});
 
-		JLabel cpVisiteur = new JLabel();
+		cpVisiteur = new JLabel();
 		cpVisiteur.setText("Code Postal ");
 		this.add(cpVisiteur);
-		JTextField textFieldCp = new JTextField(10);
+		textFieldCp = new JTextField(10);
 		textFieldCp.setText(util.getCp());
 		cpVisiteur.setLabelFor(textFieldCp);
 		this.add(textFieldCp);
-		JLabel label7 = new JLabel();
+		label7 = new JLabel();
 		this.add(label7);
 		textFieldCp.setEditable(edit);
 		cp = textFieldCp.getText();
@@ -209,14 +244,14 @@ public class ConsultModifVisiteur extends JPanel {
 			}
 		});
 
-		JLabel villeVisiteur = new JLabel();
+		villeVisiteur = new JLabel();
 		villeVisiteur.setText("Ville ");
 		this.add(villeVisiteur);
-		JTextField textFieldVille = new JTextField(10);
+		textFieldVille = new JTextField(10);
 		textFieldVille.setText(util.getVille());
 		villeVisiteur.setLabelFor(textFieldVille);
 		this.add(textFieldVille);
-		JLabel label8 = new JLabel();
+		label8 = new JLabel();
 		this.add(label8);
 		textFieldVille.setEditable(edit);
 		ville = textFieldVille.getText();
@@ -227,18 +262,17 @@ public class ConsultModifVisiteur extends JPanel {
 			}
 		});
 
-		JLabel dateVisiteur = new JLabel();
+		dateVisiteur = new JLabel();
 		dateVisiteur.setText("Date d'embauche ");
 		this.add(dateVisiteur);
-		final JTextField textFieldDate = new JTextField(10);
+		textFieldDate = new JTextField(10);
 		textFieldDate.setText(util.getDateEmbauche().toLocaleString());
 		textFieldDate.setEditable(false);
 		dateVisiteur.setLabelFor(textFieldDate);
 		this.add(textFieldDate);
-		JCalendarButton calendar = new JCalendarButton();
+		calendar = new JCalendarButton();
 		calendar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
 			public void propertyChange(java.beans.PropertyChangeEvent evt) {
-			    //System.out.println(evt.getNewValue());
 				if (evt.getNewValue() instanceof Date){
 					Date date = (Date) evt.getNewValue();
 					System.out.println("Date : " + date.toString());
@@ -250,11 +284,11 @@ public class ConsultModifVisiteur extends JPanel {
 		});
 		this.add(calendar);
 
-		JLabel regionVisiteur = new JLabel();
+		regionVisiteur = new JLabel();
 		regionVisiteur.setText("Region ");
 		this.add(regionVisiteur);
 
-		JComboBox comboFieldRegion = new JComboBox();
+		comboFieldRegion = new JComboBox();
 		for (Region r:regions)
 		{
 			comboFieldRegion.addItem(r.getLibelleRegion());
@@ -264,7 +298,7 @@ public class ConsultModifVisiteur extends JPanel {
 		AutoCompleteDecorator.decorate(comboFieldRegion);
 		regionVisiteur.setLabelFor(comboFieldRegion);
 		this.add(comboFieldRegion);
-		JLabel label10 = new JLabel();
+		label10 = new JLabel();
 		this.add(label10);
 		region = regions.get(comboFieldRegion.getSelectedIndex());
 		comboFieldRegion.addItemListener(new ItemListener() {
@@ -281,6 +315,10 @@ public class ConsultModifVisiteur extends JPanel {
 				6, 6);       //xPad, yPad
 		
 		
+	}
+	public String getId()
+	{
+	    return id;
 	}
 	public String getNom()
 	{
@@ -314,5 +352,4 @@ public class ConsultModifVisiteur extends JPanel {
 	{
 		return region;
 	}
-	
 }
