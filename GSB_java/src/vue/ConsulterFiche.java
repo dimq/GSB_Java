@@ -165,7 +165,6 @@ public class ConsulterFiche extends JPanel
 	                    comboBoxNomPrenom.revalidate();
 	                    comboBoxIdentifiant.revalidate();
 	                }
-					
 				}
 			}
 		});
