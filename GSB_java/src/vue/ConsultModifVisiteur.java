@@ -1,8 +1,8 @@
 package vue;
 
 import java.beans.PropertyChangeEvent;
-import java.sql.Date;
 import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JComboBox;
@@ -34,7 +34,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
 public class ConsultModifVisiteur extends JPanel {
-	private static DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
+	private DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
 	private boolean testPortable;
 	private String id;
 	private String nom;
@@ -44,6 +44,7 @@ public class ConsultModifVisiteur extends JPanel {
 	private String adresse;
 	private String cp;
 	private String ville;
+	private Date dateEmbauche;
 	private Region region;
 	
 	private JLabel idVisiteur;
@@ -266,7 +267,7 @@ public class ConsultModifVisiteur extends JPanel {
 		dateVisiteur.setText("Date d'embauche ");
 		this.add(dateVisiteur);
 		textFieldDate = new JTextField(10);
-		textFieldDate.setText(util.getDateEmbauche().toLocaleString());
+		textFieldDate.setText(dateFormat.format(util.getDateEmbauche()));
 		textFieldDate.setEditable(false);
 		dateVisiteur.setLabelFor(textFieldDate);
 		this.add(textFieldDate);
@@ -274,14 +275,13 @@ public class ConsultModifVisiteur extends JPanel {
 		calendar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
 			public void propertyChange(java.beans.PropertyChangeEvent evt) {
 				if (evt.getNewValue() instanceof Date){
-					Date date = (Date) evt.getNewValue();
-					System.out.println("Date : " + date.toString());
-					String dateString = dateFormat.format(date);
-					Date dat = null;
-					textFieldDate.setText(dateString);
-				}
+                    dateEmbauche = (Date) evt.getNewValue();
+                    String dateString = dateFormat.format(dateEmbauche);
+                    textFieldDate.setText(dateString);
+                }
 			}
 		});
+		calendar.setEnabled(edit);
 		this.add(calendar);
 
 		regionVisiteur = new JLabel();
@@ -348,6 +348,10 @@ public class ConsultModifVisiteur extends JPanel {
 	{
 		return ville;
 	}
+	public Date getDateEmbauche()
+    {
+    	return dateEmbauche;
+    }
 	public Region getRegion()
 	{
 		return region;

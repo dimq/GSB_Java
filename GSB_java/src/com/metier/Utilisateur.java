@@ -98,9 +98,9 @@ public class Utilisateur
         this.ville = ville;
     }
     /**
-     * Constructeur utilisateur surcharge avec les numeros de telephones
+     * Constructeur utilisateur surcharge avec les numeros de telephones et la date d'embauche
      */
-    public Utilisateur(String idUtilisateur,String nomUtilisateur,String prenomUtilisateur,String portable,String fixe,String adresse,String cp,String ville,String idType,Region region) {
+    public Utilisateur(String idUtilisateur,String nomUtilisateur,String prenomUtilisateur,String portable,String fixe,String adresse,String cp,String ville,Date dateEmbauche,String idType,Region region) {
         
         this.idUtilisateur=idUtilisateur;
         this.nomUtilisateur=nomUtilisateur;
@@ -116,6 +116,7 @@ public class Utilisateur
         this.ville = ville;
         this.numFixe = fixe;
         this.numPort = portable;
+        this.dateEmbauche = dateEmbauche;
     }
     
     /**

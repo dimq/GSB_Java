@@ -160,7 +160,7 @@ public class Secretaire extends JFrame
 							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
                     if (selectedOption == 0)
                     {
-                        Utilisateur util = new Utilisateur(creerId(),p1.getNom(),p1.getPrenom(),p1.getPortable(),p1.getFixe(),p1.getAdresse(),p1.getCp(),p1.getVille(),"v",p1.getRegion());
+                        Utilisateur util = new Utilisateur(creerId(),p1.getNom(),p1.getPrenom(),p1.getPortable(),p1.getFixe(),p1.getAdresse(),p1.getCp(),p1.getVille(),p1.getDateEmbauche(),"v",p1.getRegion());
                         AccesData.createUtilisateur(util);
                     }
                     

@@ -4,7 +4,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.sql.Date;
+import java.util.Date;
 import java.text.DateFormat;
 import java.util.List;
 
@@ -31,6 +31,7 @@ public class CreationVisiteur extends JPanel
     private String adresse;
     private String cp;
     private String ville;
+    private Date dateEmbauche;
     private Region region;
     
     private JLabel nomVisiteur;
@@ -212,12 +213,9 @@ public class CreationVisiteur extends JPanel
         calendar = new JCalendarButton();
         calendar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                System.out.println(evt.getNewValue());
                 if (evt.getNewValue() instanceof Date){
-                    Date date = (Date) evt.getNewValue();
-                    System.out.println("Date : " + date.toString());
-                    String dateString = dateFormat.format(date);
-                    Date dat = null;
+                    dateEmbauche = (Date) evt.getNewValue();
+                    String dateString = dateFormat.format(dateEmbauche);
                     textFieldDate.setText(dateString);
                 }
             }
@@ -279,6 +277,10 @@ public class CreationVisiteur extends JPanel
     public String getVille()
     {
         return ville;
+    }
+    public Date getDateEmbauche()
+    {
+    	return dateEmbauche;
     }
     public Region getRegion()
     {
