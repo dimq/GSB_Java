@@ -2,6 +2,7 @@ package vue;
 
 import java.beans.PropertyChangeEvent;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -271,6 +272,12 @@ public class ConsultModifVisiteur extends JPanel {
 		textFieldDate.setEditable(false);
 		dateVisiteur.setLabelFor(textFieldDate);
 		this.add(textFieldDate);
+		try {
+			dateEmbauche = dateFormat.parse(textFieldDate.getText());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		calendar = new JCalendarButton();
 		calendar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
 			public void propertyChange(java.beans.PropertyChangeEvent evt) {

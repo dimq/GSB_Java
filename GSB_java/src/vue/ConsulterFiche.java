@@ -227,6 +227,7 @@ public class ConsulterFiche extends JPanel
                     visiteur.setAdressseRue(p1.getAdresse());
                     visiteur.setCp(p1.getCp());
                     visiteur.setVille(p1.getVille());
+                    visiteur.setDateEmbauche(p1.getDateEmbauche());
                     visiteur.setRegion(p1.getRegion());
                     AccesData.updateUtilisateur(visiteur);
                     table.revalidate();
