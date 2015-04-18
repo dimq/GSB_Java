@@ -15,7 +15,7 @@ public class Princ
 
     public static void main(String[] args)
     {
-    	
+    	CustomDialog c = new CustomDialog();
         
 		
 		

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,6 +23,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.JTextField;
 import javax.swing.border.Border;
@@ -145,10 +150,42 @@ public class ConsulterFiche extends JPanel
 	                //Create and populate the panel.
 	                ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit,regions);
 
-	                
+	                JOptionPane optionpane = new JOptionPane();
 
-	                int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
+	                final JOptionPane optionPane = new JOptionPane(
+	                       p1,
+	                        JOptionPane.QUESTION_MESSAGE,
+	                        JOptionPane.YES_NO_OPTION);
+	                
+	                final JDialog dialog = new JDialog(frame, 
+                            "Click a button",
+                            true);
+	                dialog.setContentPane(optionPane);
+
+	                
+	                optionPane.addPropertyChangeListener(
+	                    new PropertyChangeListener() {
+	                        public void propertyChange(PropertyChangeEvent e) {
+	                            String prop = e.getPropertyName();
+
+	                            if (dialog.isVisible() 
+	                             && (e.getSource() == optionPane)
+	                             && (prop.equals(JOptionPane.VALUE_PROPERTY))) {
+	                            	JOptionPane.showMessageDialog(frame, "Eggs are not supposed to be green.");
+	                                dialog.setVisible(false);
+	                            }
+	                        }
+	                    });
+	                dialog.setLocationRelativeTo(null);
+	                dialog.pack();
+	                dialog.setVisible(true);
+
+	                
+	                
+	                /*int selectedOption = optionpane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
 	                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+	                
+	                
 	                if (selectedOption == 0)
 	                {
 	                    visiteur.setNomVisiteur(p1.getNom());
@@ -165,7 +202,7 @@ public class ConsulterFiche extends JPanel
 	                    comboBoxRegion.revalidate();
 	                    comboBoxNomPrenom.revalidate();
 	                    comboBoxIdentifiant.revalidate();
-	                }
+	                }*/
 				}
 			}
 		});
