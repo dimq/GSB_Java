@@ -22,7 +22,7 @@ public class TestFicheFrais {
 	
 	@Before
 	public void setUp() throws Exception {
-		ff= new FicheFrais("idutilisateur","mois",3,new BigDecimal(25),new Date(1999,25,16),lff,lfhf);
+		ff= new FicheFrais("idVisiteur","mois",3,new BigDecimal(25),new Date(1999,25,16),lff,lfhf);
 	}
 
 	@After
@@ -36,14 +36,14 @@ public class TestFicheFrais {
 	}
 
 	@Test
-	public void testGetIdUtilisateur() {
-		assertEquals(ff.getIdUtilisateur(),"idutilisateur");
+	public void testGetIdVisiteur() {
+		assertEquals(ff.getIdVisiteur(),"idVisiteur");
 	}
 
 	@Test
-	public void testSetIdUtilisateur() {
-		ff.setIdUtilisateur("ff");
-		assertEquals(ff.getIdUtilisateur(),"ff");
+	public void testSetIdVisiteur() {
+		ff.setIdVisiteur("ff");
+		assertEquals(ff.getIdVisiteur(),"ff");
 	}
 
 	@Test

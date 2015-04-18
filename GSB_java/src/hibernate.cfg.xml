@@ -22,6 +22,7 @@
 
 		<!-- Fichiers à mapper -->
 		<mapping class="com.metier.Region" />
+		<mapping class="com.metier.Visiteur" />
 		<mapping class="com.metier.Utilisateur" />
 		<mapping class="com.metier.FicheFrais" />
 		<mapping class="com.metier.LigneFraisForfait" />

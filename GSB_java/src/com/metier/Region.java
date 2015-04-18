@@ -36,7 +36,7 @@ public class Region
     @Column(name="libelleRegion")
     private String libelleRegion;
     @OneToMany(mappedBy="region")
-    private List<Utilisateur> listeUtilisateur;
+    private List<Visiteur> listeVisiteur;
     /**
      * Constructeur public, cree l'instance de Region sans l'id qui est
      * auto dans la base de donne et qui sera sollicitee pour
@@ -51,7 +51,7 @@ public class Region
     {
         super();
         this.libelleRegion = libelleRegion;
-        this.listeUtilisateur = new ArrayList<Utilisateur>();
+        this.listeVisiteur = new ArrayList<Visiteur>();
     }
     /**
      * Accesseur sur la propriété idRegion nomme getidRegion et qui renvoie l'id de 
@@ -89,41 +89,41 @@ public class Region
         this.libelleRegion = libelleRegion;
     }
     /**
-     * Accesseur sur la liste d'utilisateur nomme getListeUtilisateur et qui renvoie 
+     * Accesseur sur la liste d'Visiteur nomme getListeVisiteur et qui renvoie 
      * une List
-     * @return the listeUtilisateur
+     * @return the listeVisiteur
      */
-    public List<Utilisateur> getListeUtilisateur()
+    public List<Visiteur> getListeVisiteur()
     {
-        return listeUtilisateur;
+        return listeVisiteur;
     }
     /**
-     * Modificateur sur la liste d'utilisateur nomme setListeUtilisateur qui permet de
+     * Modificateur sur la liste d'Visiteur nomme setListeVisiteur qui permet de
      * modifier cette liste
-     * @param listeUtilisateur the listeUtilisateur to set
+     * @param listeVisiteur the listeVisiteur to set
      */
-    public void setListeUtilisateur(List<Utilisateur> listeUtilisateur)
+    public void setListeVisiteur(List<Visiteur> listeVisiteur)
     {
-        this.listeUtilisateur = listeUtilisateur;
+        this.listeVisiteur = listeVisiteur;
     }
     
     
     /**
-     * Retourne une hashmap<utilisateur,nombre de ligne frais hors forfait> 
+     * Retourne une hashmap<Visiteur,nombre de ligne frais hors forfait> 
      * pour le mois donn�e
      * @param le mois en question
      */
     
-    public  HashMap<Utilisateur,Integer> nbFicheHorsForfait(String mois)
+    public  HashMap<Visiteur,Integer> nbFicheHorsForfait(String mois)
     {
-    	HashMap<Utilisateur, Integer> stat = new HashMap<Utilisateur, Integer>();
-    	ArrayList<Utilisateur> lstu =new ArrayList<Utilisateur>();
-    	for(Utilisateur u : this.getListeUtilisateur()){
+    	HashMap<Visiteur, Integer> stat = new HashMap<Visiteur, Integer>();
+    	ArrayList<Visiteur> lstu =new ArrayList<Visiteur>();
+    	for(Visiteur u : this.getListeVisiteur()){
     		lstu.add(u);
     	}
     
     	int nb = 0;
-    	for(Utilisateur p : lstu){
+    	for(Visiteur p : lstu){
     		
     			for(FicheFrais f : p.getListeFicheFrais()){
     				nb=f.nbMontantHorsForfait(mois)+nb;

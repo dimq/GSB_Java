@@ -15,11 +15,11 @@ import com.metier.FicheFrais;
 import com.metier.LigneFraisForfait;
 import com.metier.LigneFraisHorsForfait;
 import com.metier.Region;
-import com.metier.Utilisateur;
+import com.metier.Visiteur;
 
-public class UtilisateurTest {
+public class VisiteurTest {
 	
-	Utilisateur u; 
+	Visiteur u; 
 	FicheFrais f;
 	ArrayList<LigneFraisForfait> listFraisForfait ; 
 	ArrayList<LigneFraisHorsForfait> listFraisHorsForfait ; 
@@ -38,9 +38,9 @@ public class UtilisateurTest {
 		r=new Region ("region1");
 		r2=new Region ("region2");
 		
-		u=new Utilisateur("id","nom","prenom","adresse","cp","ville","idType",r);
+		u=new Visiteur("id","nom","prenom","adresse","cp","ville","idType",r);
 
-		f=new FicheFrais("idUtilisateur","mois",0,big,new Date(1999,25,16),listFraisForfait,listFraisHorsForfait);
+		f=new FicheFrais("idVisiteur","mois",0,big,new Date(1999,25,16),listFraisForfait,listFraisHorsForfait);
 
 		u.setDateEmbauche(new Date(1993,10,10));
 
@@ -56,36 +56,36 @@ public class UtilisateurTest {
 	}
 
 	@Test
-	public void testUtilisateur() {
+	public void testVisiteur() {
 		assertTrue(true);
 	}
 
 	@Test
-	public void testUtilisateurStringStringString() {
+	public void testVisiteurStringStringString() {
 		assertNotNull(u);
 	}
 
 	@Test
-	public void testGetNomUtilisateur() {
-		assertEquals(u.getNomUtilisateur(),"nom");
+	public void testGetNomVisiteur() {
+		assertEquals(u.getNomVisiteur(),"nom");
 	}
 
 	@Test
-	public void testSetNomUtilisateur() {
-		u.setNomUtilisateur("nomChanger");
-		assertEquals(u.getNomUtilisateur(),"nomChanger");
+	public void testSetNomVisiteur() {
+		u.setNomVisiteur("nomChanger");
+		assertEquals(u.getNomVisiteur(),"nomChanger");
 		
 	}
 
 	@Test
-	public void testGetPrenomUtilisateur() {
-		assertEquals(u.getPrenomUtilisateur(),"prenom");
+	public void testGetPrenomVisiteur() {
+		assertEquals(u.getPrenomVisiteur(),"prenom");
 	}
 
 	@Test
-	public void testSetPrenomUtilisateur() {
-		u.setPrenomUtilisateur("prenomChanger");
-		assertEquals(u.getPrenomUtilisateur(),"prenomChanger");
+	public void testSetPrenomVisiteur() {
+		u.setPrenomVisiteur("prenomChanger");
+		assertEquals(u.getPrenomVisiteur(),"prenomChanger");
 	}
 
 	@Test
@@ -210,8 +210,8 @@ public class UtilisateurTest {
 	}
 
 	@Test
-	public void testGetIdUtilisateur() {
-		assertEquals(u.getIdUtilisateur(),"id");
+	public void testGetIdVisiteur() {
+		assertEquals(u.getIdVisiteur(),"id");
 	}
 
 }

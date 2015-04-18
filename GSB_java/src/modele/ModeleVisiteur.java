@@ -13,10 +13,10 @@ import javax.swing.table.AbstractTableModel;
  * @author b0dian
  * @version 1.0
  */
-public class ModeleUtilisateur extends AbstractTableModel {
+public class ModeleVisiteur extends AbstractTableModel {
 
 	private String[] entete = { "Identifiant", "Nom", "Prenom" };
-	private List<Utilisateur> listeUtilisateur;
+	private List<Visiteur> listeVisiteur;
 
 	/**
 	 * Constructeur public, cree une instance de Modele de stations en
@@ -25,8 +25,8 @@ public class ModeleUtilisateur extends AbstractTableModel {
 	 * @param listesStation
 	 *            de type collection de stations
 	 */
-	public ModeleUtilisateur(List<Utilisateur> listesUtilisateur) {
-		listeUtilisateur = listesUtilisateur;
+	public ModeleVisiteur(List<Visiteur> listesVisiteur) {
+		listeVisiteur = listesVisiteur;
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class ModeleUtilisateur extends AbstractTableModel {
 	 */
 	@Override
 	public int getRowCount() {
-		return listeUtilisateur.size();
+		return listeVisiteur.size();
 	}
 
 	/**
@@ -72,11 +72,11 @@ public class ModeleUtilisateur extends AbstractTableModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch (columnIndex) {
 		case 0:
-			return listeUtilisateur.get(rowIndex).getIdUtilisateur();
+			return listeVisiteur.get(rowIndex).getIdVisiteur();
 		case 1:
-			return listeUtilisateur.get(rowIndex).getNomUtilisateur();
+			return listeVisiteur.get(rowIndex).getNomVisiteur();
 		case 2:
-			return listeUtilisateur.get(rowIndex).getPrenomUtilisateur();
+			return listeVisiteur.get(rowIndex).getPrenomVisiteur();
 		default:
 			throw new IllegalArgumentException();
 		}

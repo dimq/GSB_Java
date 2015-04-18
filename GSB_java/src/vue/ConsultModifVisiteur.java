@@ -18,7 +18,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import net.sourceforge.jcalendarbutton.JCalendarButton;
 
 import com.metier.Region;
-import com.metier.Utilisateur;
+import com.metier.Visiteur;
 
 import layout.SpringUtilities;
 
@@ -85,7 +85,7 @@ public class ConsultModifVisiteur extends JPanel {
 	 * Create the panel.
 	 * @return 
 	 */
-	public ConsultModifVisiteur(Utilisateur util,boolean edit,final List<Region> regions) {
+	public ConsultModifVisiteur(Visiteur util,boolean edit,final List<Region> regions) {
 		
 		
 	    this.setLayout(new SpringLayout());
@@ -94,7 +94,7 @@ public class ConsultModifVisiteur extends JPanel {
 		idVisiteur.setText("Identifiant ");
 		this.add(idVisiteur);
 		textFieldId = new JTextField(10);
-		textFieldId.setText(util.getIdUtilisateur());
+		textFieldId.setText(util.getIdVisiteur());
 		idVisiteur.setLabelFor(textFieldId);
 		this.add(textFieldId);
 		label = new JLabel();
@@ -107,7 +107,7 @@ public class ConsultModifVisiteur extends JPanel {
 		nomVisiteur.setText("Nom ");
 		this.add(nomVisiteur);
 		textFieldNom = new JTextField(10);
-		textFieldNom.setText(util.getNomUtilisateur());
+		textFieldNom.setText(util.getNomVisiteur());
 		nomVisiteur.setLabelFor(textFieldNom);
 		this.add(textFieldNom);
 		label1 = new JLabel();
@@ -126,7 +126,7 @@ public class ConsultModifVisiteur extends JPanel {
 		prenomVisiteur.setText("Prenom ");
 		this.add(prenomVisiteur);
 		textFieldPrenom = new JTextField(10);
-		textFieldPrenom.setText(util.getPrenomUtilisateur());
+		textFieldPrenom.setText(util.getPrenomVisiteur());
 		prenomVisiteur.setLabelFor(textFieldPrenom);
 		this.add(textFieldPrenom);
 		label2 = new JLabel();

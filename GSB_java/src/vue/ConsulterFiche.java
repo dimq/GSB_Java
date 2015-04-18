@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 import com.metier.Region;
-import com.metier.Utilisateur;
+import com.metier.Visiteur;
 import com.persistance.AccesData;
 
 import java.awt.Component;
@@ -28,7 +28,7 @@ import javax.swing.border.Border;
 import javax.swing.JButton;
 
 import layout.SpringUtilities;
-import modele.ModeleUtilisateur;
+import modele.ModeleVisiteur;
 
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -44,14 +44,14 @@ public class ConsulterFiche extends JPanel
 	JLabel lblIdentifiant;
 	JComboBox comboBoxIdentifiant;
 	JLabel lblRecherchePar;
-	List<Utilisateur> utils;
+	List<Visiteur> utils;
 	List<Region> regions;
 	JButton buttonOkRegion;
 	JFrame frame;
 	JButton buttonOkNp;
 	JButton buttonOkId;
-	private ModeleUtilisateur modeleUtil;
-	List<Utilisateur> utilisateurByRegion;
+	private ModeleVisiteur modeleUtil;
+	List<Visiteur> VisiteurByRegion;
 	private JTable table;
 	/**
 	 * Create the panel.
@@ -103,9 +103,9 @@ public class ConsulterFiche extends JPanel
 
 
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(AccesData.getUtilisateurByRegion(regions.get(comboBoxRegion.getSelectedIndex()).getIdRegion()));
-				utilisateurByRegion = AccesData.getUtilisateurByRegion(regions.get(comboBoxRegion.getSelectedIndex()).getIdRegion());
-				modeleUtil = new ModeleUtilisateur(utilisateurByRegion);
+				System.out.println(AccesData.getVisiteurByRegion(regions.get(comboBoxRegion.getSelectedIndex()).getIdRegion()));
+				VisiteurByRegion = AccesData.getVisiteurByRegion(regions.get(comboBoxRegion.getSelectedIndex()).getIdRegion());
+				modeleUtil = new ModeleVisiteur(VisiteurByRegion);
 				table.setModel(modeleUtil);
 				table.revalidate();
 
@@ -141,7 +141,7 @@ public class ConsulterFiche extends JPanel
 				int row = table.rowAtPoint(p);
 				if (me.getClickCount() == 2) 
 				{
-				    Utilisateur visiteur = utilisateurByRegion.get(row);
+				    Visiteur visiteur = VisiteurByRegion.get(row);
 	                //Create and populate the panel.
 	                ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit,regions);
 
@@ -151,8 +151,8 @@ public class ConsulterFiche extends JPanel
 	                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	                if (selectedOption == 0)
 	                {
-	                    visiteur.setNomUtilisateur(p1.getNom());
-	                    visiteur.setPrenomUtilisateur(p1.getPrenom());
+	                    visiteur.setNomVisiteur(p1.getNom());
+	                    visiteur.setPrenomVisiteur(p1.getPrenom());
 	                    visiteur.setNumPort(p1.getPortable());
 	                    visiteur.setNumFixe(p1.getFixe());
 	                    visiteur.setAdressseRue(p1.getAdresse());
@@ -160,7 +160,7 @@ public class ConsulterFiche extends JPanel
 	                    visiteur.setVille(p1.getVille());
 	                    visiteur.setDateEmbauche(p1.getDateEmbauche());
 	                    visiteur.setRegion(p1.getRegion());
-	                    AccesData.updateUtilisateur(visiteur);
+	                    AccesData.updateVisiteur(visiteur);
 	                    table.revalidate();
 	                    comboBoxRegion.revalidate();
 	                    comboBoxNomPrenom.revalidate();
@@ -176,7 +176,7 @@ public class ConsulterFiche extends JPanel
 
             @Override
 			public void actionPerformed(ActionEvent arg0) {
-                Utilisateur visiteur = utils.get(comboBoxNomPrenom.getSelectedIndex());
+                Visiteur visiteur = utils.get(comboBoxNomPrenom.getSelectedIndex());
 				//Create and populate the panel.
 				ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit,regions);
 
@@ -186,8 +186,8 @@ public class ConsulterFiche extends JPanel
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 				if (selectedOption == 0)
 				{
-				    visiteur.setNomUtilisateur(p1.getNom());
-				    visiteur.setPrenomUtilisateur(p1.getPrenom());
+				    visiteur.setNomVisiteur(p1.getNom());
+				    visiteur.setPrenomVisiteur(p1.getPrenom());
 				    visiteur.setNumPort(p1.getPortable());
 				    visiteur.setNumFixe(p1.getFixe());
 				    visiteur.setAdressseRue(p1.getAdresse());
@@ -195,7 +195,7 @@ public class ConsulterFiche extends JPanel
 				    visiteur.setVille(p1.getVille());
 				    visiteur.setDateEmbauche(p1.getDateEmbauche());
 				    visiteur.setRegion(p1.getRegion());
-                    AccesData.updateUtilisateur(visiteur);
+                    AccesData.updateVisiteur(visiteur);
                     table.revalidate();
                     comboBoxRegion.revalidate();
                     comboBoxNomPrenom.revalidate();
@@ -210,7 +210,7 @@ public class ConsulterFiche extends JPanel
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			    Utilisateur visiteur = utils.get(comboBoxIdentifiant.getSelectedIndex());
+			    Visiteur visiteur = utils.get(comboBoxIdentifiant.getSelectedIndex());
                 //Create and populate the panel.
                 ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit,regions);
 
@@ -220,8 +220,8 @@ public class ConsulterFiche extends JPanel
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
                 if (selectedOption == 0)
                 {
-                    visiteur.setNomUtilisateur(p1.getNom());
-                    visiteur.setPrenomUtilisateur(p1.getPrenom());
+                    visiteur.setNomVisiteur(p1.getNom());
+                    visiteur.setPrenomVisiteur(p1.getPrenom());
                     visiteur.setNumPort(p1.getPortable());
                     visiteur.setNumFixe(p1.getFixe());
                     visiteur.setAdressseRue(p1.getAdresse());
@@ -229,7 +229,7 @@ public class ConsulterFiche extends JPanel
                     visiteur.setVille(p1.getVille());
                     visiteur.setDateEmbauche(p1.getDateEmbauche());
                     visiteur.setRegion(p1.getRegion());
-                    AccesData.updateUtilisateur(visiteur);
+                    AccesData.updateVisiteur(visiteur);
                     table.revalidate();
                     comboBoxRegion.revalidate();
                     comboBoxNomPrenom.revalidate();
@@ -247,11 +247,11 @@ public class ConsulterFiche extends JPanel
 		{
 			comboBoxRegion.addItem(r.getLibelleRegion());
 		}
-		utils = AccesData.getListUtilisateur();
-		for (Utilisateur u:utils)
+		utils = AccesData.getListVisiteur();
+		for (Visiteur u:utils)
 		{
-			comboBoxNomPrenom.addItem(u.getNomUtilisateur()+" "+u.getPrenomUtilisateur());
-			comboBoxIdentifiant.addItem(u.getIdUtilisateur());
+			comboBoxNomPrenom.addItem(u.getNomVisiteur()+" "+u.getPrenomVisiteur());
+			comboBoxIdentifiant.addItem(u.getIdVisiteur());
 		}
 	}
 }

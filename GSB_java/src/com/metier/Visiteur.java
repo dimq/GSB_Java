@@ -15,26 +15,26 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Classe metier Utilisateur
+ * Classe metier Visiteur
  * 
- * Permet l'instanciation d'un objet de type Utilisateur
+ * Permet l'instanciation d'un objet de type Visiteur
  * 
  * @author b0dian
  * @version 1.0
  */
 @Entity
-@Table(name="Utilisateur")
-public class Utilisateur 
+@Table(name="Visiteur")
+public class Visiteur 
 {
     @Id
     @Column(name="id")
-    private String idUtilisateur; 
+    private String idVisiteur; 
     
 
     @Column(name="nom")
-    private String nomUtilisateur ;
+    private String nomVisiteur ;
     @Column(name="prenom")
-    private String prenomUtilisateur;
+    private String prenomVisiteur;
     @Column(name="numPortable")
     private String numPort;
     @Column(name="numFixe")
@@ -55,56 +55,66 @@ public class Utilisateur
     private Date dateEmbauche;
     @Column(name="idType")
     private String idType;
+    @ManyToOne
+    @JoinColumn(name="idRegion")
+    private Region region;
+    @OneToMany
+    @JoinColumn(name="idVisiteur")
+    private List<FicheFrais> listeFicheFrais;
     @Column(name="suppr")
     private String suppr;
     
     
     /**
-     * Constructeur public, cree l'instance de Utilisateur a
+     * Constructeur public, cree l'instance de Visiteur a
      * avec les information minimumns
      * 
-     * @param idUtilisateur
+     * @param idVisiteur
      *            de type string
-     * @param nomUtilisateur
+     * @param nomVisiteur
      *            de type String
-     * @param prenomUtilisateur
+     * @param prenomVisiteur
      *          de type String
      */
     
-    public Utilisateur() {
+    public Visiteur() {
     
         super();
         
         // TODO Auto-generated constructor stub
     }
     
-    public Utilisateur(String idUtilisateur,String nomUtilisateur,String prenomUtilisateur,String adresse,String cp,String ville,String idType,Region region) {
+    public Visiteur(String idVisiteur,String nomVisiteur,String prenomVisiteur,String adresse,String cp,String ville,String idType,Region region) {
         
-        this.idUtilisateur=idUtilisateur;
-        this.nomUtilisateur=nomUtilisateur;
-        this.prenomUtilisateur=prenomUtilisateur;
+        this.idVisiteur=idVisiteur;
+        this.nomVisiteur=nomVisiteur;
+        this.prenomVisiteur=prenomVisiteur;
+        this.listeFicheFrais=new ArrayList<FicheFrais>();
         this.adressseRue = adresse;
         this.cp = cp;
         this.idType = idType;
         this.login = creerLogin();
         this.mailPro = creerMail();
         this.mdp = "gsb1234";
+        this.region = region;
         this.ville = ville;
     }
     /**
-     * Constructeur Utilisateur surcharge avec les numeros de telephones et la date d'embauche
+     * Constructeur Visiteur surcharge avec les numeros de telephones et la date d'embauche
      */
-    public Utilisateur(String idUtilisateur,String nomUtilisateur,String prenomUtilisateur,String portable,String fixe,String adresse,String cp,String ville,Date dateEmbauche,String idType,Region region) {
+    public Visiteur(String idVisiteur,String nomVisiteur,String prenomVisiteur,String portable,String fixe,String adresse,String cp,String ville,Date dateEmbauche,String idType,Region region) {
         
-        this.idUtilisateur=idUtilisateur;
-        this.nomUtilisateur=nomUtilisateur;
-        this.prenomUtilisateur=prenomUtilisateur;
+        this.idVisiteur=idVisiteur;
+        this.nomVisiteur=nomVisiteur;
+        this.prenomVisiteur=prenomVisiteur;
+        this.listeFicheFrais=new ArrayList<FicheFrais>();
         this.adressseRue = adresse;
         this.cp = cp;
         this.idType = idType;
         this.login = creerLogin();
         this.mailPro = creerMail();
         this.mdp = "gsb1234";
+        this.region = region;
         this.ville = ville;
         this.numFixe = fixe;
         this.numPort = portable;
@@ -112,40 +122,40 @@ public class Utilisateur
     }
     
     /**
-     * Accesseur sur la propriÃ©tÃ© nomUtilisateur
-     * @return nomUtilisateur de type String
+     * Accesseur sur la propriÃ©tÃ© nomVisiteur
+     * @return nomVisiteur de type String
      */
     
-    public String getNomUtilisateur() {
-        return nomUtilisateur;
+    public String getNomVisiteur() {
+        return nomVisiteur;
     }
     
     
     /**
-     * Modificateur sur la propriete nomUtilisateur 
-     * @param nomUtilisateur the nomUtilisateur to set
+     * Modificateur sur la propriete nomVisiteur 
+     * @param nomVisiteur the nomVisiteur to set
      */
 
-    public void setNomUtilisateur(String nomUtilisateur) {
-        this.nomUtilisateur = nomUtilisateur;
+    public void setNomVisiteur(String nomVisiteur) {
+        this.nomVisiteur = nomVisiteur;
     }
 
     /**
-     * Accesseur sur la propriÃ©tÃ© prenomUtilisateur
-     * @return prenomUtilisateur de type String
+     * Accesseur sur la propriÃ©tÃ© prenomVisiteur
+     * @return prenomVisiteur de type String
      */
 
-    public String getPrenomUtilisateur() {
-        return prenomUtilisateur;
+    public String getPrenomVisiteur() {
+        return prenomVisiteur;
     }
     
     /**
-     * Modificateur sur la propriete prenomUtilisateur 
-     * @param prenomUtilisateur the prenomUtilisateur to set
+     * Modificateur sur la propriete prenomVisiteur 
+     * @param prenomVisiteur the prenomVisiteur to set
      */
 
-    public void setPrenomUtilisateur(String prenomUtilisateur) {
-        this.prenomUtilisateur = prenomUtilisateur;
+    public void setPrenomVisiteur(String prenomVisiteur) {
+        this.prenomVisiteur = prenomVisiteur;
     }
 
     /**
@@ -302,7 +312,7 @@ public class Utilisateur
 
     
     /**
-     * Accesseur sur la propriÃ©tÃ© le type de l'Utilisateur
+     * Accesseur sur la propriÃ©tÃ© le type de l'Visiteur
      * @return idType de type String
      */
     
@@ -322,32 +332,71 @@ public class Utilisateur
         this.idType = idType;
     }
 
-    
     /**
-     * Accesseur sur la propriÃ©tÃ© idUtilisateur
-     * @return idUtilisateur de type String
+     * Accesseur sur la propriÃ©tÃ© l'objet rÃ©gion de l'Visiteur
+     * @return region de type Region
      */
-    public String getIdUtilisateur() {
-        return idUtilisateur;
+
+    public Region getRegion() {
+        return region;
     }
     
     /**
-     * creerLogin fonction de génération automatique du login de l'Utilisateur
+     * Modificateur sur la propriete region 
+     * @param region the region to set
+     */
+
+
+
+    public void setRegion(Region region) {
+        this.region = region;
+    }
+
+     
+    /**
+     * Accesseur sur la propriÃ©tÃ© listeFicheFrais
+     * @return listeFicheFrais de type List
+     */
+    
+    public List<FicheFrais> getListeFicheFrais() {
+        return listeFicheFrais;
+    }
+
+    /**
+     * Modificateur sur la propriete listeFicheFrais 
+     * @param listeFicheFrais the listeFicheFrais to set
+     */
+
+    public void setListeFicheFrais(List<FicheFrais> listeFicheFrais) {
+        this.listeFicheFrais = listeFicheFrais;
+    }
+
+    
+    /**
+     * Accesseur sur la propriÃ©tÃ© idVisiteur
+     * @return idVisiteur de type String
+     */
+    public String getIdVisiteur() {
+        return idVisiteur;
+    }
+    
+    /**
+     * creerLogin fonction de génération automatique du login de l'Visiteur
      */
     public String creerLogin()
     {
         String login;
-        login = nomUtilisateur+"-"+prenomUtilisateur.substring(0, 1);
+        login = nomVisiteur+"-"+prenomVisiteur.substring(0, 1);
         login = login.toLowerCase();
         return login;
     }
     /**
-     * creerLogin fonction de génération automatique du login de l'Utilisateur
+     * creerLogin fonction de génération automatique du login de l'Visiteur
      */
     public String creerMail()
     {
         String mail;
-        mail = nomUtilisateur+"."+prenomUtilisateur+"@gsb.fr";
+        mail = nomVisiteur+"."+prenomVisiteur+"@gsb.fr";
         mail = mail.toLowerCase();
         mailPro = mail;
         return mail;
@@ -369,10 +418,10 @@ public class Utilisateur
 	}
 
 	/**
-	 * @param idUtilisateur the idUtilisateur to set
+	 * @param idVisiteur the idVisiteur to set
 	 */
-	public void setIdUtilisateur(String idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
+	public void setIdVisiteur(String idVisiteur) {
+		this.idVisiteur = idVisiteur;
 	}
 
 	/**

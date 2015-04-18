@@ -12,6 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.metier.Utilisateur;
+import com.metier.Visiteur;
 import com.persistance.AccesData;
 
 public class Login extends JPanel
@@ -39,7 +40,7 @@ public class Login extends JPanel
 
     private JLabel getLblLogin() {
         if (lblLogin == null) {
-            lblLogin = new JLabel("Utilisateur");
+            lblLogin = new JLabel("Visiteur");
             lblLogin.setBounds(44, 29, 86, 14);
         }
         return lblLogin;
@@ -73,7 +74,15 @@ public class Login extends JPanel
                 public void actionPerformed(ActionEvent e) {
                     String login = textLogin.getText();
                     char[] pass = passwordField.getPassword();
-                    Utilisateur util =(Utilisateur) AccesData.connection(login, pass);
+                    Utilisateur util = null;
+                    try
+                    {
+                    	util =(Utilisateur) AccesData.connection(login, pass);
+                    }
+                    catch (Exception e1)
+                    {
+                    	
+                    }
                     if (util != null)
                     {
                         switch (util.getIdType())

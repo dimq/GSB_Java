@@ -65,7 +65,7 @@ public class FicheFrais implements Serializable
      * Constructeur public, cree l'instance de FicheFrais qui sera solicitee pour
      * toutes les méthodes de la classe
      * 
-     * @param idUtilisateur type String
+     * @param idVisiteur type String
      * @param mois type String
      * @param nbJustificatifs type int
      * @param montant type double
@@ -73,11 +73,11 @@ public class FicheFrais implements Serializable
      * @param listeLigneFraisForfait type List<LigneFraisForfait>
      * @param listeLigneFraisHorsForfait type List<LigneFraisHorsForfait>
      */
-    public FicheFrais(String idUtilisateur,String mois,int nbJustificatifs, BigDecimal montant,Date dateModif,List<LigneFraisForfait> listeLigneFraisForfait,List<LigneFraisHorsForfait> listeLigneFraisHorsForfait)
+    public FicheFrais(String idVisiteur,String mois,int nbJustificatifs, BigDecimal montant,Date dateModif,List<LigneFraisForfait> listeLigneFraisForfait,List<LigneFraisHorsForfait> listeLigneFraisHorsForfait)
     {
         super();
         this.dateModif = dateModif;
-        this.idVisiteur = idUtilisateur;
+        this.idVisiteur = idVisiteur;
         this.listeLigneFraisForfait = listeLigneFraisForfait;
         this.listeLigneFraisHorsForfait = listeLigneFraisHorsForfait;
         this.mois = mois;
@@ -85,22 +85,22 @@ public class FicheFrais implements Serializable
         this.nbJustificatifs = nbJustificatifs;
     }
     /**
-     * Accesseur sur la propriete idUtilisateur nomme getIdUtilisateur qui renvoie l'id de l'utilisateur concerné
+     * Accesseur sur la propriete idVisiteur nomme getIdVisiteur qui renvoie l'id de l'Visiteur concerné
      * 
-     * @return the idUtilisateur
+     * @return the idVisiteur
      */
-    public String getIdUtilisateur()
+    public String getIdVisiteur()
     {
         return idVisiteur;
     }
     /**
-     * Modificateur sur la propriete idUtilisateur nomme setIdUtilisateur qui modifie l'id de l'utilisateur concerné
+     * Modificateur sur la propriete idVisiteur nomme setIdVisiteur qui modifie l'id de l'Visiteur concerné
      * 
-     * @param idUtilisateur the idUtilisateur to set
+     * @param idVisiteur the idVisiteur to set
      */
-    public void setIdUtilisateur(String idUtilisateur)
+    public void setIdVisiteur(String idVisiteur)
     {
-        this.idVisiteur = idUtilisateur;
+        this.idVisiteur = idVisiteur;
     }
     /**
      * Accesseur sur la propriete mois nomme getMois qui renvoie le mois correspondant

@@ -7,13 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.metier.Region;
-import com.metier.Utilisateur;
+import com.metier.Visiteur;
 import com.persistance.AccesData;
 
 public class AccesDataTest {
 
 	AccesData d = new AccesData();
-	Utilisateur u;
+	Visiteur u;
 	Region r;
 	
 	@Before
@@ -21,7 +21,7 @@ public class AccesDataTest {
 
 		
 		r=new Region ("Alsace");
-		u=new Utilisateur("id","nom","prenom","adresse","cp","ville","v",r);
+		u=new Visiteur("id","nom","prenom","adresse","cp","ville","v",r);
 	}
 
 	@After
@@ -29,14 +29,14 @@ public class AccesDataTest {
 	}
 
 	@Test
-	public void testGetUtilisateur() {
-		assertEquals(d.getUtilisateur("a131").getIdUtilisateur(),"a131");
+	public void testGetVisiteur() {
+		assertEquals(d.getVisiteur("a131").getIdVisiteur(),"a131");
 		
 	}
 
 	@Test
-	public void testGetListUtilisateur() {
-		assertEquals(d.getListUtilisateur().size(),d.getListUtilisateur().size());
+	public void testGetListVisiteur() {
+		assertEquals(d.getListVisiteur().size(),d.getListVisiteur().size());
 	}
 
 	@Test
@@ -50,13 +50,13 @@ public class AccesDataTest {
 	}
 
 	@Test
-	public void testGetUtilisateurByRegion() {
-		assertEquals(d.getUtilisateurByRegion(6).size(),1);
+	public void testGetVisiteurByRegion() {
+		assertEquals(d.getVisiteurByRegion(6).size(),1);
 	}
 
 	@Test
 	public void testGetFicheFrais() {
-		assertEquals(d.getFicheFrais(3).getIdUtilisateur(),"a131");
+		assertEquals(d.getFicheFrais(3).getIdVisiteur(),"a131");
 		
 	}
 
@@ -108,17 +108,17 @@ public class AccesDataTest {
 	}
 
 	@Test
-	public void testCreateUtilisateur() {
-		d.createUtilisateur(u);
+	public void testCreateVisiteur() {
+		d.createVisiteur(u);
 	}
 
 	@Test
-	public void testUpdateUtilisateur() {
+	public void testUpdateVisiteur() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testDeleteUtilisateur() {
+	public void testDeleteVisiteur() {
 		
 		fail("Not yet implemented");
 	}

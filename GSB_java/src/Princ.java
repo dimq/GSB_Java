@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.metier.Region;
-import com.metier.Utilisateur;
+import com.metier.Visiteur;
 import com.persistance.AccesData;
 public class Princ
 {
@@ -15,13 +15,7 @@ public class Princ
 
     public static void main(String[] args)
     {
-    	List<Utilisateur> listeUtils = AccesData.getListUtilisateur();
-    	for (Utilisateur u:listeUtils){
-    	    u.creerLogin();
-    	    u.creerMail();
-    	    AccesData.updateUtilisateur(u);
-    	}
-        
+    	
         
 		
 		

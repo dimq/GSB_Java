@@ -10,30 +10,30 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.metier.Region;
-import com.metier.Utilisateur;
+import com.metier.Visiteur;
 
 public class TestRegion
 {
 
 	private Region r ; 
-	Utilisateur u1,u2;
-	private ArrayList<Utilisateur> listUtil2; // liste avec un utilisateur 
-	private ArrayList<Utilisateur> listUtil; //liste vide
-	private ArrayList<Utilisateur> listUtilVide;
+	Visiteur u1,u2;
+	private ArrayList<Visiteur> listUtil2; // liste avec un Visiteur 
+	private ArrayList<Visiteur> listUtil; //liste vide
+	private ArrayList<Visiteur> listUtilVide;
 	
     @Before
     public void setUp()
             throws Exception
     {
     	
-    	listUtil=new ArrayList<Utilisateur>();
-    	listUtil2=new ArrayList<Utilisateur>();
-    	listUtilVide=new ArrayList<Utilisateur>();
+    	listUtil=new ArrayList<Visiteur>();
+    	listUtil2=new ArrayList<Visiteur>();
+    	listUtilVide=new ArrayList<Visiteur>();
     	
     	
     	
     	
-    	u1= new Utilisateur("num", "nom","prenom","num", null, null, null, r);
+    	u1= new Visiteur("num", "nom","prenom","num", null, null, null, r);
     	listUtil2.add(u1);
     	r= new Region("region1");
     	
@@ -90,19 +90,19 @@ public class TestRegion
     }
 
     @Test
-    public void testGetListeUtilisateur()
+    public void testGetListeVisiteur()
     {
     	
     
-        assertEquals(r.getListeUtilisateur(),listUtilVide);
+        assertEquals(r.getListeVisiteur(),listUtilVide);
     }
 
     @Test
-    public void testSetListeUtilisateur()
+    public void testSetListeVisiteur()
     {
     	
-    	r.setListeUtilisateur(listUtil2);
-    	assertEquals(r.getListeUtilisateur(),listUtil2);
+    	r.setListeVisiteur(listUtil2);
+    	assertEquals(r.getListeVisiteur(),listUtil2);
        
     }
 

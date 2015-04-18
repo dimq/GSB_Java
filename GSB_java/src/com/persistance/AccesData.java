@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -13,6 +14,7 @@ import com.metier.LigneFraisForfait;
 import com.metier.LigneFraisHorsForfait;
 import com.metier.Region;
 import com.metier.Utilisateur;
+import com.metier.Visiteur;
 import com.util.HibernateSession;
 
 /**
@@ -30,27 +32,27 @@ public class AccesData {
 
     // accesseurs sur les proprietes du dessus
     /**
-     * Accesseur getUtilisateur qui prend en parramï¿½tre un id utilisateur et nous
-     * renvoie l'utilisateur correspondant en utilisant la methode find
+     * Accesseur getVisiteur qui prend en parramï¿½tre un id Visiteur et nous
+     * renvoie l'Visiteur correspondant en utilisant la methode find
      * 
      * @param id
      *            de type String
-     * @return s de type Utilisateur
+     * @return s de type Visiteur
      */
-    public static Utilisateur getUtilisateur(String id) {
-        Utilisateur utilisateur = (Utilisateur) session.get(Utilisateur.class, id);
-        return utilisateur;
+    public static Visiteur getVisiteur(String id) {
+        Visiteur Visiteur = (Visiteur) session.get(Visiteur.class, id);
+        return Visiteur;
     }
 
     /**
-     * Accesseur getListUtilisateur qui renvoie tout les utilisateurs en utilisant la
+     * Accesseur getListVisiteur qui renvoie tout les Visiteurs en utilisant la
      * methode retrieve
      * 
      * @return listeStation de type collections de stations
      */
-    public static List<Utilisateur> getListUtilisateur() {
-        List<Utilisateur> listUtilisateurs = session.createQuery("from Utilisateur").list();
-        return listUtilisateurs;
+    public static List<Visiteur> getListVisiteur() {
+        List<Visiteur> listVisiteurs = session.createQuery("from Visiteur").list();
+        return listVisiteurs;
     }
 
     /**
@@ -78,15 +80,15 @@ public class AccesData {
     }
 
     /**
-     * Accesseur getUtilisateurByRegion qui renvoie tout les Utilisateurs existant
+     * Accesseur getVisiteurByRegion qui renvoie tout les Visiteurs existant
      * dans la region correspondante grace a l'id de region passe en parramï¿½tre en utilisant
      * la methode retrieve par id
      * 
-     * @return listeUtilisateurs de type collections d'utilisateurs
+     * @return listeVisiteurs de type collections d'Visiteurs
      */
-    public static List<Utilisateur> getUtilisateurByRegion(int id) {
-        List<Utilisateur> listUtilisateur = session.createQuery("from Utilisateur where idRegion="+id).list();
-        return listUtilisateur;
+    public static List<Visiteur> getVisiteurByRegion(int id) {
+        List<Visiteur> listVisiteur = session.createQuery("from Visiteur where idRegion="+id).list();
+        return listVisiteur;
     }
 
     /**
@@ -222,14 +224,14 @@ public class AccesData {
     
 
     /**
-     * Modificateur createUtilisateur qui prend un parramï¿½tre Utilisateur et qui ira
+     * Modificateur createVisiteur qui prend un parramï¿½tre Visiteur et qui ira
      * creer l'entre correspondante dans la base de donnees
      * 
      * @param u
-     *            de type Utilisateur
+     *            de type Visiteur
      * @return success de type boolean
      */
-    public static boolean createUtilisateur(Utilisateur u) {
+    public static boolean createVisiteur(Visiteur u) {
         boolean success = false;   
         try {
             Transaction trans = session.beginTransaction();
@@ -244,14 +246,14 @@ public class AccesData {
     }
 
     /**
-     * Modificateur updateUtilisateur qui prend un parramï¿½tre Utilisateur et qui ira
+     * Modificateur updateVisiteur qui prend un parramï¿½tre Visiteur et qui ira
      * modifier l'entre correspondante dans la base de donnees
      * 
      * @param u
-     *            de type Utilisateur
+     *            de type Visiteur
      * @return success de type boolean
      */
-    public static boolean updateUtilisateur(Utilisateur u) {
+    public static boolean updateVisiteur(Visiteur u) {
         Boolean ok = false;
         try {            
         	Transaction  trans = session.beginTransaction();
@@ -266,14 +268,14 @@ public class AccesData {
     }
 
     /**
-     * Modificateur deleteUtilisateur qui prend un parramï¿½tre Utilisateur et qui ira
+     * Modificateur deleteVisiteur qui prend un parramï¿½tre Visiteur et qui ira
      * supprimer l'entre correspondante dans la base de donnees
      * 
      * @param u
-     *            de type Utilisateur
+     *            de type Visiteur
      * @return success de type boolean
      */
-    public static boolean deleteUtilisateur(Utilisateur u) {
+    public static boolean deleteVisiteur(Visiteur u) {
         boolean success = false;   
         try {
             Transaction trans = session.beginTransaction();
@@ -286,10 +288,32 @@ public class AccesData {
         } 
         return success ;
     }
+    /**
+     * Modificateur deleteVisiteur qui prend un parramï¿½tre Visiteur et qui ira
+     * supprimer de facon logique le visiteur dans la base de donnees
+     * 
+     * @param u
+     *            de type Visiteur
+     * @return success de type boolean
+     */
+    public static boolean deleteLogicalVisiteur(Visiteur u) {
+    	u.setSuppr("N");
+    	Boolean ok = false;
+        try {            
+        	Transaction  trans = session.beginTransaction();
+            session.update(u);
+            trans.commit();
+            ok = true;
+        }
+        catch(HibernateException e) {
+            e.printStackTrace();
+        }
+        return ok;
+    }
     
     /**
      * Methode permettant de crée un objet région valide pour la 
-     * création d'utilisateur
+     * création d'Visiteur
      * 
      * @param String libelleRegion
      *            
@@ -331,7 +355,7 @@ public class AccesData {
      */
     public static Utilisateur connection(String login,char[] mdp)
     {
-        Utilisateur util = null;
+    	Utilisateur util = null;
         try
         {
             util =(Utilisateur) session.createQuery("from Utilisateur where login='"+login+"' and mdp='"+String.valueOf(mdp)+"'").list().get(0);
