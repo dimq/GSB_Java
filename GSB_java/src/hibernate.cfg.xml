@@ -28,5 +28,7 @@
 		<mapping class="com.metier.LigneFraisForfait" />
 		<mapping class="com.metier.LigneFraisHorsForfait" />
 		<mapping class="com.metier.FraisForfait" />
+		<mapping class="com.metier.Departement" />
+		<mapping class="com.metier.Ville" />
 		</session-factory>
 </hibernate-configuration>

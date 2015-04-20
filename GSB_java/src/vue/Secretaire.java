@@ -29,7 +29,7 @@ public class Secretaire extends JFrame
     private JMenu mnGestionVisiteurs;
     private JMenuItem mntmConsultation;
     private JMenuItem mntmModification;
-    private JMenu mnCrationsuppression;
+    private JMenu mnCreationSuppression;
     private JMenuItem mntmCrationDunVisiteur;
     private JMenuItem mntmSupprimerUnVisiteur;
     private List<Visiteur> utils;
@@ -70,7 +70,7 @@ public class Secretaire extends JFrame
         	menuBar = new JMenuBar();
         	menuBar.add(getMnFichier());
         	menuBar.add(getMnGestionVisiteurs());
-        	menuBar.add(getMnCrationsuppression());
+        	menuBar.add(getMnCreationSuppression());
         }
         return menuBar;
     }
@@ -139,13 +139,13 @@ public class Secretaire extends JFrame
         }
         return mntmModification;
     }
-    private JMenu getMnCrationsuppression() {
-        if (mnCrationsuppression == null) {
-        	mnCrationsuppression = new JMenu("Creation/Suppression");
-        	mnCrationsuppression.add(getMntmCrationDunVisiteur());
-        	mnCrationsuppression.add(getMntmSupprimerUnVisiteur());
+    private JMenu getMnCreationSuppression() {
+        if (mnCreationSuppression == null) {
+        	mnCreationSuppression = new JMenu("Creation/Suppression");
+        	mnCreationSuppression.add(getMntmCrationDunVisiteur());
+        	mnCreationSuppression.add(getMntmSupprimerUnVisiteur());
         }
-        return mnCrationsuppression;
+        return mnCreationSuppression;
     }
     private JMenuItem getMntmCrationDunVisiteur() {
         if (mntmCrationDunVisiteur == null) {
@@ -160,8 +160,8 @@ public class Secretaire extends JFrame
 							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
                     if (selectedOption == 0)
                     {
-                        Visiteur util = new Visiteur(creerId(),p1.getNom(),p1.getPrenom(),p1.getPortable(),p1.getFixe(),p1.getAdresse(),p1.getCp(),p1.getVille(),p1.getDateEmbauche(),"v",p1.getRegion());
-                        AccesData.createVisiteur(util);
+                        //Visiteur util = new Visiteur(creerId(),p1.getNom(),p1.getPrenom(),p1.getPortable(),p1.getFixe(),p1.getAdresse(),p1.getCp(),p1.getVille(),p1.getDateEmbauche(),"v",p1.getRegion());
+                        //AccesData.createVisiteur(util);
                     }
                     
         	    }

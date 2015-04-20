@@ -47,10 +47,6 @@ public class Utilisateur
     private String mailPro;
     @Column(name="adresse")
     private String adressseRue;
-    @Column(name="cp")
-    private String cp;
-    @Column(name="ville")
-    private String ville;
     @Column(name="dateEmbauche")
     private Date dateEmbauche;
     @Column(name="idType")
@@ -78,34 +74,30 @@ public class Utilisateur
         // TODO Auto-generated constructor stub
     }
     
-    public Utilisateur(String idUtilisateur,String nomUtilisateur,String prenomUtilisateur,String adresse,String cp,String ville,String idType,Region region) {
+    public Utilisateur(String idUtilisateur,String nomUtilisateur,String prenomUtilisateur,String adresse,String cp,String ville,String idType) {
         
         this.idUtilisateur=idUtilisateur;
         this.nomUtilisateur=nomUtilisateur;
         this.prenomUtilisateur=prenomUtilisateur;
         this.adressseRue = adresse;
-        this.cp = cp;
         this.idType = idType;
         this.login = creerLogin();
         this.mailPro = creerMail();
         this.mdp = "gsb1234";
-        this.ville = ville;
     }
     /**
      * Constructeur Utilisateur surcharge avec les numeros de telephones et la date d'embauche
      */
-    public Utilisateur(String idUtilisateur,String nomUtilisateur,String prenomUtilisateur,String portable,String fixe,String adresse,String cp,String ville,Date dateEmbauche,String idType,Region region) {
+    public Utilisateur(String idUtilisateur,String nomUtilisateur,String prenomUtilisateur,String portable,String fixe,String adresse,String cp,String ville,Date dateEmbauche,String idType) {
         
         this.idUtilisateur=idUtilisateur;
         this.nomUtilisateur=nomUtilisateur;
         this.prenomUtilisateur=prenomUtilisateur;
         this.adressseRue = adresse;
-        this.cp = cp;
         this.idType = idType;
         this.login = creerLogin();
         this.mailPro = creerMail();
         this.mdp = "gsb1234";
-        this.ville = ville;
         this.numFixe = fixe;
         this.numPort = portable;
         this.dateEmbauche = dateEmbauche;
@@ -236,47 +228,6 @@ public class Utilisateur
 
     public void setAdressseRue(String adressseRue) {
         this.adressseRue = adressseRue;
-    }
-    
-    
-    
-    /**
-     * Accesseur sur la propriÃ©tÃ© code postale
-     * @return cp de type String
-     */
-
-    public String getCp() {
-        return cp;
-    }
-
-    /**
-     * Modificateur sur la propriete cp 
-     * @param cp the cp to set
-     */
-
-    public void setCp(String cp) {
-        this.cp = cp;
-    }
-
-
-    /**
-     * Accesseur sur la propriÃ©tÃ© ville
-     * @return ville de type String
-     */
-    
-    public String getVille() {
-        return ville;
-    }
-    
-    /**
-     * Modificateur sur la propriete ville 
-     * @param ville the ville to set
-     */
-
-
-
-    public void setVille(String ville) {
-        this.ville = ville;
     }
 
     

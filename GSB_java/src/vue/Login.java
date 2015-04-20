@@ -95,13 +95,13 @@ public class Login extends JPanel
                             break;
                         case "d":
                             frame.dispose();
-                            JFrame frame2 = new JFrame();
-                            frame2.setVisible(true);
+                            JFrame Directeur = new Directeur();
+                            Directeur.setVisible(true);
                             break;
                         case "r":
                             frame.dispose();
-                            JFrame frame3 = new JFrame();
-                            frame3.setVisible(true);
+                            JFrame Responsable = new Responsable();
+                            Responsable.setVisible(true);
                             break;
                         case "s":
                             frame.dispose();
@@ -110,7 +110,7 @@ public class Login extends JPanel
                             break;
                         case "v":
                             JOptionPane.showMessageDialog(null,
-                                    "Les visiteurs n'ont pas accès à cette application",
+                                    "Les visiteurs n'ont pas acces a� cette application",
                                     "Erreur de connection",
                                     JOptionPane.WARNING_MESSAGE);
                             break;

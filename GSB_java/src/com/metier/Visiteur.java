@@ -47,10 +47,9 @@ public class Visiteur
     private String mailPro;
     @Column(name="adresse")
     private String adressseRue;
-    @Column(name="cp")
-    private String cp;
-    @Column(name="ville")
-    private String ville;
+    @ManyToOne
+    @JoinColumn(name="id_ville")
+    private Ville ville;
     @Column(name="dateEmbauche")
     private Date dateEmbauche;
     @Column(name="idType")
@@ -58,6 +57,9 @@ public class Visiteur
     @ManyToOne
     @JoinColumn(name="idRegion")
     private Region region;
+    @ManyToOne
+    @JoinColumn(name="code_departement")
+    private Departement departement;
     @OneToMany
     @JoinColumn(name="idVisiteur")
     private List<FicheFrais> listeFicheFrais;
@@ -84,41 +86,41 @@ public class Visiteur
         // TODO Auto-generated constructor stub
     }
     
-    public Visiteur(String idVisiteur,String nomVisiteur,String prenomVisiteur,String adresse,String cp,String ville,String idType,Region region) {
+    public Visiteur(String idVisiteur,String nomVisiteur,String prenomVisiteur,String adresse,Ville ville,String idType,Region region,Departement departement) {
         
         this.idVisiteur=idVisiteur;
         this.nomVisiteur=nomVisiteur;
         this.prenomVisiteur=prenomVisiteur;
         this.listeFicheFrais=new ArrayList<FicheFrais>();
         this.adressseRue = adresse;
-        this.cp = cp;
+        this.ville = ville;
         this.idType = idType;
         this.login = creerLogin();
         this.mailPro = creerMail();
         this.mdp = "gsb1234";
         this.region = region;
-        this.ville = ville;
+        this.departement = departement;
     }
     /**
      * Constructeur Visiteur surcharge avec les numeros de telephones et la date d'embauche
      */
-    public Visiteur(String idVisiteur,String nomVisiteur,String prenomVisiteur,String portable,String fixe,String adresse,String cp,String ville,Date dateEmbauche,String idType,Region region) {
+    public Visiteur(String idVisiteur,String nomVisiteur,String prenomVisiteur,String portable,String fixe,String adresse,Ville ville,Date dateEmbauche,String idType,Region region,Departement departement) {
         
         this.idVisiteur=idVisiteur;
         this.nomVisiteur=nomVisiteur;
         this.prenomVisiteur=prenomVisiteur;
         this.listeFicheFrais=new ArrayList<FicheFrais>();
         this.adressseRue = adresse;
-        this.cp = cp;
         this.idType = idType;
         this.login = creerLogin();
         this.mailPro = creerMail();
         this.mdp = "gsb1234";
         this.region = region;
-        this.ville = ville;
         this.numFixe = fixe;
         this.numPort = portable;
         this.dateEmbauche = dateEmbauche;
+        this.ville = ville;
+        this.departement = departement;
     }
     
     /**
@@ -247,48 +249,6 @@ public class Visiteur
     public void setAdressseRue(String adressseRue) {
         this.adressseRue = adressseRue;
     }
-    
-    
-    
-    /**
-     * Accesseur sur la propriÃ©tÃ© code postale
-     * @return cp de type String
-     */
-
-    public String getCp() {
-        return cp;
-    }
-
-    /**
-     * Modificateur sur la propriete cp 
-     * @param cp the cp to set
-     */
-
-    public void setCp(String cp) {
-        this.cp = cp;
-    }
-
-
-    /**
-     * Accesseur sur la propriÃ©tÃ© ville
-     * @return ville de type String
-     */
-    
-    public String getVille() {
-        return ville;
-    }
-    
-    /**
-     * Modificateur sur la propriete ville 
-     * @param ville the ville to set
-     */
-
-
-
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
-
     
     /**
      * Accesseur sur la propriÃ©tÃ© dateEmbauche
@@ -436,6 +396,34 @@ public class Visiteur
 	 */
 	public void setSuppr(String suppr) {
 		this.suppr = suppr;
+	}
+
+	/**
+	 * @return the ville
+	 */
+	public Ville getVille() {
+		return ville;
+	}
+
+	/**
+	 * @param ville the ville to set
+	 */
+	public void setVille(Ville ville) {
+		this.ville = ville;
+	}
+
+	/**
+	 * @return the departement
+	 */
+	public Departement getDepartement() {
+		return departement;
+	}
+
+	/**
+	 * @param departement the departement to set
+	 */
+	public void setDepartement(Departement departement) {
+		this.departement = departement;
 	}
     
 }

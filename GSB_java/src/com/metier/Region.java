@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -37,6 +38,8 @@ public class Region
     private String libelleRegion;
     @OneToMany(mappedBy="region")
     private List<Visiteur> listeVisiteur;
+    @OneToMany(mappedBy="region")
+    private List<Departement> listeDepartement;
     /**
      * Constructeur public, cree l'instance de Region sans l'id qui est
      * auto dans la base de donne et qui sera sollicitee pour
@@ -52,6 +55,7 @@ public class Region
         super();
         this.libelleRegion = libelleRegion;
         this.listeVisiteur = new ArrayList<Visiteur>();
+        this.listeDepartement = new ArrayList<Departement>();
     }
     /**
      * Accesseur sur la propriété idRegion nomme getidRegion et qui renvoie l'id de 
@@ -138,5 +142,17 @@ public class Region
     	
     	
     }
+	/**
+	 * @return the listeDepartement
+	 */
+	public List<Departement> getListeDepartement() {
+		return listeDepartement;
+	}
+	/**
+	 * @param listeDepartement the listeDepartement to set
+	 */
+	public void setListeDepartement(List<Departement> listeDepartement) {
+		this.listeDepartement = listeDepartement;
+	}
     
 }

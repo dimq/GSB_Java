@@ -3,6 +3,7 @@ package vue;
 import java.beans.PropertyChangeEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,9 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import net.sourceforge.jcalendarbutton.JCalendarButton;
 
+import com.metier.Departement;
 import com.metier.Region;
+import com.metier.Ville;
 import com.metier.Visiteur;
 
 import layout.SpringUtilities;
@@ -44,9 +47,13 @@ public class ConsultModifVisiteur extends JPanel {
 	private String fixe;
 	private String adresse;
 	private String cp;
-	private String ville;
+	private Ville ville;
 	private Date dateEmbauche;
 	private Region region;
+	private Departement departement;
+	List<Departement> listeDepartement = new ArrayList();
+	private List<Ville> listeVille = new ArrayList();
+	private List<Ville> listeCp;
 	
 	private JLabel idVisiteur;
 	private JTextField textFieldId;
@@ -81,14 +88,22 @@ public class ConsultModifVisiteur extends JPanel {
 	private JLabel regionVisiteur;
 	private JComboBox comboFieldRegion;
 	private JLabel label10;
+	private JComboBox comboFieldCp;
+	private JLabel departementVisiteur;
+	private JComboBox comboFieldDepartement;
+	private JLabel label11;
+	private JComboBox comboFieldVille;
+	private JLabel label12;
+	private JLabel label13;
+	
 	/**
 	 * Create the panel.
 	 * @return 
 	 */
 	public ConsultModifVisiteur(Visiteur util,boolean edit,final List<Region> regions) {
-		
-		
-	    this.setLayout(new SpringLayout());
+
+
+		this.setLayout(new SpringLayout());
 
 		idVisiteur = new JLabel();
 		idVisiteur.setText("Identifiant ");
@@ -120,7 +135,7 @@ public class ConsultModifVisiteur extends JPanel {
 				nom = textFieldNom.getText();
 			}
 		});
-				
+
 
 		prenomVisiteur = new JLabel();
 		prenomVisiteur.setText("Prenom ");
@@ -145,30 +160,33 @@ public class ConsultModifVisiteur extends JPanel {
 		this.add(portableVisiteur);
 		textFieldPortable = new JTextField(10);
 		label3 = new JLabel();
-		if (textFieldPortable.getText().length() == 10)
+		textFieldPortable.setText(util.getNumPort());
+		if (edit == true)
 		{
-			label3.setText("Bon numero");
-			testPortable= true;
-		}
-		else
-		{
-			label3.setText("Mauvais numero");
-			testPortable = false;
-		}
-		textFieldPortable.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent arg0) {
-				if (textFieldPortable.getText().length() == 10)
-				{
-					label3.setText("Bon numero");
-					testPortable = true;
-				}
-				else
-					label3.setText("Mauvais numero");
+			if (textFieldPortable.getText().length() == 10)
+			{
+				label3.setText("Bon numero");
+				testPortable= true;
+			}
+			else
+			{
+				label3.setText("Mauvais numero");
+				testPortable = false;
+			}
+			textFieldPortable.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent arg0) {
+					if (textFieldPortable.getText().length() == 10)
+					{
+						label3.setText("Bon numero");
+						testPortable = true;
+					}
+					else
+						label3.setText("Mauvais numero");
 					testPortable = false;
 				}
-		});
-		textFieldPortable.setText(util.getNumPort());
+			});
+		}
 		portableVisiteur.setLabelFor(textFieldPortable);
 		this.add(textFieldPortable);
 		this.add(label3);
@@ -228,41 +246,7 @@ public class ConsultModifVisiteur extends JPanel {
 			}
 		});
 
-		cpVisiteur = new JLabel();
-		cpVisiteur.setText("Code Postal ");
-		this.add(cpVisiteur);
-		textFieldCp = new JTextField(10);
-		textFieldCp.setText(util.getCp());
-		cpVisiteur.setLabelFor(textFieldCp);
-		this.add(textFieldCp);
-		label7 = new JLabel();
-		this.add(label7);
-		textFieldCp.setEditable(edit);
-		cp = textFieldCp.getText();
-		textFieldCp.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent arg0) {
-				cp = textFieldCp.getText();
-			}
-		});
-
-		villeVisiteur = new JLabel();
-		villeVisiteur.setText("Ville ");
-		this.add(villeVisiteur);
-		textFieldVille = new JTextField(10);
-		textFieldVille.setText(util.getVille());
-		villeVisiteur.setLabelFor(textFieldVille);
-		this.add(textFieldVille);
-		label8 = new JLabel();
-		this.add(label8);
-		textFieldVille.setEditable(edit);
-		ville = textFieldVille.getText();
-		textFieldVille.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent arg0) {
-				ville = textFieldVille.getText();
-			}
-		});
+		
 
 		dateVisiteur = new JLabel();
 		dateVisiteur.setText("Date d'embauche ");
@@ -282,19 +266,21 @@ public class ConsultModifVisiteur extends JPanel {
 		calendar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
 			public void propertyChange(java.beans.PropertyChangeEvent evt) {
 				if (evt.getNewValue() instanceof Date){
-                    dateEmbauche = (Date) evt.getNewValue();
-                    String dateString = dateFormat.format(dateEmbauche);
-                    textFieldDate.setText(dateString);
-                }
+					dateEmbauche = (Date) evt.getNewValue();
+					String dateString = dateFormat.format(dateEmbauche);
+					textFieldDate.setText(dateString);
+				}
 			}
 		});
 		calendar.setEnabled(edit);
 		this.add(calendar);
 
+		
+
+
 		regionVisiteur = new JLabel();
 		regionVisiteur.setText("Region ");
 		this.add(regionVisiteur);
-
 		comboFieldRegion = new JComboBox();
 		for (Region r:regions)
 		{
@@ -310,22 +296,108 @@ public class ConsultModifVisiteur extends JPanel {
 		region = regions.get(comboFieldRegion.getSelectedIndex());
 		comboFieldRegion.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
+				
 				region = regions.get(comboFieldRegion.getSelectedIndex());
+				listeDepartement= region.getListeDepartement();
+				comboFieldDepartement.removeAllItems();
+				for (Departement d:listeDepartement)
+				{
+					comboFieldDepartement.addItem(d.getLibelleDepartement());
+				}
 			}
 		});
 		
+		
+		departementVisiteur = new JLabel();
+		departementVisiteur.setText("Departement ");
+		this.add(departementVisiteur);
+		comboFieldDepartement = new JComboBox();
+		listeDepartement= region.getListeDepartement();
+		comboFieldDepartement.removeAllItems();
+		for (Departement d:listeDepartement)
+		{
+			comboFieldDepartement.addItem(d.getLibelleDepartement());
+		}
+		System.out.println(util.getDepartement().getLibelleDepartement());
+		System.out.println(util.getDepartement());
+		comboFieldDepartement.setSelectedIndex(listeDepartement.indexOf(util.getDepartement()));
+		comboFieldDepartement.setEnabled(edit);
+		AutoCompleteDecorator.decorate(comboFieldDepartement);
+		departementVisiteur.setLabelFor(comboFieldDepartement);
+		this.add(comboFieldDepartement);
+		label11 = new JLabel();
+		this.add(label11);
+		departement = listeDepartement.get(comboFieldDepartement.getSelectedIndex());
+		comboFieldDepartement.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				
+				departement = listeDepartement.get(comboFieldDepartement.getSelectedIndex());
+				listeVille= departement.getListeVille();
+				comboFieldVille.removeAllItems();
+				for (Ville v:listeVille)
+				{
+					comboFieldVille.addItem(v.getNomVille());
+				}
+			}
+		});
+		
+		
+		villeVisiteur = new JLabel();
+		villeVisiteur.setText("Ville ");
+		this.add(villeVisiteur);
+		comboFieldVille = new JComboBox();
+		listeVille= departement.getListeVille();
+		comboFieldVille.removeAllItems();
+		for (Ville v:listeVille)
+		{
+			comboFieldVille.addItem(v.getNomVille());
+		}
+		comboFieldVille.setSelectedIndex(listeVille.indexOf(util.getVille()));
+		comboFieldVille.setEnabled(edit);
+		AutoCompleteDecorator.decorate(comboFieldVille);
+		villeVisiteur.setLabelFor(comboFieldVille);
+		this.add(comboFieldVille);
+		label12 = new JLabel();
+		this.add(label12);
+		ville = listeVille.get(comboFieldVille.getSelectedIndex());
+		comboFieldVille.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				
+				ville = listeVille.get(comboFieldVille.getSelectedIndex());
+				listeCp= departement.getListeVille();
+				comboFieldVille.removeAllItems();
+				for (Ville v:listeVille)
+				{
+					comboFieldVille.addItem(v.getNomVille());
+				}
+			}
+		});
+		
+		
+		
+		cpVisiteur = new JLabel();
+		cpVisiteur.setText("Code postal ");
+		this.add(cpVisiteur);
+		textFieldCp = new JTextField(10);
+		textFieldCp.setText(util.getVille().getCp());
+		cpVisiteur.setLabelFor(textFieldCp);
+		this.add(textFieldCp);
+		label13 = new JLabel();
+		this.add(label13);
+		textFieldCp.setEditable(false);
+
 
 		//Lay out the panel.
 		SpringUtilities.makeCompactGrid(this,
-				11, 3, //rows, cols
+				12, 3, //rows, cols
 				6, 6,        //initX, initY
 				6, 6);       //xPad, yPad
-		
-		
+
+
 	}
 	public String getId()
 	{
-	    return id;
+		return id;
 	}
 	public String getNom()
 	{
@@ -351,16 +423,20 @@ public class ConsultModifVisiteur extends JPanel {
 	{
 		return cp;
 	}
-	public String getVille()
+	public Ville getVille()
 	{
 		return ville;
 	}
 	public Date getDateEmbauche()
-    {
-    	return dateEmbauche;
-    }
+	{
+		return dateEmbauche;
+	}
 	public Region getRegion()
 	{
 		return region;
+	}
+	public Departement getDepartement()
+	{
+		return departement;
 	}
 }
