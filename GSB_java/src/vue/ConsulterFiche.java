@@ -42,22 +42,24 @@ import javax.swing.JScrollPane;
 
 public class ConsulterFiche extends JPanel
 {
-	JComboBox comboBoxRegion;
-	JLabel lblRegion;
-	JLabel lblNomPrenom;
-	JComboBox comboBoxNomPrenom;
-	JLabel lblIdentifiant;
-	JComboBox comboBoxIdentifiant;
-	JLabel lblRecherchePar;
-	List<Visiteur> utils;
-	List<Region> regions;
-	JButton buttonOkRegion;
-	JFrame frame;
-	JButton buttonOkNp;
-	JButton buttonOkId;
+	private JComboBox comboBoxRegion;
+	private JLabel lblRegion;
+	private JLabel lblNomPrenom;
+	private JComboBox comboBoxNomPrenom;
+	private JLabel lblIdentifiant;
+	private JComboBox comboBoxIdentifiant;
+	private JLabel lblRecherchePar;
+	private List<Visiteur> utils;
+	private List<Region> regions;
+	private JButton buttonOkRegion;
+	private JFrame frame;
+	private JButton buttonOkNp;
+	private JButton buttonOkId;
 	private ModeleVisiteur modeleUtil;
-	List<Visiteur> VisiteurByRegion;
+	private List<Visiteur> VisiteurByRegion;
 	private JTable table;
+	private JOptionPane optionPane;
+	private JDialog dialog;
 	/**
 	 * Create the panel.
 	 */
@@ -151,12 +153,22 @@ public class ConsulterFiche extends JPanel
 					ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit,regions);
 
 
-					final JOptionPane optionPane = new JOptionPane(
-							p1,
-							JOptionPane.QUESTION_MESSAGE,
-							JOptionPane.OK_CANCEL_OPTION);
+					if (edit == true)
+					{
+						optionPane = new JOptionPane(
+								p1,
+								JOptionPane.QUESTION_MESSAGE,
+								JOptionPane.OK_CANCEL_OPTION);
+					}
+					else
+					{
+						optionPane = new JOptionPane(
+								p1,
+								JOptionPane.QUESTION_MESSAGE,
+								JOptionPane.CLOSED_OPTION);
+					}
 
-					final JDialog dialog = new JDialog(frame, 
+					dialog = new JDialog(frame, 
 							"Consultation fiche visiteur",
 							true);
 					dialog.setContentPane(optionPane);
@@ -166,7 +178,7 @@ public class ConsulterFiche extends JPanel
 							new PropertyChangeListener() {
 								public void propertyChange(PropertyChangeEvent e) {
 									Object value = optionPane.getValue();
-									if (value.toString().equals("0"))
+									if (value.toString().equals("0") && edit == true)
 									{
 										JOptionPane.showMessageDialog(frame, "Eggs are not supposed to be green.");
 										dialog.setVisible(false);	
@@ -219,12 +231,22 @@ public class ConsulterFiche extends JPanel
 				//Create and populate the panel.
 				ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit,regions);
 
-				final JOptionPane optionPane = new JOptionPane(
-						p1,
-						JOptionPane.QUESTION_MESSAGE,
-						JOptionPane.OK_CANCEL_OPTION);
+				if (edit == true)
+				{
+					optionPane = new JOptionPane(
+							p1,
+							JOptionPane.QUESTION_MESSAGE,
+							JOptionPane.OK_CANCEL_OPTION);
+				}
+				else
+				{
+					optionPane = new JOptionPane(
+							p1,
+							JOptionPane.QUESTION_MESSAGE,
+							JOptionPane.CLOSED_OPTION);
+				}
 
-				final JDialog dialog = new JDialog(frame, 
+				dialog = new JDialog(frame, 
 						"Consultation fiche visiteur",
 						true);
 				dialog.setContentPane(optionPane);
@@ -234,7 +256,7 @@ public class ConsulterFiche extends JPanel
 						new PropertyChangeListener() {
 							public void propertyChange(PropertyChangeEvent e) {
 								Object value = optionPane.getValue();
-								if (value.toString().equals("0"))
+								if (value.toString().equals("0") && edit == true)
 								{
 									JOptionPane.showMessageDialog(frame, "Eggs are not supposed to be green.");
 									dialog.setVisible(false);	
@@ -281,12 +303,23 @@ public class ConsulterFiche extends JPanel
 				//Create and populate the panel.
 				ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit,regions);
 
-				final JOptionPane optionPane = new JOptionPane(
-						p1,
-						JOptionPane.QUESTION_MESSAGE,
-						JOptionPane.OK_CANCEL_OPTION);
+				if (edit == true)
+				{
+					optionPane = new JOptionPane(
+							p1,
+							JOptionPane.QUESTION_MESSAGE,
+							JOptionPane.OK_CANCEL_OPTION);
+				}
+				else
+				{
+					optionPane = new JOptionPane(
+							p1,
+							JOptionPane.QUESTION_MESSAGE,
+							JOptionPane.CLOSED_OPTION);
+				}
+				
 
-				final JDialog dialog = new JDialog(frame, 
+				dialog = new JDialog(frame, 
 						"Consultation fiche visiteur",
 						true);
 				dialog.setContentPane(optionPane);
@@ -296,7 +329,7 @@ public class ConsulterFiche extends JPanel
 						new PropertyChangeListener() {
 							public void propertyChange(PropertyChangeEvent e) {
 								Object value = optionPane.getValue();
-								if (value.toString().equals("0"))
+								if (value.toString().equals("0") && edit == true)
 								{
 									JOptionPane.showMessageDialog(frame, "Eggs are not supposed to be green.");
 									dialog.setVisible(false);	
