@@ -219,9 +219,38 @@ public class ConsulterFiche extends JPanel
 				//Create and populate the panel.
 				ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit,regions);
 
+				final JOptionPane optionPane = new JOptionPane(
+						p1,
+						JOptionPane.QUESTION_MESSAGE,
+						JOptionPane.OK_CANCEL_OPTION);
+
+				final JDialog dialog = new JDialog(frame, 
+						"Consultation fiche visiteur",
+						true);
+				dialog.setContentPane(optionPane);
 
 
-				int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
+				optionPane.addPropertyChangeListener(
+						new PropertyChangeListener() {
+							public void propertyChange(PropertyChangeEvent e) {
+								Object value = optionPane.getValue();
+								if (value.toString().equals("0"))
+								{
+									JOptionPane.showMessageDialog(frame, "Eggs are not supposed to be green.");
+									dialog.setVisible(false);	
+								}
+								else
+								{
+									dialog.setVisible(false);
+								}
+
+							}
+						});
+				dialog.pack();
+				dialog.setLocationRelativeTo(null);
+				dialog.setVisible(true);
+
+				/*int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 				if (selectedOption == 0)
 				{
@@ -230,7 +259,6 @@ public class ConsulterFiche extends JPanel
 					visiteur.setNumPort(p1.getPortable());
 					visiteur.setNumFixe(p1.getFixe());
 					visiteur.setAdressseRue(p1.getAdresse());
-					visiteur.setCp(p1.getCp());
 					visiteur.setVille(p1.getVille());
 					visiteur.setDateEmbauche(p1.getDateEmbauche());
 					visiteur.setRegion(p1.getRegion());
@@ -239,7 +267,7 @@ public class ConsulterFiche extends JPanel
 					comboBoxRegion.revalidate();
 					comboBoxNomPrenom.revalidate();
 					comboBoxIdentifiant.revalidate();
-				}
+				}*/
 
 			}
 
@@ -253,9 +281,38 @@ public class ConsulterFiche extends JPanel
 				//Create and populate the panel.
 				ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit,regions);
 
+				final JOptionPane optionPane = new JOptionPane(
+						p1,
+						JOptionPane.QUESTION_MESSAGE,
+						JOptionPane.OK_CANCEL_OPTION);
+
+				final JDialog dialog = new JDialog(frame, 
+						"Consultation fiche visiteur",
+						true);
+				dialog.setContentPane(optionPane);
 
 
-				int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
+				optionPane.addPropertyChangeListener(
+						new PropertyChangeListener() {
+							public void propertyChange(PropertyChangeEvent e) {
+								Object value = optionPane.getValue();
+								if (value.toString().equals("0"))
+								{
+									JOptionPane.showMessageDialog(frame, "Eggs are not supposed to be green.");
+									dialog.setVisible(false);	
+								}
+								else
+								{
+									dialog.setVisible(false);
+								}
+
+							}
+						});
+				dialog.pack();
+				dialog.setLocationRelativeTo(null);
+				dialog.setVisible(true);
+
+				/*int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Consultation fiche visiteur",
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 				if (selectedOption == 0)
 				{
@@ -264,7 +321,6 @@ public class ConsulterFiche extends JPanel
 					visiteur.setNumPort(p1.getPortable());
 					visiteur.setNumFixe(p1.getFixe());
 					visiteur.setAdressseRue(p1.getAdresse());
-					visiteur.setCp(p1.getCp());
 					visiteur.setVille(p1.getVille());
 					visiteur.setDateEmbauche(p1.getDateEmbauche());
 					visiteur.setRegion(p1.getRegion());
@@ -273,7 +329,7 @@ public class ConsulterFiche extends JPanel
 					comboBoxRegion.revalidate();
 					comboBoxNomPrenom.revalidate();
 					comboBoxIdentifiant.revalidate();
-				}
+				}*/
 
 			}
 

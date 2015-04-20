@@ -304,6 +304,9 @@ public class ConsultModifVisiteur extends JPanel {
 				{
 					comboFieldDepartement.addItem(d.getLibelleDepartement());
 				}
+				departement = listeDepartement.get(comboFieldDepartement.getSelectedIndex());
+				ville = listeVille.get(comboFieldVille.getSelectedIndex());
+				
 			}
 		});
 		
@@ -318,8 +321,6 @@ public class ConsultModifVisiteur extends JPanel {
 		{
 			comboFieldDepartement.addItem(d.getLibelleDepartement());
 		}
-		System.out.println(util.getDepartement().getLibelleDepartement());
-		System.out.println(util.getDepartement());
 		comboFieldDepartement.setSelectedIndex(listeDepartement.indexOf(util.getDepartement()));
 		comboFieldDepartement.setEnabled(edit);
 		AutoCompleteDecorator.decorate(comboFieldDepartement);
@@ -330,14 +331,14 @@ public class ConsultModifVisiteur extends JPanel {
 		departement = listeDepartement.get(comboFieldDepartement.getSelectedIndex());
 		comboFieldDepartement.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				
-				departement = listeDepartement.get(comboFieldDepartement.getSelectedIndex());
+				System.out.println("Modif departement");
 				listeVille= departement.getListeVille();
 				comboFieldVille.removeAllItems();
 				for (Ville v:listeVille)
 				{
 					comboFieldVille.addItem(v.getNomVille());
 				}
+				
 			}
 		});
 		
@@ -363,13 +364,8 @@ public class ConsultModifVisiteur extends JPanel {
 		comboFieldVille.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				
-				ville = listeVille.get(comboFieldVille.getSelectedIndex());
-				listeCp= departement.getListeVille();
-				comboFieldVille.removeAllItems();
-				for (Ville v:listeVille)
-				{
-					comboFieldVille.addItem(v.getNomVille());
-				}
+				
+				textFieldCp.setText(ville.getCp());
 			}
 		});
 		

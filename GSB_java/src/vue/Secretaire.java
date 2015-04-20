@@ -25,12 +25,12 @@ public class Secretaire extends JFrame
     private JMenu mnFichier;
     private JMenuItem mntmQuitter;
     private static Secretaire frame;
-    private JMenuItem mntmDconnection;
+    private JMenuItem mntmDeconnection;
     private JMenu mnGestionVisiteurs;
     private JMenuItem mntmConsultation;
     private JMenuItem mntmModification;
     private JMenu mnCreationSuppression;
-    private JMenuItem mntmCrationDunVisiteur;
+    private JMenuItem mntmCreationDunVisiteur;
     private JMenuItem mntmSupprimerUnVisiteur;
     private List<Visiteur> utils;
     /**
@@ -77,7 +77,7 @@ public class Secretaire extends JFrame
     private JMenu getMnFichier() {
         if (mnFichier == null) {
         	mnFichier = new JMenu("Fichier");
-        	mnFichier.add(getMntmDconnection());
+        	mnFichier.add(getMntmDeconnection());
         	mnFichier.add(getMntmQuitter());
         }
         return mnFichier;
@@ -93,10 +93,10 @@ public class Secretaire extends JFrame
         }
         return mntmQuitter;
     }
-    private JMenuItem getMntmDconnection() {
-        if (mntmDconnection == null) {
-        	mntmDconnection = new JMenuItem("Deconnexion");
-        	mntmDconnection.addActionListener(new ActionListener() {
+    private JMenuItem getMntmDeconnection() {
+        if (mntmDeconnection == null) {
+        	mntmDeconnection = new JMenuItem("Deconnexion");
+        	mntmDeconnection.addActionListener(new ActionListener() {
         	    public void actionPerformed(ActionEvent e) {
         	        frame.dispose();
         	        JFrame Login = new GSB_RH_Login();
@@ -104,7 +104,7 @@ public class Secretaire extends JFrame
         	    }
         	});
         }
-        return mntmDconnection;
+        return mntmDeconnection;
     }
     private JMenu getMnGestionVisiteurs() {
         if (mnGestionVisiteurs == null) {
@@ -142,15 +142,15 @@ public class Secretaire extends JFrame
     private JMenu getMnCreationSuppression() {
         if (mnCreationSuppression == null) {
         	mnCreationSuppression = new JMenu("Creation/Suppression");
-        	mnCreationSuppression.add(getMntmCrationDunVisiteur());
+        	mnCreationSuppression.add(getMntmCreationDunVisiteur());
         	mnCreationSuppression.add(getMntmSupprimerUnVisiteur());
         }
         return mnCreationSuppression;
     }
-    private JMenuItem getMntmCrationDunVisiteur() {
-        if (mntmCrationDunVisiteur == null) {
-        	mntmCrationDunVisiteur = new JMenuItem("Creation d'un Visiteur");
-        	mntmCrationDunVisiteur.addActionListener(new ActionListener() {
+    private JMenuItem getMntmCreationDunVisiteur() {
+        if (mntmCreationDunVisiteur == null) {
+        	mntmCreationDunVisiteur = new JMenuItem("Creation d'un Visiteur");
+        	mntmCreationDunVisiteur.addActionListener(new ActionListener() {
         	    public void actionPerformed(ActionEvent e) {
         	      //Create and populate the panel.
                     CreationVisiteur p1 = new CreationVisiteur(AccesData.getListRegion());
@@ -167,7 +167,7 @@ public class Secretaire extends JFrame
         	    }
         	});
         }
-        return mntmCrationDunVisiteur;
+        return mntmCreationDunVisiteur;
     }
     private JMenuItem getMntmSupprimerUnVisiteur() {
         if (mntmSupprimerUnVisiteur == null) {
