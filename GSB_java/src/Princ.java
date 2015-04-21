@@ -17,8 +17,8 @@ public class Princ
 
     public static void main(String[] args)
     {
-    	Visiteur v = AccesData.getVisiteur("a131");
-        System.out.println(v.getVille().getNomVille());
+    	Visiteur v = AccesData.getVisiteur("e52");
+        System.out.println(v.getRegion().getListeDepartement().get(0).getListeVille());
 		
 		
     }

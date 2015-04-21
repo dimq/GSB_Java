@@ -22,6 +22,7 @@ import com.metier.Departement;
 import com.metier.Region;
 import com.metier.Ville;
 import com.metier.Visiteur;
+import com.persistance.AccesData;
 
 import layout.SpringUtilities;
 
@@ -54,7 +55,7 @@ public class ConsultModifVisiteur extends JPanel {
 	List<Departement> listeDepartement = new ArrayList();
 	private List<Ville> listeVille = new ArrayList();
 	private List<Ville> listeCp;
-	
+
 	private JLabel idVisiteur;
 	private JTextField textFieldId;
 	private JLabel label;
@@ -95,13 +96,16 @@ public class ConsultModifVisiteur extends JPanel {
 	private JComboBox comboFieldVille;
 	private JLabel label12;
 	private JLabel label13;
-	
+	private List<Region> regions;
+	private List<Departement> departements;
+
 	/**
 	 * Create the panel.
 	 * @return 
 	 */
-	public ConsultModifVisiteur(Visiteur util,boolean edit,final List<Region> regions) {
-
+	public ConsultModifVisiteur(Visiteur util,boolean edit) {
+		regions = AccesData.getListRegion();
+		/*departements = AccesData.getListDepartement();*/
 
 		this.setLayout(new SpringLayout());
 
@@ -246,7 +250,7 @@ public class ConsultModifVisiteur extends JPanel {
 			}
 		});
 
-		
+
 
 		dateVisiteur = new JLabel();
 		dateVisiteur.setText("Date d'embauche ");
@@ -275,7 +279,7 @@ public class ConsultModifVisiteur extends JPanel {
 		calendar.setEnabled(edit);
 		this.add(calendar);
 
-		
+
 
 
 		regionVisiteur = new JLabel();
@@ -286,7 +290,7 @@ public class ConsultModifVisiteur extends JPanel {
 		{
 			comboFieldRegion.addItem(r.getLibelleRegion());
 		}
-		comboFieldRegion.setSelectedIndex(regions.get(util.getRegion().getIdRegion()).getIdRegion()-2);
+		comboFieldRegion.setSelectedIndex(regions.indexOf(util.getRegion()));
 		comboFieldRegion.setEnabled(edit);
 		AutoCompleteDecorator.decorate(comboFieldRegion);
 		regionVisiteur.setLabelFor(comboFieldRegion);
@@ -294,55 +298,27 @@ public class ConsultModifVisiteur extends JPanel {
 		label10 = new JLabel();
 		this.add(label10);
 		region = regions.get(comboFieldRegion.getSelectedIndex());
-		comboFieldRegion.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				
-				region = regions.get(comboFieldRegion.getSelectedIndex());
-				listeDepartement= region.getListeDepartement();
-				comboFieldDepartement.removeAllItems();
-				for (Departement d:listeDepartement)
-				{
-					comboFieldDepartement.addItem(d.getLibelleDepartement());
-				}
-				departement = listeDepartement.get(comboFieldDepartement.getSelectedIndex());
-				ville = listeVille.get(comboFieldVille.getSelectedIndex());
-				
-			}
-		});
-		
-		
+
+
+		departements = region.getListeDepartement();
 		departementVisiteur = new JLabel();
 		departementVisiteur.setText("Departement ");
 		this.add(departementVisiteur);
 		comboFieldDepartement = new JComboBox();
-		listeDepartement= region.getListeDepartement();
 		comboFieldDepartement.removeAllItems();
-		for (Departement d:listeDepartement)
+		for (Departement d:departements)
 		{
 			comboFieldDepartement.addItem(d.getLibelleDepartement());
 		}
-		comboFieldDepartement.setSelectedIndex(listeDepartement.indexOf(util.getDepartement()));
+		comboFieldDepartement.setSelectedIndex(departements.indexOf(util.getDepartement()));
 		comboFieldDepartement.setEnabled(edit);
 		AutoCompleteDecorator.decorate(comboFieldDepartement);
 		departementVisiteur.setLabelFor(comboFieldDepartement);
 		this.add(comboFieldDepartement);
 		label11 = new JLabel();
 		this.add(label11);
-		departement = listeDepartement.get(comboFieldDepartement.getSelectedIndex());
-		comboFieldDepartement.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				System.out.println("Modif departement");
-				listeVille= departement.getListeVille();
-				comboFieldVille.removeAllItems();
-				for (Ville v:listeVille)
-				{
-					comboFieldVille.addItem(v.getNomVille());
-				}
-				
-			}
-		});
-		
-		
+		departement = departements.get(comboFieldDepartement.getSelectedIndex());
+
 		villeVisiteur = new JLabel();
 		villeVisiteur.setText("Ville ");
 		this.add(villeVisiteur);
@@ -354,23 +330,17 @@ public class ConsultModifVisiteur extends JPanel {
 			comboFieldVille.addItem(v.getNomVille());
 		}
 		comboFieldVille.setSelectedIndex(listeVille.indexOf(util.getVille()));
+		ville = listeVille.get(listeVille.indexOf(util.getVille()));
 		comboFieldVille.setEnabled(edit);
 		AutoCompleteDecorator.decorate(comboFieldVille);
 		villeVisiteur.setLabelFor(comboFieldVille);
 		this.add(comboFieldVille);
 		label12 = new JLabel();
 		this.add(label12);
-		ville = listeVille.get(comboFieldVille.getSelectedIndex());
-		comboFieldVille.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				
-				
-				textFieldCp.setText(ville.getCp());
-			}
-		});
-		
-		
-		
+
+
+
+
 		cpVisiteur = new JLabel();
 		cpVisiteur.setText("Code postal ");
 		this.add(cpVisiteur);
@@ -381,6 +351,59 @@ public class ConsultModifVisiteur extends JPanel {
 		label13 = new JLabel();
 		this.add(label13);
 		textFieldCp.setEditable(false);
+
+		comboFieldRegion.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+
+				region = regions.get(comboFieldRegion.getSelectedIndex());
+				listeDepartement= region.getListeDepartement();
+				comboFieldDepartement.removeAllItems();
+				for (Departement d:listeDepartement)
+				{
+					comboFieldDepartement.addItem(d.getLibelleDepartement());
+				}
+				departement = listeDepartement.get(comboFieldDepartement.getSelectedIndex());
+
+
+			}
+		});
+
+		comboFieldDepartement.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				System.out.println(arg0.getID());
+				listeDepartement= region.getListeDepartement();
+				try
+				{
+					departement = listeDepartement.get(comboFieldDepartement.getSelectedIndex());
+				}
+				catch (Exception e)
+				{
+					System.out.println("erreur");
+				}
+				listeVille= departement.getListeVille();
+				comboFieldVille.removeAllItems();
+				for (Ville v:listeVille)
+				{
+					comboFieldVille.addItem(v.getNomVille());
+				}
+				ville = listeVille.get(comboFieldVille.getSelectedIndex());
+			}
+		});
+
+		comboFieldVille.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				listeVille= departement.getListeVille();
+				try
+				{
+					ville = listeVille.get(comboFieldVille.getSelectedIndex());
+				}
+				catch (Exception e)
+				{
+
+				}
+				textFieldCp.setText(ville.getCp());
+			}
+		});
 
 
 		//Lay out the panel.

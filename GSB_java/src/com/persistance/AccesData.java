@@ -8,6 +8,7 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.metier.Departement;
 import com.metier.FicheFrais;
 import com.metier.FraisForfait;
 import com.metier.LigneFraisForfait;
@@ -77,6 +78,17 @@ public class AccesData {
     public static List<Region> getListRegion() {
         List<Region> listRegion = session.createQuery("from Region").list();
         return listRegion;
+    }
+    
+    /**
+     * Accesseur getListDepartement qui renvoie tout les Departements en utilisant la methode
+     * retrieve
+     * 
+     * @return listeDepartement de type collections de Departement
+     */
+    public static List<Departement> getListDepartement() {
+        List<Departement> listDepartement = session.createQuery("from Departement").list();
+        return listDepartement;
     }
 
     /**
