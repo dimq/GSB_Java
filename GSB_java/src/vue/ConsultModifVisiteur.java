@@ -319,24 +319,24 @@ public class ConsultModifVisiteur extends JPanel {
 		this.add(label11);
 		departement = departements.get(comboFieldDepartement.getSelectedIndex());
 
+		listeVille= departement.getListeVille();
 		villeVisiteur = new JLabel();
 		villeVisiteur.setText("Ville ");
 		this.add(villeVisiteur);
 		comboFieldVille = new JComboBox();
-		listeVille= departement.getListeVille();
 		comboFieldVille.removeAllItems();
 		for (Ville v:listeVille)
 		{
 			comboFieldVille.addItem(v.getNomVille());
 		}
 		comboFieldVille.setSelectedIndex(listeVille.indexOf(util.getVille()));
-		ville = listeVille.get(listeVille.indexOf(util.getVille()));
 		comboFieldVille.setEnabled(edit);
 		AutoCompleteDecorator.decorate(comboFieldVille);
 		villeVisiteur.setLabelFor(comboFieldVille);
 		this.add(comboFieldVille);
 		label12 = new JLabel();
 		this.add(label12);
+		ville = listeVille.get(comboFieldVille.getSelectedIndex());
 
 
 
