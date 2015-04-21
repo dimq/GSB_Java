@@ -41,6 +41,7 @@ import java.awt.event.ItemEvent;
 public class ConsultModifVisiteur extends JPanel {
 	private DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
 	private boolean testPortable;
+	private boolean testFixe;
 	private String id;
 	private String nom;
 	private String prenom;
@@ -178,6 +179,16 @@ public class ConsultModifVisiteur extends JPanel {
 				testPortable = false;
 			}
 			textFieldPortable.addKeyListener(new KeyAdapter() {
+				public void keyTyped(KeyEvent e) {
+					if(textFieldPortable.getText().length() >= 10)
+					{
+						e.consume();
+					}
+					char c = e.getKeyChar();
+					if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+						e.consume();  // ignore event
+					}
+				}
 				@Override
 				public void keyReleased(KeyEvent arg0) {
 					if (textFieldPortable.getText().length() == 10)
@@ -207,10 +218,46 @@ public class ConsultModifVisiteur extends JPanel {
 		telephoneVisiteur.setText("Telephone ");
 		this.add(telephoneVisiteur);
 		textFieldFixe = new JTextField(10);
+		label4 = new JLabel();
 		textFieldFixe.setText(util.getNumFixe());
+		if (edit == true)
+		{
+			if (textFieldFixe.getText().length() == 10)
+			{
+				label4.setText("Bon numero");
+				testFixe= true;
+			}
+			else
+			{
+				label4.setText("Mauvais numero");
+				testFixe = false;
+			}
+			textFieldFixe.addKeyListener(new KeyAdapter() {
+				public void keyTyped(KeyEvent e) {
+					if(textFieldFixe.getText().length() >= 10)
+					{
+						e.consume();
+					}
+					char c = e.getKeyChar();
+					if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+						e.consume();  // ignore event
+					}
+				}
+				@Override
+				public void keyReleased(KeyEvent arg0) {
+					if (textFieldFixe.getText().length() == 10)
+					{
+						label4.setText("Bon numero");
+						testFixe = true;
+					}
+					else
+						label4.setText("Mauvais numero");
+					testFixe = false;
+				}
+			});
+		}
 		telephoneVisiteur.setLabelFor(textFieldFixe);
 		this.add(textFieldFixe);
-		label4 = new JLabel();
 		this.add(label4);
 		textFieldFixe.setEditable(edit);
 		fixe = textFieldFixe.getText();

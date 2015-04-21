@@ -181,23 +181,31 @@ public class ConsulterFiche extends JPanel
 									Object value = optionPane.getValue();
 									if (value.toString().equals("0") && edit == true)
 									{
-										visiteur.setNomVisiteur(p1.getNom());
-										visiteur.setPrenomVisiteur(p1.getPrenom());
-										visiteur.setNumPort(p1.getPortable());
-										visiteur.setNumFixe(p1.getFixe());
-										visiteur.setAdressseRue(p1.getAdresse());
-										visiteur.setVille(p1.getVille());
-										visiteur.setDateEmbauche(p1.getDateEmbauche());
-										visiteur.setRegion(p1.getRegion());
-										visiteur.setDepartement(p1.getDepartement());
-										AccesData.updateVisiteur(visiteur);
-										VisiteurByRegion = AccesData.getVisiteurByRegion(regions.get(comboBoxRegion.getSelectedIndex()).getIdRegion());
-										modeleUtil = new ModeleVisiteur(VisiteurByRegion);
-										table.setModel(modeleUtil);
-										table.revalidate();
-										remplirJCombo();
-										JOptionPane.showMessageDialog(frame, "Les mises a jour ont bien ete effectues.");
-										dialog.setVisible(false);	
+										if(p1.getNom().equals("") || p1.getPrenom().equals("") || p1.getAdresse().equals("") || p1.getVille()==null || p1.getDateEmbauche() == null || p1.getRegion()== null || p1.getRegion() == null || p1.getDepartement() == null)
+										{
+											JOptionPane.showMessageDialog(frame, "Probleme lors de la saisie veuillez reverifie les information saisies.");
+											
+										}
+										else
+										{
+											visiteur.setNomVisiteur(p1.getNom());
+											visiteur.setPrenomVisiteur(p1.getPrenom());
+											visiteur.setNumPort(p1.getPortable());
+											visiteur.setNumFixe(p1.getFixe());
+											visiteur.setAdressseRue(p1.getAdresse());
+											visiteur.setVille(p1.getVille());
+											visiteur.setDateEmbauche(p1.getDateEmbauche());
+											visiteur.setRegion(p1.getRegion());
+											visiteur.setDepartement(p1.getDepartement());
+											AccesData.updateVisiteur(visiteur);
+											VisiteurByRegion = AccesData.getVisiteurByRegion(regions.get(comboBoxRegion.getSelectedIndex()).getIdRegion());
+											modeleUtil = new ModeleVisiteur(VisiteurByRegion);
+											table.setModel(modeleUtil);
+											table.revalidate();
+											remplirJCombo();
+											JOptionPane.showMessageDialog(frame, "La mise a jour a bien ete effectues.");
+											dialog.setVisible(false);
+										}	
 									}
 									else
 									{
@@ -255,26 +263,30 @@ public class ConsulterFiche extends JPanel
 								Object value = optionPane.getValue();
 								if (value.toString().equals("0") && edit == true)
 								{
-									visiteur.setNomVisiteur(p1.getNom());
-									visiteur.setPrenomVisiteur(p1.getPrenom());
-									visiteur.setNumPort(p1.getPortable());
-									visiteur.setNumFixe(p1.getFixe());
-									visiteur.setAdressseRue(p1.getAdresse());
-									visiteur.setVille(p1.getVille());
-									visiteur.setDateEmbauche(p1.getDateEmbauche());
-									visiteur.setRegion(p1.getRegion());
-									visiteur.setDepartement(p1.getDepartement());
-									AccesData.updateVisiteur(visiteur);
-									VisiteurByRegion = AccesData.getVisiteurByRegion(regions.get(comboBoxRegion.getSelectedIndex()).getIdRegion());
-									modeleUtil = new ModeleVisiteur(VisiteurByRegion);
-									table.setModel(modeleUtil);
-									table.revalidate();
-									remplirJCombo();
-									comboBoxRegion.revalidate();
-									comboBoxNomPrenom.revalidate();
-									comboBoxIdentifiant.revalidate();
-									JOptionPane.showMessageDialog(frame, "Les mises a jour ont bien ete effectues.");
-									dialog.setVisible(false);	
+									if(p1.getNom().equals("") || p1.getPrenom().equals("") || p1.getAdresse().equals("") || p1.getVille()==null || p1.getDateEmbauche() == null || p1.getRegion()== null || p1.getRegion() == null || p1.getDepartement() == null)
+									{
+										JOptionPane.showMessageDialog(frame, "Probleme lors de la saisie veuillez reverifie les information saisies.");
+									}
+									else
+									{
+										visiteur.setNomVisiteur(p1.getNom());
+										visiteur.setPrenomVisiteur(p1.getPrenom());
+										visiteur.setNumPort(p1.getPortable());
+										visiteur.setNumFixe(p1.getFixe());
+										visiteur.setAdressseRue(p1.getAdresse());
+										visiteur.setVille(p1.getVille());
+										visiteur.setDateEmbauche(p1.getDateEmbauche());
+										visiteur.setRegion(p1.getRegion());
+										visiteur.setDepartement(p1.getDepartement());
+										AccesData.updateVisiteur(visiteur);
+										VisiteurByRegion = AccesData.getVisiteurByRegion(regions.get(comboBoxRegion.getSelectedIndex()).getIdRegion());
+										modeleUtil = new ModeleVisiteur(VisiteurByRegion);
+										table.setModel(modeleUtil);
+										table.revalidate();
+										remplirJCombo();
+										JOptionPane.showMessageDialog(frame, "La mise a jour a bien ete effectues.");
+										dialog.setVisible(false);
+									}
 								}
 								else
 								{
@@ -331,26 +343,30 @@ public class ConsulterFiche extends JPanel
 								Object value = optionPane.getValue();
 								if (value.toString().equals("0") && edit == true)
 								{
-									visiteur.setNomVisiteur(p1.getNom());
-									visiteur.setPrenomVisiteur(p1.getPrenom());
-									visiteur.setNumPort(p1.getPortable());
-									visiteur.setNumFixe(p1.getFixe());
-									visiteur.setAdressseRue(p1.getAdresse());
-									visiteur.setVille(p1.getVille());
-									visiteur.setDateEmbauche(p1.getDateEmbauche());
-									visiteur.setRegion(p1.getRegion());
-									visiteur.setDepartement(p1.getDepartement());
-									AccesData.updateVisiteur(visiteur);
-									VisiteurByRegion = AccesData.getVisiteurByRegion(regions.get(comboBoxRegion.getSelectedIndex()).getIdRegion());
-									modeleUtil = new ModeleVisiteur(VisiteurByRegion);
-									table.setModel(modeleUtil);
-									table.revalidate();
-									remplirJCombo();
-									comboBoxRegion.revalidate();
-									comboBoxNomPrenom.revalidate();
-									comboBoxIdentifiant.revalidate();
-									JOptionPane.showMessageDialog(frame, "Les mises a jour ont bien ete effectues.");
-									dialog.setVisible(false);	
+									if(p1.getNom().equals("") || p1.getPrenom().equals("") || p1.getAdresse().equals("") || p1.getVille()==null || p1.getDateEmbauche() == null || p1.getRegion()== null || p1.getRegion() == null || p1.getDepartement() == null)
+									{
+										JOptionPane.showMessageDialog(frame, "Probleme lors de la saisie veuillez reverifie les information saisies.");
+									}
+									else
+									{
+										visiteur.setNomVisiteur(p1.getNom());
+										visiteur.setPrenomVisiteur(p1.getPrenom());
+										visiteur.setNumPort(p1.getPortable());
+										visiteur.setNumFixe(p1.getFixe());
+										visiteur.setAdressseRue(p1.getAdresse());
+										visiteur.setVille(p1.getVille());
+										visiteur.setDateEmbauche(p1.getDateEmbauche());
+										visiteur.setRegion(p1.getRegion());
+										visiteur.setDepartement(p1.getDepartement());
+										AccesData.updateVisiteur(visiteur);
+										VisiteurByRegion = AccesData.getVisiteurByRegion(regions.get(comboBoxRegion.getSelectedIndex()).getIdRegion());
+										modeleUtil = new ModeleVisiteur(VisiteurByRegion);
+										table.setModel(modeleUtil);
+										table.revalidate();
+										remplirJCombo();
+										JOptionPane.showMessageDialog(frame, "La mise a jour a bien ete effectues.");
+										dialog.setVisible(false);
+									}	
 								}
 								else
 								{
