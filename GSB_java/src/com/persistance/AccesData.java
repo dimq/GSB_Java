@@ -52,7 +52,7 @@ public class AccesData {
      * @return listeStation de type collections de stations
      */
     public static List<Visiteur> getListVisiteur() {
-        List<Visiteur> listVisiteurs = session.createQuery("from Visiteur").list();
+        List<Visiteur> listVisiteurs = session.createQuery("from Visiteur order by nom").list();
         return listVisiteurs;
     }
 
@@ -76,7 +76,7 @@ public class AccesData {
      * @return listeRegion de type collections de Region
      */
     public static List<Region> getListRegion() {
-        List<Region> listRegion = session.createQuery("from Region").list();
+        List<Region> listRegion = session.createQuery("from Region order by libelleRegion").list();
         return listRegion;
     }
     
@@ -87,7 +87,7 @@ public class AccesData {
      * @return listeDepartement de type collections de Departement
      */
     public static List<Departement> getListDepartement() {
-        List<Departement> listDepartement = session.createQuery("from Departement").list();
+        List<Departement> listDepartement = session.createQuery("from Departement order by nom_departement").list();
         return listDepartement;
     }
 
@@ -99,19 +99,39 @@ public class AccesData {
      * @return listeVisiteurs de type collections d'Visiteurs
      */
     public static List<Visiteur> getVisiteurByRegion(int id) {
-        List<Visiteur> listVisiteur = session.createQuery("from Visiteur where idRegion="+id).list();
+        List<Visiteur> listVisiteur = session.createQuery("from Visiteur where idRegion="+id+" order by nom").list();
         return listVisiteur;
     }
 
     /**
      * Accesseur getFicheFrais qui renvoie la fiche de frais correspondante a l'id
-     * passe en parrametre grace a la methode find
+     * passe en parrametre
      * 
-     * @return FicheFrais de type FicheFrais
+     * @return listFicheFrais de type collection de fiche frais
      */
-    public static FicheFrais getFicheFrais(int id) {
-        FicheFrais ficheFrais = (FicheFrais) session.get(FicheFrais.class, id);
-        return ficheFrais;
+    public static List<FicheFrais> getFichesFrais(String idVisiteur) {
+        List<FicheFrais> listFicheFrais = session.createQuery("from FicheFrais where idVisiteur = '"+idVisiteur+"'").list();
+        return listFicheFrais;
+    }
+    /**
+     * Accesseur getFicheFraisRembourse qui renvoie un booleen specifiant si toutes les
+     * fiches frais ont ete rembourse true si toutes rembourse sinon false
+     * 
+     * @return boolean
+     */
+    public static boolean getFicheFraisRembourse(String idVisiteur) {
+        List<FicheFrais> listFicheFrais = getFichesFrais(idVisiteur);
+        boolean test =true;
+        int i =0;
+        while (test == true && i < listFicheFrais.size())
+        {
+        	if (!listFicheFrais.get(i).getEtat().equals("RB"))
+        	{
+        		test=false;
+        	}
+        	i++;
+        }
+        return test;
     }
 
     /**

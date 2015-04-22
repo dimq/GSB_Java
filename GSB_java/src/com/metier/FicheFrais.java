@@ -56,6 +56,8 @@ public class FicheFrais implements Serializable
     @JoinColumn(name="idVisiteur", insertable=false, updatable=false),
     @JoinColumn(name="mois", insertable=false, updatable=false)})
     private List<LigneFraisHorsForfait> listeLigneFraisHorsForfait;
+    @Column(name="idEtat")
+    private String etat;
     
     public FicheFrais()
     {
@@ -189,8 +191,19 @@ public class FicheFrais implements Serializable
         this.listeLigneFraisHorsForfait = listeLigneFraisHorsForfait;
     }
     
-    
     /**
+	 * @return the etat
+	 */
+	public String getEtat() {
+		return etat;
+	}
+	/**
+	 * @param etat the etat to set
+	 */
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+	/**
      * Retourne pour une fiche frais et un mois donner le nombre de lignes frais hors forfait 
      * 
      * @param mois

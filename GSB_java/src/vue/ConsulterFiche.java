@@ -384,16 +384,22 @@ public class ConsulterFiche extends JPanel
 	}
 	private void remplirJCombo()
 	{
+		comboBoxRegion.removeAllItems();
+		comboBoxNomPrenom.removeAllItems();
+		comboBoxIdentifiant.removeAllItems();
 		regions = AccesData.getListRegion();
 		for (Region r:regions)
 		{
 			comboBoxRegion.addItem(r.getLibelleRegion());
 		}
+		comboBoxRegion.setSelectedIndex(0);
 		utils = AccesData.getListVisiteur();
 		for (Visiteur u:utils)
 		{
 			comboBoxNomPrenom.addItem(u.getNomVisiteur()+" "+u.getPrenomVisiteur());
 			comboBoxIdentifiant.addItem(u.getIdVisiteur());
 		}
+		comboBoxNomPrenom.setSelectedIndex(0);
+		comboBoxIdentifiant.setSelectedIndex(0);
 	}
 }

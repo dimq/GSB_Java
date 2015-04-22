@@ -223,6 +223,8 @@ public class Secretaire extends JFrame
 			mntmSupprimerUnVisiteur = new JMenuItem("Supprimer un Visiteur");
 			mntmSupprimerUnVisiteur.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					frame.setContentPane(new Suppression(frame));
+					frame.revalidate();
 				}
 			});
 		}
