@@ -145,9 +145,9 @@ public class ConsulterFiche extends JPanel
 				int row = table.rowAtPoint(p);
 				if (me.getClickCount() == 2) 
 				{
-					Visiteur visiteur = VisiteurByRegion.get(row);
+					final Visiteur visiteur = VisiteurByRegion.get(row);
 					//Create and populate the panel.
-					ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit);
+					final ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit);
 
 
 					if (edit == true)
@@ -227,10 +227,10 @@ public class ConsulterFiche extends JPanel
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Visiteur visiteur = utils.get(comboBoxNomPrenom.getSelectedIndex());
+				final Visiteur visiteur = utils.get(comboBoxNomPrenom.getSelectedIndex());
 				System.out.println(visiteur);
 				//Create and populate the panel.
-				ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit);
+				final ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit);
 
 				if (edit == true)
 				{
@@ -306,10 +306,10 @@ public class ConsulterFiche extends JPanel
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Visiteur visiteur = utils.get(comboBoxIdentifiant.getSelectedIndex());
+				final Visiteur visiteur = utils.get(comboBoxIdentifiant.getSelectedIndex());
 				System.out.println(visiteur);
 				//Create and populate the panel.
-				ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit);
+				final ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit);
 
 				if (edit == true)
 				{

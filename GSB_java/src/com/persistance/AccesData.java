@@ -338,7 +338,7 @@ public class AccesData {
          lr=AccesData.getListRegion();
          boolean trouver = false ;
          int i=0;
-         while(trouver = false){
+         while(trouver == false){
          	if(lr.get(i).getLibelleRegion().equals(libelleRegion)){
          		
          		trouver = true;
@@ -378,6 +378,21 @@ public class AccesData {
         }
         
         return util;
+    }
+    
+    public static List<Visiteur> getUtilistaeyrRegion(Region r){
+    	ArrayList<Visiteur> lesutilRegion = new ArrayList<Visiteur>();
+    	for(Visiteur u : AccesData.getListVisiteur()){
+    		
+    		if(u.getRegion()==r){
+    			lesutilRegion.add(u);
+    		}
+    		
+    	}
+    	
+    	
+    	return lesutilRegion;
+    	
     }
 }
 

@@ -425,5 +425,28 @@ public class Visiteur
 	public void setDepartement(Departement departement) {
 		this.departement = departement;
 	}
+	
+public double getMontantFraisHorsForfait(String mois) {
+        
+        List<FicheFrais> listeFiches = this.getListeFicheFrais();
+        List<LigneFraisHorsForfait> listeLignes = new ArrayList<LigneFraisHorsForfait>();
+        double montant = 0.00;
+        
+        for(FicheFrais f : listeFiches) {
+            
+            listeLignes = f.getListeLigneFraisHorsForfait();
+            
+            for(LigneFraisHorsForfait l : listeLignes) {
+                
+                if(l.getMois().equals(mois)) {
+                    montant = montant + l.getMontant().doubleValue();                        
+                }                    
+            }
+        }
+        
+        return montant;
+    }
+	
+	
     
 }

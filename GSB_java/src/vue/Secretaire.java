@@ -161,7 +161,7 @@ public class Secretaire extends JFrame
 
 				public void actionPerformed(ActionEvent e) {
 					//Create and populate the panel.
-					CreationVisiteur p1 = new CreationVisiteur();
+					final CreationVisiteur p1 = new CreationVisiteur();
 
 
 					optionPane = new JOptionPane(
