@@ -21,6 +21,11 @@ public class Responsable extends JFrame {
 	private JMenu mnStatMoisRegion;
 	private JMenuItem mntmStat;
 	protected JFrame frame;
+	private JMenuItem mntmStat_1;
+	private JMenuItem mntmStat_2;
+	private JMenu mnStatRegion;
+	private JMenuItem mntmMoyenneFraisForfait;
+	private JMenuItem mntmMoyenneFraisHors;
 
 	/**
 	 * Launch the application.
@@ -49,6 +54,7 @@ public class Responsable extends JFrame {
 		setJMenuBar(menuBar);
 		menuBar.add(getMnFichier());
 		menuBar.add(getMnStatMoisRegion());
+		menuBar.add(getMnStatRegion());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -86,6 +92,8 @@ public class Responsable extends JFrame {
 		if (mnStatMoisRegion == null) {
 			mnStatMoisRegion = new JMenu("Stat mois region");
 			mnStatMoisRegion.add(getMntmStat());
+			mnStatMoisRegion.add(getMntmStat_1());
+			mnStatMoisRegion.add(getMntmStat_2());
 		}
 		return mnStatMoisRegion;
 	}
@@ -101,5 +109,66 @@ public class Responsable extends JFrame {
 			});
 		}
 		return mntmStat;
+	}
+	private JMenuItem getMntmStat_1() {
+		if (mntmStat_1 == null) {
+			mntmStat_1 = new JMenuItem("stat2");
+			mntmStat_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				
+					setContentPane(new stat2(frame,false));
+					revalidate();
+				}
+			});
+		}
+		return mntmStat_1;
+	}
+	private JMenuItem getMntmStat_2() {
+		if (mntmStat_2 == null) {
+			mntmStat_2 = new JMenuItem("stat3");
+			mntmStat_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				
+					setContentPane(new stat3(frame,false));
+					revalidate();
+				}
+			});
+		}
+		return mntmStat_2;
+	}
+	private JMenu getMnStatRegion() {
+		if (mnStatRegion == null) {
+			mnStatRegion = new JMenu("Stat Region");
+			mnStatRegion.add(getMntmMoyenneFraisForfait());
+			mnStatRegion.add(getMntmMoyenneFraisHors());
+		}
+		return mnStatRegion;
+	}
+	private JMenuItem getMntmMoyenneFraisForfait() {
+		if (mntmMoyenneFraisForfait == null) {
+			mntmMoyenneFraisForfait = new JMenuItem("Moyenne frais forfait mois");
+			mntmMoyenneFraisForfait.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				
+					setContentPane(new JFrameMoyenneFraisForfaitMois(frame,false));
+					revalidate();
+				}
+			});
+			
+		}
+		return mntmMoyenneFraisForfait;
+	}
+	private JMenuItem getMntmMoyenneFraisHors() {
+		if (mntmMoyenneFraisHors == null) {
+			mntmMoyenneFraisHors = new JMenuItem("Moyenne frais hors forfait mois");
+			mntmMoyenneFraisHors.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				
+					setContentPane(new JFrameMoyenneFraisHorsForfaitMois(frame,false));
+					revalidate();
+				}
+			});
+		}
+		return mntmMoyenneFraisHors;
 	}
 }

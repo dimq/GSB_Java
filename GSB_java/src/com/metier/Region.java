@@ -154,5 +154,45 @@ public class Region
 	public void setListeDepartement(List<Departement> listeDepartement) {
 		this.listeDepartement = listeDepartement;
 	}
+	
+	public Double MoyenneMontantFraisForfait(String mois) {
+	
+	 
+	    Double  montant=00.0;
+	    	List<Visiteur> lv=this.getListeVisiteur();
+	    	
+	    	for(Visiteur v : lv){
+	    		montant = montant + v.getMontantFraisForfait(mois);
+	    	}
+	    	
+	        
+	        montant=montant/lv.size();
+	        
+	    
+	    
+	    return montant;
+	}
+	
+	public Double MoyenneMontantFraisHorsForfait(String mois) {
+		
+		 
+	    Double  montant=00.0;
+	    	List<Visiteur> lv=this.getListeVisiteur();
+	    	
+	    	for(Visiteur v : lv){
+	    		montant=montant+v.getMontantFraisHorsForfait(mois);
+	    	}
+	    	
+	        
+	        montant=montant/lv.size();
+	        
+	    
+	    
+	    return montant;
+	}
+	
+	
+	}
+	
+	
     
-}

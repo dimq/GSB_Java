@@ -446,6 +446,41 @@ public double getMontantFraisHorsForfait(String mois) {
         
         return montant;
     }
+
+public int getNbFraisHorsForfait(String mois) {
+    
+    List<FicheFrais> listeFiches = this.getListeFicheFrais();
+
+    int nombre = 0;
+    
+    for(FicheFrais f : listeFiches) {
+    	if(f.getMois().equals(mois)) {
+        nombre = f.getListeLigneFraisHorsForfait().size();
+    	}
+        
+        
+    }
+    
+    return nombre;
+}
+
+public Double getMontantFraisForfait(String mois) {
+    
+    List<FicheFrais> listeFiches = this.getListeFicheFrais();
+ 
+    Double  montant=00.0;
+    
+    for(FicheFrais f : listeFiches) {
+    	if(f.getMois().equals(mois)) {
+        montant = montant+f.getMontantValide().doubleValue();
+    	}
+        
+        
+        
+    }
+    
+    return montant;
+}
 	
 	
     

@@ -414,5 +414,23 @@ public class AccesData {
     	return lesutilRegion;
     	
     }
+    
+    public static List<Region> getRegionAvecUtil(){
+    	List<Region> lstr= AccesData.getListRegion();
+    	
+    	ArrayList<Region> bonlist= new ArrayList<Region>();
+    	
+    	for(Region r : lstr){
+    		if(r.getListeVisiteur().size()==0){
+    			
+    		}
+    		else{
+    			bonlist.add(r);
+    		}
+    	}
+    	return bonlist;
+    	
+    }
+    
 }
 
