@@ -40,7 +40,9 @@ public class LigneFraisForfait implements Serializable
     @ManyToOne
     @JoinColumn(name="idFraisForfait", insertable=false, updatable=false)
     private String idFraisForfait;
-    
+    @ManyToOne
+    @JoinColumn(name="idFraisForfait", insertable=false, updatable=false)
+    private FraisForfait fraisForfait;
     @Column(name="quantite")
     private int quantite;
     
@@ -137,6 +139,21 @@ public class LigneFraisForfait implements Serializable
     {
         this.quantite = quantite;
     }
+	/**
+	 * Accesseur permettant de recuperer le frais forfait correspondant
+	 * @return the fraisForfait
+	 */
+	public FraisForfait getFraisForfait() {
+		return fraisForfait;
+	}
+	/**
+	 * 
+	 * Modificateur sur le frais forfait correspondant afin de le modifier
+	 * @param fraisForfait the fraisForfait to set
+	 */
+	public void setFraisForfait(FraisForfait fraisForfait) {
+		this.fraisForfait = fraisForfait;
+	}
     
 
 }
