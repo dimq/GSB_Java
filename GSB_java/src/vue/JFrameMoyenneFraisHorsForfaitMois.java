@@ -39,7 +39,7 @@ import layout.SpringUtilities;
 import modele.ModeleMoyenneFraisForfaitMois;
 import modele.ModeleMoyenneFraisHorsForfaitMois;
 import modele.ModeleVisiteur;
-import modele.ModeleVisiteurStat1;
+import modele.ModeleStatMontantFraisHorsForfaitMoisRegions;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;

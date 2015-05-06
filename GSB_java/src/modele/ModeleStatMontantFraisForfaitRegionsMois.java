@@ -7,13 +7,13 @@ import com.metier.*;
 
 import javax.swing.table.AbstractTableModel;
 
-public class ModeleVisiteurStat1 extends AbstractTableModel {
+public class ModeleStatMontantFraisForfaitRegionsMois extends AbstractTableModel {
 
 	private String[] entete = { "Nom", "Prenom", " Nombre fiche hors forfait" };
 	List<Visiteur> uneListeUtilisateur;
 	String moisSelect;
 	
-	public ModeleVisiteurStat1(List<Visiteur>lstv, String moisSelect){
+	public ModeleStatMontantFraisForfaitRegionsMois(List<Visiteur>lstv, String moisSelect){
 		this.uneListeUtilisateur=lstv;
 		this.moisSelect=moisSelect;
 	}
@@ -27,6 +27,10 @@ public class ModeleVisiteurStat1 extends AbstractTableModel {
 	public int getRowCount() {
 		return uneListeUtilisateur.size();
 	}
+	  @Override
+	public String getColumnName(int columnIndex) {
+	return entete[columnIndex];
+	} 
 
 	 public Object getValueAt(int rowIndex, int columnIndex) {
 	        switch (columnIndex) {
@@ -35,7 +39,7 @@ public class ModeleVisiteurStat1 extends AbstractTableModel {
 	        case 1:            
 	            return uneListeUtilisateur.get(rowIndex).getPrenomVisiteur();
 	        case 2:
-	            return uneListeUtilisateur.get(rowIndex).getMontantFraisHorsForfait(moisSelect);
+	            return uneListeUtilisateur.get(rowIndex).getMontantFraisForfait(moisSelect);
 	            
 	        default:
 	            throw new IllegalArgumentException();

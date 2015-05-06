@@ -99,11 +99,11 @@ public class Responsable extends JFrame {
 	}
 	private JMenuItem getMntmStat() {
 		if (mntmStat == null) {
-			mntmStat = new JMenuItem("stat1");
+			mntmStat = new JMenuItem("Montant frais hors forfait mois /region");
 			mntmStat.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				
-					setContentPane(new stat1(frame,false));
+					setContentPane(new MoyenneMontantFraisHorsForfaitMoisRegion(frame,false));
 					revalidate();
 				}
 			});
@@ -112,11 +112,11 @@ public class Responsable extends JFrame {
 	}
 	private JMenuItem getMntmStat_1() {
 		if (mntmStat_1 == null) {
-			mntmStat_1 = new JMenuItem("stat2");
+			mntmStat_1 = new JMenuItem("Nombre frais hors forfait mois/regions");
 			mntmStat_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				
-					setContentPane(new stat2(frame,false));
+					setContentPane(new StatNbFraisHorsForfaitMoisRegion(frame,false));
 					revalidate();
 				}
 			});
@@ -125,11 +125,11 @@ public class Responsable extends JFrame {
 	}
 	private JMenuItem getMntmStat_2() {
 		if (mntmStat_2 == null) {
-			mntmStat_2 = new JMenuItem("stat3");
+			mntmStat_2 = new JMenuItem("Montant frais forfait mois/region");
 			mntmStat_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				
-					setContentPane(new stat3(frame,false));
+					setContentPane(new StatMontantFraisForfaitMoisRegions(frame,false));
 					revalidate();
 				}
 			});

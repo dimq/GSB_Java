@@ -19,7 +19,7 @@ public class Princ
     public static void main(String[] args)
     {
     	System.out.println(AccesData.getListVisiteur().get(0).getNomVisiteur());
-		
+		System.out.println(AccesData.getVisiteur("a131").getPrenomVisiteur());
     }
 
 }

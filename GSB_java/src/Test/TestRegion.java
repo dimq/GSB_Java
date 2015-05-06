@@ -33,7 +33,7 @@ public class TestRegion
     	
     	
     	
-    	u1= new Visiteur("num", "nom","prenom","num", null, null, null, r);
+    	u1= new Visiteur();
     	listUtil2.add(u1);
     	r= new Region("region1");
     	

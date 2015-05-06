@@ -37,8 +37,7 @@ import javax.swing.JButton;
 
 import layout.SpringUtilities;
 import modele.ModeleVisiteur;
-import modele.ModeleVisiteurStat1;
-import modele.ModeleVisiteurStat2;
+import modele.ModeleStatMontantFraisHorsForfaitMoisRegions;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -46,7 +45,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
-public class stat2 extends JPanel
+public class MoyenneMontantFraisHorsForfaitMoisRegion extends JPanel
 {
 	private JComboBox comboBoxRegion;
 	private JLabel lblRegion;
@@ -56,7 +55,7 @@ public class stat2 extends JPanel
 	private List<Region> regions;
 	private JButton buttonOkRegion;
 	private JFrame frame;
-	private ModeleVisiteurStat2 modeleUtil;
+	private ModeleStatMontantFraisHorsForfaitMoisRegions modeleUtil;
 	private List<Visiteur> VisiteurByRegion;
 	private JTable table;
 	private JOptionPane optionPane;
@@ -65,7 +64,7 @@ public class stat2 extends JPanel
 	/**
 	 * Create the panel.
 	 */
-	public stat2(JFrame myFrame,final boolean edit)
+	public MoyenneMontantFraisHorsForfaitMoisRegion(JFrame myFrame,final boolean edit)
 	{
 		setLayout(null);
 		Border paneEdge = BorderFactory.createEmptyBorder(0, 10, 10, 10);
@@ -103,7 +102,7 @@ public class stat2 extends JPanel
 				r= AccesData.findRegion(comboBoxRegion.getSelectedItem().toString()); 
 				System.out.println(r.getLibelleRegion()+"ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 				
-				modeleUtil = new ModeleVisiteurStat2(AccesData.getVisiteurByRegion(r.getIdRegion()), moislist.get(comboBoxMois.getSelectedItem().toString()));
+				modeleUtil = new ModeleStatMontantFraisHorsForfaitMoisRegions(AccesData.getVisiteurByRegion(r.getIdRegion()), moislist.get(comboBoxMois.getSelectedItem().toString()));
 				
 				System.out.println(moislist.get(comboBoxMois.getSelectedItem().toString())+"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 				table.setModel(modeleUtil);

@@ -38,7 +38,7 @@ public class VisiteurTest {
 		r=new Region ("region1");
 		r2=new Region ("region2");
 		
-		u=new Visiteur("id","nom","prenom","adresse","cp","ville","idType",r);
+		u=new Visiteur();
 
 		f=new FicheFrais("idVisiteur","mois",0,big,new Date(1999,25,16),listFraisForfait,listFraisHorsForfait);
 
@@ -142,27 +142,13 @@ public class VisiteurTest {
 		assertEquals(u.getAdressseRue(),"adresse2");
 	}
 
-	@Test
-	public void testGetCp() {
-		assertEquals(u.getCp(),"cp");
-	}
-
-	@Test
-	public void testSetCp() {
-		u.setCp("cp2");
-		assertEquals(u.getCp(),"cp2");
-	}
 
 	@Test
 	public void testGetVille() {
 		assertEquals(u.getVille(),"ville");
 	}
 
-	@Test
-	public void testSetVille() {
-		u.setVille("ville2");
-		assertEquals(u.getVille(),"ville2");
-	}
+
 
 	@Test
 	public void testGetDateEmbauche() {

@@ -2,11 +2,16 @@ package Test;
 
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.metier.Departement;
 import com.metier.Region;
+import com.metier.Ville;
 import com.metier.Visiteur;
 import com.persistance.AccesData;
 
@@ -15,13 +20,16 @@ public class AccesDataTest {
 	AccesData d = new AccesData();
 	Visiteur u;
 	Region r;
-	
+	Ville v;
+	Departement dd;
 	@Before
 	public void setUp() throws Exception {
-
-		
+/*		Date date = new Date("yyyy-MM-dd HH:mm:ss.S");
+		v=new Ville("nomVille","Cp");
+		dd = new Departement();
 		r=new Region ("Alsace");
-		u=new Visiteur("id","nom","prenom","adresse","cp","ville","v",r);
+		
+		u=new Visiteur("id","nom","prenom","portable","fixe",null, v,date,"v",r,dd);*/
 	}
 
 	@After
@@ -30,7 +38,7 @@ public class AccesDataTest {
 
 	@Test
 	public void testGetVisiteur() {
-		assertEquals(d.getVisiteur("a131").getIdVisiteur(),"a131");
+		assertEquals(AccesData.getVisiteur("a131").getPrenomVisiteur(),"Louis");
 		
 	}
 
@@ -56,7 +64,7 @@ public class AccesDataTest {
 
 	@Test
 	public void testGetFicheFrais() {
-		assertEquals(d.getFicheFrais(3).getIdVisiteur(),"a131");
+		assertEquals(d.getFichesFrais("a131"),d.getFichesFrais("a131"));
 		
 	}
 
