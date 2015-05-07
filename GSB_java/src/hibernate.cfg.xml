@@ -13,9 +13,9 @@
 		<!--  Paramètres de connexion à la base de données -->
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property> 
-		<property name="hibernate.connection.url">jdbc:mysql://localhost/db_quenault-d</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.url">jdbc:mysql://10.29.133.22/GSB</property>
+		<property name="hibernate.connection.username">AuCalme</property>
+		<property name="hibernate.connection.password">OKLM</property>
 
 		<!-- Comportement pour la conservation des tables -->
 		<property name="hbm2ddl.auto">validate</property>

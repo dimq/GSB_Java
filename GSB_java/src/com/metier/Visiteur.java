@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * @version 1.0
  */
 @Entity
-@Table(name="Visiteur")
+@Table(name="visiteur")
 public class Visiteur 
 {
     @Id

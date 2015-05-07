@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * @version 1.0
  */
 @Entity
-@Table(name="Utilisateur")
+@Table(name="utilisateur")
 public class Utilisateur 
 {
     @Id
