@@ -50,6 +50,8 @@ public class Visiteur
     @ManyToOne
     @JoinColumn(name="id_ville")
     private Ville ville;
+    @Column(name="cp")
+    private String cp;
     @Column(name="dateEmbauche")
     private Date dateEmbauche;
     @Column(name="idType")
@@ -86,7 +88,7 @@ public class Visiteur
         // TODO Auto-generated constructor stub
     }
     
-    public Visiteur(String idVisiteur,String nomVisiteur,String prenomVisiteur,String adresse,Ville ville,String idType,Region region,Departement departement) {
+    public Visiteur(String idVisiteur,String nomVisiteur,String prenomVisiteur,String adresse,Ville ville,String cp,String idType,Region region,Departement departement) {
         
         this.idVisiteur=idVisiteur;
         this.nomVisiteur=nomVisiteur;
@@ -100,11 +102,13 @@ public class Visiteur
         this.mdp = "gsb1234";
         this.region = region;
         this.departement = departement;
+        this.suppr = "O";
+        this.cp = cp;
     }
     /**
      * Constructeur Visiteur surcharge avec les numeros de telephones et la date d'embauche
      */
-    public Visiteur(String idVisiteur,String nomVisiteur,String prenomVisiteur,String portable,String fixe,String adresse,Ville ville,Date dateEmbauche,String idType,Region region,Departement departement) {
+    public Visiteur(String idVisiteur,String nomVisiteur,String prenomVisiteur,String portable,String fixe,String adresse,Ville ville,String cp,Date dateEmbauche,String idType,Region region,Departement departement) {
         
         this.idVisiteur=idVisiteur;
         this.nomVisiteur=nomVisiteur;
@@ -121,6 +125,8 @@ public class Visiteur
         this.dateEmbauche = dateEmbauche;
         this.ville = ville;
         this.departement = departement;
+        this.suppr = "O";
+        this.cp = cp;
     }
     
     /**
@@ -340,6 +346,22 @@ public class Visiteur
         return idVisiteur;
     }
     
+    /**
+     * @return the cp
+     */
+    public String getCp()
+    {
+        return cp;
+    }
+
+    /**
+     * @param cp the cp to set
+     */
+    public void setCp(String cp)
+    {
+        this.cp = cp;
+    }
+
     /**
      * creerLogin fonction de génération automatique du login de l'Visiteur
      */

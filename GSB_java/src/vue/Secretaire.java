@@ -187,7 +187,7 @@ public class Secretaire extends JFrame
 									if (value.toString().equals("0"))
 									{
 										
-										Visiteur util = new Visiteur(creerId(),p1.getNom(),p1.getPrenom(),p1.getPortable(),p1.getFixe(),p1.getAdresse(),p1.getVille(),p1.getDateEmbauche(),"v",p1.getRegion(),p1.getDepartement());
+										Visiteur util = new Visiteur(creerId(),p1.getNom(),p1.getPrenom(),p1.getPortable(),p1.getFixe(),p1.getAdresse(),p1.getVille(),p1.getCp(),p1.getDateEmbauche(),"v",p1.getRegion(),p1.getDepartement());
 				                        AccesData.createVisiteur(util);
 										
 										JOptionPane.showMessageDialog(frame, "L'utilisateur a bien ete cree.");

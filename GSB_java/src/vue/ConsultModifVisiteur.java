@@ -104,7 +104,7 @@ public class ConsultModifVisiteur extends JPanel {
 	 * Create the panel.
 	 * @return 
 	 */
-	public ConsultModifVisiteur(Visiteur util,boolean edit) {
+	public ConsultModifVisiteur(final Visiteur util,final boolean edit) {
 		regions = AccesData.getListRegion();
 		/*departements = AccesData.getListDepartement();*/
 
@@ -383,6 +383,7 @@ public class ConsultModifVisiteur extends JPanel {
 		this.add(comboFieldVille);
 		label12 = new JLabel();
 		this.add(label12);
+		System.out.println(listeVille);
 		ville = listeVille.get(comboFieldVille.getSelectedIndex());
 
 
@@ -391,13 +392,35 @@ public class ConsultModifVisiteur extends JPanel {
 		cpVisiteur = new JLabel();
 		cpVisiteur.setText("Code postal ");
 		this.add(cpVisiteur);
-		textFieldCp = new JTextField(10);
-		textFieldCp.setText(util.getVille().getCp());
-		cpVisiteur.setLabelFor(textFieldCp);
-		this.add(textFieldCp);
+		comboFieldCp= new JComboBox();
+		if (util.getCp().equals(""))
+		{
+		    if (edit == true)
+            {
+                if (ville.getCp().split("-").length == 1)
+                {
+                    comboFieldCp.addItem(ville.getCp());
+                }
+                else
+                {
+                    for (String code : ville.getCp().split("-"))
+                    {
+                        comboFieldCp.addItem(code);
+                    }
+                }
+            }
+		}
+		else
+		{
+		    comboFieldCp.addItem(util.getCp());
+		}
+        comboFieldCp.setSelectedIndex(0);
+		cpVisiteur.setLabelFor(comboFieldCp);
+		this.add(comboFieldCp);
 		label13 = new JLabel();
 		this.add(label13);
-		textFieldCp.setEditable(false);
+		comboFieldCp.setEnabled(edit);
+		cp=comboFieldCp.getSelectedItem().toString();
 
 		comboFieldRegion.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
@@ -417,7 +440,6 @@ public class ConsultModifVisiteur extends JPanel {
 
 		comboFieldDepartement.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				System.out.println(arg0.getID());
 				listeDepartement= region.getListeDepartement();
 				try
 				{
@@ -425,7 +447,7 @@ public class ConsultModifVisiteur extends JPanel {
 				}
 				catch (Exception e)
 				{
-					System.out.println("erreur");
+					
 				}
 				listeVille= departement.getListeVille();
 				comboFieldVille.removeAllItems();
@@ -436,7 +458,7 @@ public class ConsultModifVisiteur extends JPanel {
 				ville = listeVille.get(comboFieldVille.getSelectedIndex());
 			}
 		});
-
+		
 		comboFieldVille.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				listeVille= departement.getListeVille();
@@ -448,8 +470,34 @@ public class ConsultModifVisiteur extends JPanel {
 				{
 
 				}
-				textFieldCp.setText(ville.getCp());
+				if (edit == true)
+				{
+				    if (ville.getCp().split("-").length == 1)
+	                {
+				        comboFieldCp.addItem(ville.getCp());
+	                }
+				    else
+				    {
+				        for (String code : ville.getCp().split("-"))
+				        {
+				            comboFieldCp.addItem(code);
+				        }
+				    }
+				}
+				
+				
+				
 			}
+		});
+		
+		comboFieldCp.addItemListener(new ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e)
+            {
+                cp=comboFieldCp.getSelectedItem().toString();
+                
+            }
+		    
 		});
 
 

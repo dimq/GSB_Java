@@ -100,9 +100,16 @@ public class ConsulterFiche extends JPanel
 		AutoCompleteDecorator.decorate(comboBoxIdentifiant);
 		add(comboBoxIdentifiant);
 
-		lblRecherchePar = new JLabel("Recherche");
+		if (edit != true)
+		{
+		    lblRecherchePar = new JLabel("Recherche pour consultation");
+		}
+		else
+		{
+		    lblRecherchePar = new JLabel("Recherche pour modification");
+		}
 		lblRecherchePar.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblRecherchePar.setBounds(22, 0, 200, 30);
+		lblRecherchePar.setBounds(22, 0, 500, 30);
 		add(lblRecherchePar);
 
 		buttonOkRegion = new JButton("OK");
@@ -194,6 +201,7 @@ public class ConsulterFiche extends JPanel
 											visiteur.setNumFixe(p1.getFixe());
 											visiteur.setAdressseRue(p1.getAdresse());
 											visiteur.setVille(p1.getVille());
+											visiteur.setCp(p1.getCp());
 											visiteur.setDateEmbauche(p1.getDateEmbauche());
 											visiteur.setRegion(p1.getRegion());
 											visiteur.setDepartement(p1.getDepartement());
@@ -275,6 +283,7 @@ public class ConsulterFiche extends JPanel
 										visiteur.setNumFixe(p1.getFixe());
 										visiteur.setAdressseRue(p1.getAdresse());
 										visiteur.setVille(p1.getVille());
+										visiteur.setCp(p1.getCp());
 										visiteur.setDateEmbauche(p1.getDateEmbauche());
 										visiteur.setRegion(p1.getRegion());
 										visiteur.setDepartement(p1.getDepartement());
@@ -355,6 +364,7 @@ public class ConsulterFiche extends JPanel
 										visiteur.setNumFixe(p1.getFixe());
 										visiteur.setAdressseRue(p1.getAdresse());
 										visiteur.setVille(p1.getVille());
+										visiteur.setCp(p1.getCp());
 										visiteur.setDateEmbauche(p1.getDateEmbauche());
 										visiteur.setRegion(p1.getRegion());
 										visiteur.setDepartement(p1.getDepartement());
