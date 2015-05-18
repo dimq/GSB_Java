@@ -266,11 +266,13 @@ public class CreationVisiteur extends JPanel {
 		textFieldDate.setEditable(false);
 		dateVisiteur.setLabelFor(textFieldDate);
 		this.add(textFieldDate);
+		Date dateDepart = new Date();
+		String dateString1 = dateFormat.format(dateDepart);
+		textFieldDate.setText(dateString1);
 		try {
 			dateEmbauche = dateFormat.parse(textFieldDate.getText());
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		    
 		}
 		calendar = new JCalendarButton();
 		calendar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -343,12 +345,22 @@ public class CreationVisiteur extends JPanel {
 		cpVisiteur = new JLabel();
 		cpVisiteur.setText("Code postal ");
 		this.add(cpVisiteur);
-		textFieldCp = new JTextField(10);
-		cpVisiteur.setLabelFor(textFieldCp);
-		this.add(textFieldCp);
+		comboFieldCp= new JComboBox();
+		if (ville.getCp().split("-").length == 1)
+        {
+            comboFieldCp.addItem(ville.getCp());
+        }
+        else
+        {
+            for (String code : ville.getCp().split("-"))
+            {
+                comboFieldCp.addItem(code);
+            }
+        }
+		cpVisiteur.setLabelFor(comboFieldCp);
+		this.add(comboFieldCp);
 		label13 = new JLabel();
 		this.add(label13);
-		textFieldCp.setEditable(false);
 
 		comboFieldRegion.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
@@ -368,7 +380,6 @@ public class CreationVisiteur extends JPanel {
 
 		comboFieldDepartement.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				System.out.println(arg0.getID());
 				listeDepartement= region.getListeDepartement();
 				try
 				{
@@ -376,7 +387,7 @@ public class CreationVisiteur extends JPanel {
 				}
 				catch (Exception e)
 				{
-					System.out.println("erreur");
+					
 				}
 				listeVille= departement.getListeVille();
 				comboFieldVille.removeAllItems();
@@ -399,11 +410,38 @@ public class CreationVisiteur extends JPanel {
 				{
 
 				}
-				textFieldCp.setText(ville.getCp());
+				comboFieldCp.removeAllItems();
+				if (ville.getCp().split("-").length == 1)
+                {
+                    comboFieldCp.addItem(ville.getCp());
+                }
+                else
+                {
+                    for (String code : ville.getCp().split("-"))
+                    {
+                        comboFieldCp.addItem(code);
+                    }
+                }
+				cp=comboFieldCp.getSelectedItem().toString();
 			}
 		});
 
-
+		comboFieldCp.addItemListener(new ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e)
+            {
+                try{
+                    cp=comboFieldCp.getSelectedItem().toString();
+                }
+                catch (Exception e1)
+                {
+                    
+                }
+                
+            }
+            
+        });
+		
 		//Lay out the panel.
 		SpringUtilities.makeCompactGrid(this,
 				10, 3, //rows, cols
