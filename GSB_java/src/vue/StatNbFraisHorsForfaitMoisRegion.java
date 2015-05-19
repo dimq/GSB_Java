@@ -2,6 +2,7 @@ package vue;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -62,6 +63,7 @@ public class StatNbFraisHorsForfaitMoisRegion extends JPanel
 	private JOptionPane optionPane;
 	private JDialog dialog;
 	private HashMap<String,String> moislist = new HashMap<String,String>();
+	private JLabel lblStatNombreLignes;
 	/**
 	 * Create the panel.
 	 */
@@ -85,11 +87,11 @@ public class StatNbFraisHorsForfaitMoisRegion extends JPanel
 
 
 		lblMois = new JLabel("Mois");
-		lblMois.setBounds(163, 41, 92, 14);
+		lblMois.setBounds(20, 41, 92, 14);
 		add(lblMois);
 		
 		lblRegion = new JLabel("Region");
-		lblRegion.setBounds(32, 41, 92, 14);
+		lblRegion.setBounds(163, 41, 92, 14);
 		add(lblRegion);
 
 	
@@ -120,54 +122,14 @@ public class StatNbFraisHorsForfaitMoisRegion extends JPanel
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		add(getLblStatNombreLignes());
 
 		frame  = myFrame;
 		remplirJCombo();
 
 
 
-		table.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent me) {
-				table =(JTable) me.getSource();
-				Point p = me.getPoint();
-				int row = table.rowAtPoint(p);
-				if (me.getClickCount() == 2) 
-				{
-					final Visiteur visiteur = VisiteurByRegion.get(row);
-					//Create and populate the panel.
-					final ConsultModifVisiteur p1 = new ConsultModifVisiteur(visiteur,edit);
 
-
-					if (edit == true)
-					{
-						optionPane = new JOptionPane(
-								p1,
-								JOptionPane.QUESTION_MESSAGE,
-								JOptionPane.OK_CANCEL_OPTION);
-						dialog = new JDialog(frame, 
-								"Modification fiche visiteur",
-								true);
-					}
-					else
-					{
-						optionPane = new JOptionPane(
-								p1,
-								JOptionPane.QUESTION_MESSAGE,
-								JOptionPane.CLOSED_OPTION);
-						dialog = new JDialog(frame, 
-								"Consultation fiche visiteur",
-								true);
-					}
-
-					
-					dialog.setContentPane(optionPane);
-
-					dialog.pack();
-					dialog.setLocationRelativeTo(null);
-					dialog.setVisible(true);
-				}
-			}
-		});
 
 
 
@@ -179,20 +141,27 @@ public class StatNbFraisHorsForfaitMoisRegion extends JPanel
 		{
 			comboBoxRegion.addItem(r.getLibelleRegion());
 		}
-		 String[] mois = new DateFormatSymbols().getMonths();
-		
-		 moislist.put("janvier", "201401");
-		 moislist.put("février", "201402");
-		 moislist.put("mars", "201403");
-		 moislist.put("avril", "201404");
-		 moislist.put("mai", "201405");
-		 moislist.put("juin", "201406");
-		 moislist.put("juillet", "201407");
-		 moislist.put("août", "201408");
-		 moislist.put("septembre", "201409");
-		 moislist.put("octobre", "201410");
-		 moislist.put("novembre", "201411");
-		 moislist.put("décembre", "201412");
+		String[] mois = new DateFormatSymbols().getMonths();
+		 int[] codeMois =  new int[mois.length];
+		 int nummois = 201401;
+		 for (int i=0; i<12;i++){
+			 codeMois[i]=nummois;
+			 nummois=nummois+1;
+		 }
+		 
+		 
+		 Calendar c = Calendar.getInstance();
+   	 int moisasup = c.get(Calendar.MONTH);
+   	 int verif = 0;
+   	 String idmois;
+   	 for (String moisAajouter : mois){
+   		 if (verif != moisasup){
+   			 idmois= Integer.toString(codeMois[verif]);
+   			 moislist.put(mois[verif],idmois ); 
+   		 }
+   		 verif=verif+1;
+   	 }
+   	 
 		 
 		 
 		 
@@ -207,5 +176,12 @@ public class StatNbFraisHorsForfaitMoisRegion extends JPanel
 		 
 	
 		
+	}
+	private JLabel getLblStatNombreLignes() {
+		if (lblStatNombreLignes == null) {
+			lblStatNombreLignes = new JLabel("Stat nombre lignes frais hors forfait Mois/Regions");
+			lblStatNombreLignes.setBounds(10, 11, 292, 14);
+		}
+		return lblStatNombreLignes;
 	}
 }

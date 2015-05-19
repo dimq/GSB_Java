@@ -27,6 +27,10 @@ public class ModeleMoyenneFraisHorsForfaitMois extends AbstractTableModel {
 	public int getRowCount() {
 		return uneListeRegion.size();
 	}
+	  @Override
+	public String getColumnName(int columnIndex) {
+	return entete[columnIndex];
+	} 
 
 	 public Object getValueAt(int rowIndex, int columnIndex) {
 	        switch (columnIndex) {

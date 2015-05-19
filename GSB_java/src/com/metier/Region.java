@@ -114,7 +114,7 @@ public class Region
     
     /**
      * Retourne une hashmap<Visiteur,nombre de ligne frais hors forfait> 
-     * pour le mois donnée
+     * pour le mois donnï¿½e
      * @param le mois en question
      */
     
@@ -167,7 +167,7 @@ public class Region
 	    	
 	        
 	        montant=montant/lv.size();
-	        
+	        montant = (double)Math.round(montant*100)/100;
 	    
 	    
 	    return montant;
@@ -185,7 +185,7 @@ public class Region
 	    	
 	        
 	        montant=montant/lv.size();
-	        
+	        montant = (double)Math.round(montant*100)/100;
 	    
 	    
 	    return montant;

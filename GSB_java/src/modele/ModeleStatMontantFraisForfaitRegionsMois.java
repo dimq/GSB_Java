@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class ModeleStatMontantFraisForfaitRegionsMois extends AbstractTableModel {
 
-	private String[] entete = { "Nom", "Prenom", " Nombre fiche hors forfait" };
+	private String[] entete = { "Nom", "Prenom", " Montant lignes hors forfait" };
 	List<Visiteur> uneListeUtilisateur;
 	String moisSelect;
 	
