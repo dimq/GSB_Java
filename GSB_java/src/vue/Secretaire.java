@@ -164,55 +164,24 @@ public class Secretaire extends JFrame
 					final CreationVisiteur p1 = new CreationVisiteur();
 
 
-					optionPane = new JOptionPane(
-							p1,
-							JOptionPane.QUESTION_MESSAGE,
-							JOptionPane.OK_CANCEL_OPTION);
-					dialog = new JDialog(frame, 
-							"Inscription d'un visiteur",
-							true);
+					Object[] options = { "Créer", "Annuler" };
+	                int create = JOptionPane.showOptionDialog(null, p1, "Créer un visiteur",
+	                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+	                null, options, options[0]);
 
-
-
-
-
-
-					dialog.setContentPane(optionPane);
-
-
-					optionPane.addPropertyChangeListener(
-							new PropertyChangeListener() {
-								public void propertyChange(PropertyChangeEvent e) {
-									Object value = optionPane.getValue();
-									if (value.toString().equals("0"))
-									{
-										
-										Visiteur util = new Visiteur(creerId(),p1.getNom(),p1.getPrenom(),p1.getPortable(),p1.getFixe(),p1.getAdresse(),p1.getVille(),p1.getCp(),p1.getDateEmbauche(),"v",p1.getRegion(),p1.getDepartement());
-				                        AccesData.createVisiteur(util);
-										
-										JOptionPane.showMessageDialog(frame, "L'utilisateur a bien ete cree.");
-										dialog.setVisible(false);	
-									}
-									else
-									{
-										dialog.setVisible(false);
-									}
-
-								}
-							});
-					dialog.pack();
-					dialog.setLocationRelativeTo(null);
-					dialog.setVisible(true);
-
-
-					/*int selectedOption = JOptionPane.showConfirmDialog(null, p1, "Creation visiteur",
-							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-                    if (selectedOption == 0)
-                    {
-                        Visiteur util = new Visiteur(creerId(),p1.getNom(),p1.getPrenom(),p1.getPortable(),p1.getFixe(),p1.getAdresse(),p1.getCp(),p1.getVille(),p1.getDateEmbauche(),"v",p1.getRegion());
-                        AccesData.createVisiteur(util);
-                    }*/
-
+	                if (create == 0)
+	                {
+	                    int confirm = JOptionPane.showConfirmDialog(null,
+	                            "Etes vous sur de vouloir créer ce visiteur", "Créer visiteur", JOptionPane.YES_NO_OPTION);
+	                    if (confirm == 0)
+	                    {
+	                        Visiteur util = new Visiteur(creerId(),p1.getNom(),p1.getPrenom(),p1.getPortable(),p1.getFixe(),p1.getAdresse(),p1.getVille(),p1.getCp(),p1.getDateEmbauche(),"v",p1.getRegion(),p1.getDepartement());
+                            AccesData.createVisiteur(util);
+                            
+                            JOptionPane.showConfirmDialog(null,
+                                    "Le visiteur a bien ete crée", "Créer visiteur", JOptionPane.CLOSED_OPTION);
+	                    }
+	                }
 				}
 			});
 		}
