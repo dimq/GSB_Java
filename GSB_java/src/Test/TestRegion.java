@@ -66,6 +66,7 @@ public class TestRegion
     @Test
     public void testGetIdRegion()
     {
+    	r.setIdRegion(1);
         assertEquals(r.getIdRegion(),1);
     }
 

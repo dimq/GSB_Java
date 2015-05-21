@@ -32,6 +32,7 @@ public class Secretaire extends JFrame
 	private static Secretaire frame;
 	private JMenuItem mntmDeconnection;
 	private JMenu mnGestionVisiteurs;
+	
 	private JMenuItem mntmConsultation;
 	private JMenuItem mntmModification;
 	private JMenu mnCreationSuppression;
@@ -168,19 +169,38 @@ public class Secretaire extends JFrame
 	                int create = JOptionPane.showOptionDialog(null, p1, "Créer un visiteur",
 	                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 	                null, options, options[0]);
+	                boolean effectuer = false;
+	               
+	                while(effectuer == false){
 
-	                if (create == 0)
+	                	
+	                
+	                if ((create == 0)&&(!p1.getNom().equals("")&&(!p1.getPrenom().equals(""))))
 	                {
 	                    int confirm = JOptionPane.showConfirmDialog(null,
 	                            "Etes vous sur de vouloir créer ce visiteur", "Créer visiteur", JOptionPane.YES_NO_OPTION);
-	                    if (confirm == 0)
+	                    if ((confirm == 0))
 	                    {
 	                        Visiteur util = new Visiteur(creerId(),p1.getNom(),p1.getPrenom(),p1.getPortable(),p1.getFixe(),p1.getAdresse(),p1.getVille(),p1.getCp(),p1.getDateEmbauche(),"v",p1.getRegion(),p1.getDepartement());
                             AccesData.createVisiteur(util);
-                            
+                            effectuer = true;
                             JOptionPane.showConfirmDialog(null,
                                     "Le visiteur a bien ete crée", "Créer visiteur", JOptionPane.CLOSED_OPTION);
 	                    }
+	                    
+	                }
+	                else if(create!=0){
+	                	
+	                	 effectuer=true;
+	                }
+	                else{
+	                	JOptionPane.showConfirmDialog(null,
+                                "Champ manquant", "Créer visiteur", JOptionPane.CLOSED_OPTION);
+	                	 create = JOptionPane.showOptionDialog(null, p1, "Créer un visiteur",
+	         	                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+	         	                null, options, options[0]);
+	                }
+	                
 	                }
 				}
 			});

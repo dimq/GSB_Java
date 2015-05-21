@@ -7,6 +7,7 @@ import java.util.List;
 import com.metier.Departement;
 import com.metier.FicheFrais;
 import com.metier.Region;
+import com.metier.Utilisateur;
 import com.metier.Ville;
 import com.metier.Visiteur;
 import com.persistance.AccesData;
@@ -28,15 +29,8 @@ public class Princ
     	 int mois = c.get(Calendar.MONTH);
     	 System.out.println(year);*/
     	
-    	String[] mois = new DateFormatSymbols().getMonths();
-    	
-    	String j ;
-    	int f = 4568;
-    	j= Integer.toString(f);
-    	
-    	for(String s : mois){
-    		System.out.println(s);
-    	}
+
+    	System.out.println(AccesData.getLigneFraisForfait(2).getIdFraisForfait());
     	
     	
     	

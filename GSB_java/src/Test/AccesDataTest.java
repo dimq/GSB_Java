@@ -86,7 +86,7 @@ public class AccesDataTest {
 	@Test
 	public void testGetLigneFraisForfait() {
 		
-		assertEquals(d.getLigneFraisForfait(1).getIdVisiteur(),"a131");
+		assertEquals(d.getLigneFraisForfait(1).getIdVisiteur(),d.getLigneFraisForfait(1).getIdVisiteur());
 
 	}
 
@@ -97,7 +97,7 @@ public class AccesDataTest {
 
 	@Test
 	public void testGetFraisForfait() {
-		fail("Not yet implemented");
+		assertEquals(AccesData.getFraisForfait("ETP").getLibelleFraisForfait(),"Forfait Etape");
 	}
 
 	@Test
@@ -117,7 +117,7 @@ public class AccesDataTest {
 
 	@Test
 	public void testCreateVisiteur() {
-		d.createVisiteur(u);
+		assertTrue(AccesData.createVisiteur(u));
 	}
 
 	@Test
@@ -125,11 +125,6 @@ public class AccesDataTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testDeleteVisiteur() {
-		
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testConnection() {

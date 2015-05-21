@@ -1,7 +1,6 @@
 package Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -15,12 +14,12 @@ import com.metier.FicheFrais;
 import com.metier.LigneFraisForfait;
 import com.metier.LigneFraisHorsForfait;
 import com.metier.Region;
-import com.metier.Ville;
+import com.metier.Utilisateur;
 import com.metier.Visiteur;
 
-public class VisiteurTest {
+public class Testutilisateur {
 	
-	Visiteur u; 
+	Utilisateur u; 
 	FicheFrais f;
 	ArrayList<LigneFraisForfait> listFraisForfait ; 
 	ArrayList<LigneFraisHorsForfait> listFraisHorsForfait ; 
@@ -28,7 +27,6 @@ public class VisiteurTest {
 	ArrayList<FicheFrais> lstfrais2;
 	BigDecimal big;
 	Region r,r2;
-	
 
 	@Before
 	public void setUp() throws Exception {
@@ -39,56 +37,44 @@ public class VisiteurTest {
 		r=new Region ("region1");
 		r2=new Region ("region2");
 		
-		u=new Visiteur();
+		u=new Utilisateur();
 
 		f=new FicheFrais("idVisiteur","mois",0,big,new Date(1999,25,16),listFraisForfait,listFraisHorsForfait);
 
 		u.setDateEmbauche(new Date(1993,10,10));
-
-	
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		u=null;
-		lstfrais=null;
-		lstfrais2=null;
-		f=null;
 	}
 
 	@Test
-	public void testVisiteur() {
-		assertTrue(true);
-	}
-
-	@Test
-	public void testVisiteurStringStringString() {
+	public void testUtilisateur() {
 		assertNotNull(u);
 	}
 
 	@Test
-	public void testGetNomVisiteur() {
-		u.setNomVisiteur("nom");
-		assertEquals(u.getNomVisiteur(),"nom");
+	public void testGetNomUtilisateur() {
+		u.setNomUtilisateur("nom");
+		assertEquals(u.getNomUtilisateur(),"nom");
 	}
 
 	@Test
-	public void testSetNomVisiteur() {
-		u.setNomVisiteur("nomChanger");
-		assertEquals(u.getNomVisiteur(),"nomChanger");
-		
+	public void testSetNomUtilisateur() {
+		u.setNomUtilisateur("nom1");
+		assertEquals(u.getNomUtilisateur(),"nom1");
 	}
 
 	@Test
-	public void testGetPrenomVisiteur() {
-		u.setPrenomVisiteur("prenom");
-		assertEquals(u.getPrenomVisiteur(),"prenom");
+	public void testGetPrenomUtilisateur() {
+		u.setPrenomUtilisateur("prenom");
+		assertEquals(u.getPrenomUtilisateur(),"prenom");
 	}
 
 	@Test
-	public void testSetPrenomVisiteur() {
-		u.setPrenomVisiteur("prenomChanger");
-		assertEquals(u.getPrenomVisiteur(),"prenomChanger");
+	public void testSetPrenomUtilisateur() {
+		u.setPrenomUtilisateur("prenomChanger");
+		assertEquals(u.getPrenomUtilisateur(),"prenomChanger");
 	}
 
 	@Test
@@ -100,7 +86,8 @@ public class VisiteurTest {
 	@Test
 	public void testSetNumPort() {
 		u.setNumPort("00");
-		assertEquals(u.getNumPort(),"00");	}
+		assertEquals(u.getNumPort(),"00");
+	}
 
 	@Test
 	public void testGetNumFixe() {
@@ -150,17 +137,6 @@ public class VisiteurTest {
 		assertEquals(u.getAdressseRue(),"adresse2");
 	}
 
-
-	@Test
-	public void testGetVille() {
-		Ville v= new Ville();
-		v.setIdVille(1);
-		u.setVille(v);
-		assertEquals(u.getVille().getIdVille(),1);
-	}
-
-
-
 	@Test
 	public void testGetDateEmbauche() {
 		assertEquals(u.getDateEmbauche(),new Date(1993,10,10));
@@ -185,36 +161,49 @@ public class VisiteurTest {
 	}
 
 	@Test
-	public void testGetRegion() {
-		Region r = new Region();
-		r.setLibelleRegion("region1");
-		u.setRegion(r);
-		assertEquals(u.getRegion().getLibelleRegion(),"region1");
+	public void testGetIdUtilisateur() {
+		u.setIdUtilisateur("id");
+		assertEquals(u.getIdUtilisateur(),"id");
+	}
+
+	@Test
+	public void testCreerLogin() {
+
 		
 	}
 
 	@Test
-	public void testSetRegion() {
-		u.setRegion(r2);
-		assertEquals(u.getRegion().getLibelleRegion(),"region2");
+	public void testCreerMail() {
+		assertTrue(true);
 	}
 
 	@Test
-	public void testGetListeFicheFrais() {
-		u.setListeFicheFrais(lstfrais2);
-		assertEquals(u.getListeFicheFrais(),lstfrais2);
+	public void testGetMailPro() {
+		u.setMailPro(u.getPrenomUtilisateur()+"@gsb.fr");
+		assertEquals(u.getPrenomUtilisateur()+"@gsb.fr",u.getPrenomUtilisateur()+"@gsb.fr");
 	}
 
 	@Test
-	public void testSetListeFicheFrais() {
-		u.setListeFicheFrais(lstfrais2);
-		assertEquals(u.getListeFicheFrais(),lstfrais2);
+	public void testSetMailPro() {
+	
 	}
 
 	@Test
-	public void testGetIdVisiteur() {
-		u.setIdVisiteur("id");
-		assertEquals(u.getIdVisiteur(),"id");
+	public void testSetIdUtilisateur() {
+		u.setIdUtilisateur("idutil");
+		assertEquals(u.getIdUtilisateur(),"idutil");
+	}
+
+	@Test
+	public void testGetSuppr() {
+		u.setSuppr("sup");
+		assertEquals(u.getSuppr(),"sup");
+	}
+
+	@Test
+	public void testSetSuppr() {
+		u.setSuppr("sup2");
+		assertEquals(u.getSuppr(),"sup2");
 	}
 
 }

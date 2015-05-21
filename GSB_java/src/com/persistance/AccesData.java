@@ -192,7 +192,7 @@ public class AccesData {
      * 
      * @return fraisForfait de type FraisForfait
      */
-    public static FraisForfait getFraisForfait(int id) {
+    public static FraisForfait getFraisForfait(String id) {
         FraisForfait fraisForfait = (FraisForfait) session.get(FraisForfait.class, id);
         return fraisForfait;
     }
@@ -344,12 +344,12 @@ public class AccesData {
     }
     
     /**
-     * Methode permettant de crée un objet région valide pour la 
-     * création d'Visiteur
+     * Methode permettant de crï¿½e un objet rï¿½gion valide pour la 
+     * crï¿½ation d'Visiteur
      * 
      * @param String libelleRegion
      *            
-     * @return L'objet région corespondant
+     * @return L'objet rï¿½gion corespondant
      */
     
     public static Region findRegion(String libelleRegion){
@@ -400,7 +400,7 @@ public class AccesData {
         return util;
     }
     
-    public static List<Visiteur> getUtilistaeyrRegion(Region r){
+ /*   public static List<Visiteur> getUtilistaeyrRegion(Region r){
     	ArrayList<Visiteur> lesutilRegion = new ArrayList<Visiteur>();
     	for(Visiteur u : AccesData.getListVisiteur()){
     		
@@ -413,7 +413,14 @@ public class AccesData {
     	
     	return lesutilRegion;
     	
-    }
+    }*/
+    
+    /**
+     * Retourne une liste de region dont le nombre d'utilisateurs est superieur Ã  zero 
+     * pour Ã©viter la division par 0 dans les stats
+     * 
+     * @return la liste des regions concernÃ©es
+     */
     
     public static List<Region> getRegionAvecUtil(){
     	List<Region> lstr= AccesData.getListRegion();
