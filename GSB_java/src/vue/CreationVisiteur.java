@@ -361,6 +361,7 @@ public class CreationVisiteur extends JPanel {
 		this.add(comboFieldCp);
 		label13 = new JLabel();
 		this.add(label13);
+		cp=comboFieldCp.getSelectedItem().toString();
 
 		comboFieldRegion.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {

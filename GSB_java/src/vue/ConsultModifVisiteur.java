@@ -409,16 +409,12 @@ public class ConsultModifVisiteur extends JPanel {
         }
         if(!util.getCp().equals(""))
         {
-            comboFieldCp.addItem(util.getCp());
             comboFieldCp.setSelectedItem(util.getCp());
         }
         else
         {
             comboFieldCp.setSelectedIndex(0);
         }
-        
-
-        
         cpVisiteur.setLabelFor(comboFieldCp);
         this.add(comboFieldCp);
         label13 = new JLabel();
