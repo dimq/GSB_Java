@@ -175,7 +175,7 @@ public class Secretaire extends JFrame
 
 	                	
 	                
-	                if ((create == 0)&&(!p1.getNom().equals("")&&(!p1.getPrenom().equals(""))))
+	                if ((create == 0)&&(!p1.getNom().equals("")&&(!p1.getPrenom().equals("")&&(!p1.getAdresse().equals("")))))
 	                {
 	                    int confirm = JOptionPane.showConfirmDialog(null,
 	                            "Etes vous sur de vouloir créer ce visiteur", "Créer visiteur", JOptionPane.YES_NO_OPTION);
