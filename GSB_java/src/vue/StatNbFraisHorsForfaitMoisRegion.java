@@ -103,7 +103,7 @@ public class StatNbFraisHorsForfaitMoisRegion extends JPanel
 				Region r = new Region();
 				
 				r= AccesData.findRegion(comboBoxRegion.getSelectedItem().toString()); 
-				System.out.println(r.getLibelleRegion()+"ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+				
 				
 				modeleUtil = new ModeleStatNbFraisHorsForfaitMoisRegion(AccesData.getVisiteurByRegion(r.getIdRegion()), moislist.get(comboBoxMois.getSelectedItem().toString()));
 				
@@ -158,20 +158,14 @@ public class StatNbFraisHorsForfaitMoisRegion extends JPanel
    		 if (verif != moisasup){
    			 idmois= Integer.toString(codeMois[verif]);
    			 moislist.put(mois[verif],idmois ); 
+   			comboBoxMois.addItem(mois[verif]);
    		 }
    		 verif=verif+1;
    	 }
    	 
 		 
 		 
-		 
-		 for(Entry<String,String> entry :  moislist.entrySet()){
-			 
-			 comboBoxMois.addItem(entry.getKey());
-			 
-			 
-			    
-			}
+
 		 
 		 
 	

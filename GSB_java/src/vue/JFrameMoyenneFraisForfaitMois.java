@@ -92,7 +92,7 @@ public class JFrameMoyenneFraisForfaitMois extends JPanel
 				
 				modeleUtil = new ModeleMoyenneFraisForfaitMois(AccesData.getRegionAvecUtil(), moislist.get(comboBoxMois.getSelectedItem().toString()));
 				
-				System.out.println(moislist.get(comboBoxMois.getSelectedItem().toString())+"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+				
 				table.setModel(modeleUtil);
 				table.revalidate();
 
@@ -142,19 +142,14 @@ public class JFrameMoyenneFraisForfaitMois extends JPanel
    		 if (verif != moisasup){
    			 idmois= Integer.toString(codeMois[verif]);
    			 moislist.put(mois[verif],idmois ); 
+   			comboBoxMois.addItem(mois[verif]);
    		 }
    		 verif=verif+1;
    	 }
    	 
 		 
 		 
-		 for(Entry<String,String> entry :  moislist.entrySet()){
-			 
-			 comboBoxMois.addItem(entry.getKey());
-			 
-			 
-			    
-			}
+
 		 
 		 
 	
