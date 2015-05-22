@@ -85,6 +85,12 @@ public class Responsable extends JFrame {
 	private JMenuItem getMntmDeconneexion() {
 		if (mntmDeconneexion == null) {
 			mntmDeconneexion = new JMenuItem("Deconnexion");
+			mntmDeconneexion.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					frame.dispose();
+				}
+			});
+			
 		}
 		return mntmDeconneexion;
 	}
