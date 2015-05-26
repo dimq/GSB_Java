@@ -383,7 +383,6 @@ public class ConsultModifVisiteur extends JPanel {
         this.add(comboFieldVille);
         label12 = new JLabel();
         this.add(label12);
-        System.out.println(listeVille);
         ville = listeVille.get(comboFieldVille.getSelectedIndex());
 
 
@@ -393,18 +392,15 @@ public class ConsultModifVisiteur extends JPanel {
         cpVisiteur.setText("Code postal ");
         this.add(cpVisiteur);
         comboFieldCp= new JComboBox();
-        if (edit == true)
+        if (ville.getCp().split("-").length == 1)
         {
-            if (ville.getCp().split("-").length == 1)
+            comboFieldCp.addItem(ville.getCp());
+        }
+        else
+        {
+            for (String code : ville.getCp().split("-"))
             {
-                comboFieldCp.addItem(ville.getCp());
-            }
-            else
-            {
-                for (String code : ville.getCp().split("-"))
-                {
-                    comboFieldCp.addItem(code);
-                }
+                comboFieldCp.addItem(code);
             }
         }
         if(!util.getCp().equals(""))
@@ -420,7 +416,7 @@ public class ConsultModifVisiteur extends JPanel {
         label13 = new JLabel();
         this.add(label13);
         comboFieldCp.setEnabled(edit);
-        cp=comboFieldCp.getSelectedItem().toString();
+
 
         comboFieldRegion.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent arg0) {
@@ -500,7 +496,7 @@ public class ConsultModifVisiteur extends JPanel {
                 }
                 catch (Exception e2)
                 {
-                    
+
                 }
 
             }
